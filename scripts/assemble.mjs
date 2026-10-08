@@ -79,7 +79,7 @@ export function assemble({ outDir = ROOT, root = ROOT, lastmod = process.env.SIT
     written.push(rel);
     if (name !== '404' && !meta.noindex) urls.push(meta.path);
   }
-  urls.sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)));
+  urls.sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a < b ? -1 : a > b ? 1 : 0));
   const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     urls.map((p) => `  <url><loc>${ORIGIN}${p}</loc><lastmod>${lastmod}</lastmod></url>\n`).join('') + '</urlset>\n';
   writeFileSync(join(outDir, 'sitemap.xml'), sitemap);

@@ -284,3 +284,113 @@ test('dark scheme applies dark tokens; light applies light', async () => {
     } finally { await ctx.close(); }
   }
 });
+
+// ---------- Site-wide SEO (Task 12) ----------
+// Recorded exceptions: the home title (67) and description (161) are the user-approved
+// wording from the spec, so they are exempt from the 50-60 / 140-160 windows.
+const SEO_EXCEPTIONS = { '/': { title: 67, description: 161 } };
+
+test('SEO: every page has a 50-60 char title and 140-160 char description (home exempt, recorded)', () => {
+  for (const p of pages) {
+    const t = titleOf(p.html).length, d = descOf(p.html).length, ex = SEO_EXCEPTIONS[p.path];
+    if (ex) { assert.equal(t, ex.title, `${p.file}: exempt title changed length`); assert.equal(d, ex.description, `${p.file}: exempt description changed length`); continue; }
+    assert.ok(t >= 50 && t <= 60, `${p.file}: title length ${t}`);
+    assert.ok(d >= 140 && d <= 160, `${p.file}: description length ${d}`);
+  }
+});
+
+test('SEO: canonical and og:url equal the page URL; OG and Twitter tags complete; og:image exists', () => {
+  for (const p of pages) {
+    const url = 'https://onevio.in' + p.path;
+    if (p.name !== '404') {
+      const c = p.html.match(/<link rel="canonical" href="([^"]+)">/g) || [];
+      assert.equal(c.length, 1, `${p.file}: one canonical`);
+      assert.equal(c[0], `<link rel="canonical" href="${url}">`, `${p.file}: canonical`);
+      assert.ok(!p.html.includes('noindex'), `${p.file}: indexable`);
+    }
+    const prop = (k) => p.html.match(new RegExp(`<meta (?:property|name)="${k}" content="([^"]*)">`))?.[1];
+    assert.equal(prop('og:url'), url, `${p.file}: og:url`);
+    for (const k of ['og:type', 'og:site_name', 'og:title', 'og:description', 'og:image', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image']) assert.ok(prop(k), `${p.file}: ${k}`);
+    assert.equal(prop('og:title'), prop('twitter:title'));
+    const img = prop('og:image');
+    assert.match(img, /^https:\/\/onevio\.in\//, `${p.file}: og:image absolute`);
+    assert.ok(existsSync(join(ROOT, img.slice('https://onevio.in/'.length))), `${p.file}: og:image file ${img} missing`);
+  }
+});
+
+test('SEO: sitemap URLs are exactly the indexable pages; robots.txt references the sitemap', () => {
+  const locs = [...readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const indexable = pages.filter((p) => !p.html.includes('content="noindex"')).map((p) => 'https://onevio.in' + p.path);
+  assert.deepEqual([...locs].sort(), [...indexable].sort());
+  assert.equal(new Set(locs).size, locs.length, 'no duplicate sitemap URLs');
+  assert.equal(locs[0], 'https://onevio.in/', 'home first');
+  const robots = readFileSync(join(ROOT, 'robots.txt'), 'utf8');
+  assert.match(robots, /^Sitemap: https:\/\/onevio\.in\/sitemap\.xml$/m);
+  assert.doesNotMatch(robots, /Disallow: \/\s*$/m, 'robots does not block the site');
+});
+
+test('every src and srcset file referenced by any page exists', () => {
+  for (const p of pages) {
+    for (const src of [...attrs(p.html, '[a-z]+', 'src')]) {
+      if (/^https?:/.test(src)) continue;
+      assert.ok(src.startsWith('/'), `${p.file}: root-relative src ${src}`);
+      assert.ok(existsSync(join(ROOT, src)), `${p.file}: ${src} missing`);
+    }
+    for (const set of attrs(p.html, '[a-z]+', 'srcset')) for (const u of set.split(',')) {
+      const f = u.trim().split(/\s+/)[0];
+      assert.ok(existsSync(join(ROOT, f)), `${p.file}: ${f} missing`);
+    }
+  }
+});
+
+test('privacy page states the required facts', () => {
+  const t = decode(bodyOf(byPath.get('/privacy/').html));
+  for (const s of ['name, company, work email, team size', 'message', 'Supabase', 'Cloudflare Turnstile', 'no tracking cookies',
+    'no analytics or tracking scripts', 'never sell', 'manshw@gmail.com', 'Last updated 8 October 2026']) assert.ok(t.includes(s), `privacy: ${s}`);
+});
+
+test('404 links home and to Login, and is noindex', () => {
+  const h = byPath.get('/404.html').html, links = linksOf(bodyOf(h));
+  assert.ok(links.has('/') && links.has(LOGIN));
+  assert.ok(h.includes('<meta name="robots" content="noindex">'));
+});
+
+test('dark scheme tokens apply on every page', async () => {
+  const ctx = await browser.newContext({ colorScheme: 'dark' });
+  const page = await ctx.newPage();
+  try {
+    for (const p of pages) {
+      await page.goto(urlOf(p));
+      const got = await page.evaluate(() => ({
+        bg: getComputedStyle(document.body).backgroundColor,
+        fg: getComputedStyle(document.body).color,
+      }));
+      assert.equal(got.bg, 'rgb(12, 15, 29)', `${p.file}: dark background`);
+      assert.equal(got.fg, 'rgb(238, 240, 250)', `${p.file}: dark text (--ink)`);
+    }
+  } finally { await ctx.close(); }
+});
+
+test('mobile menu at 360px reaches every nav link on every page', async () => {
+  const ctx = await browser.newContext({ viewport: { width: 360, height: 780 } });
+  const page = await ctx.newPage();
+  try {
+    for (const p of pages) {
+      await page.goto(urlOf(p));
+      await page.locator('.mnav > summary').click();
+      const links = page.locator('.mnav-panel a');
+      const n = await links.count();
+      assert.ok(n >= 7, `${p.file}: ${n} menu links`);
+      const hrefs = [];
+      for (let i = 0; i < n; i++) {
+        const a = links.nth(i);
+        await a.scrollIntoViewIfNeeded();
+        assert.ok(await a.isVisible(), `${p.file}: menu link ${i} visible`);
+        const box = await a.boundingBox();
+        assert.ok(box && box.x >= 0 && box.x + box.width <= 360, `${p.file}: menu link ${i} inside the viewport`);
+        hrefs.push(await a.getAttribute('href'));
+      }
+      for (const h of [...FEATURE_PATHS, '/nrr-calculator/', LOGIN]) assert.ok(hrefs.includes(h), `${p.file}: menu has ${h}`);
+    }
+  } finally { await ctx.close(); }
+});
