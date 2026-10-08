@@ -411,3 +411,45 @@ ol.steps { list-style: none; padding: 0 }
 .fp-hero .wrap { max-width: 808px }
 .fp-body .prose { max-width: 808px; margin-inline: auto }
 .related { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) }
+
+/* ---------- NRR calculator (Task 11) ---------- */
+.calc-section { padding-block: 8px 24px }
+.calc-section .wrap { max-width: 808px }
+.calc { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-md) }
+.calc-in { display: grid; gap: 14px; align-content: start; min-width: 0 }
+.calc-out { min-width: 0; align-content: start }
+.cur { border: 0; padding: 0; margin: 0; display: flex; gap: 6px; align-items: center; min-width: 0 }
+.cur legend { float: left; font-size: 14px; font-weight: 500; color: var(--ink); margin-right: 8px; padding: 0 }
+.cur label { position: relative; cursor: pointer }
+.cur input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer }
+.cur span { display: grid; place-items: center; min-width: 40px; height: 40px; border: 1px solid var(--field); border-radius: 10px; font-weight: 600; font-size: 16px; color: var(--ink); background: var(--card) }
+.cur input:checked + span { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink) }
+.cur input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px }
+.amt { position: relative; display: block }
+.amt .sym { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none }
+.amt .input { padding-left: 32px }
+.try-example { justify-self: start }
+.calc-idle { color: var(--muted); margin: 0 }
+.calc-error { margin: 0; color: var(--red-ink); background: var(--red-bg); border-radius: 10px; padding: 12px 14px; font-weight: 500 }
+.calc-error:empty { display: none }
+.big-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+.big { background: var(--accent-soft); border-radius: 12px; padding: 14px }
+.big small { display: block; font-size: 13px; color: var(--accent-ink); font-weight: 500 }
+.big b { display: block; font-family: var(--font-head); font-size: clamp(34px, 5vw, 44px); line-height: 1.1; color: var(--accent-ink); margin-top: 4px }
+.out-end-line { margin: 14px 0 0; color: var(--body) }
+.out-end-line b { color: var(--ink); overflow-wrap: anywhere }
+.out-note { margin: 6px 0 0; font-size: 14px; color: var(--muted) }
+.bridge-fig { margin: 14px 0 0 }
+.bridge-fig figcaption { font-weight: 600; font-size: 14px; color: var(--ink) }
+.bridge { display: block; width: 100%; height: auto; margin-top: 6px; background: var(--surface-2); border-radius: 10px }
+.br-start { fill: var(--accent-line) } .br-exp { fill: var(--grn-ink) } .br-con { fill: var(--yel-ink) }
+.br-churn { fill: var(--red-ink) } .br-end { fill: var(--accent) }
+.br-val { font: 600 10.5px var(--font-body); fill: var(--ink) }
+.br-lab { font: 500 10.5px var(--font-body); fill: var(--muted) }
+.callout { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 40px 0 0; padding: 20px; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--radius) }
+.callout div { display: grid; gap: 2px; min-width: 0; flex: 1 1 260px }
+.callout b { color: var(--accent-ink); font-size: 18px }
+.callout span { color: var(--body); font-size: 15px }
+.callout .btn { text-decoration: none }
+@media (max-width: 760px) { .calc { grid-template-columns: 1fr; padding: 18px; gap: 22px } }
+.prose .callout .btn { color: var(--on-accent) }

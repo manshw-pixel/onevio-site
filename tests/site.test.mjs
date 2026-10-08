@@ -14,7 +14,7 @@ const LOGIN = 'https://crm.onevio.in/crm.html';
 
 // Pages linked from the shared header/footer that later tasks build. Each task
 // that adds one of these pages must delete it from this list.
-const PLANNED = new Set(['/nrr-calculator/']);
+const PLANNED = new Set();
 
 const pageNames = readdirSync(join(ROOT, 'pages')).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)).sort();
 const pages = pageNames.map((name) => {
@@ -76,7 +76,8 @@ test('Login links point exactly at the CRM', () => {
   }
 });
 
-test('PLANNED lists only pages that do not exist yet (prune your entry when you build one)', () => {
+test('every page linked from the shared header/footer is built (PLANNED is empty)', () => {
+  assert.equal(PLANNED.size, 0, `still planned: ${[...PLANNED].join(', ')}`);
   for (const p of PLANNED) assert.ok(!byPath.has(p), `${p} is built now: remove it from PLANNED`);
 });
 

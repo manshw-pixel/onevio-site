@@ -1,0 +1,193 @@
+<!-- @meta {
+ "title": "Free NRR and GRR Calculator with ARR Bridge | OneVio",
+ "description": "Free NRR and GRR calculator. Enter starting ARR, expansion, contraction and churn to see net and gross revenue retention and an ARR bridge. No sign-up.",
+ "path": "/nrr-calculator/",
+ "jsonld": [
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://onevio.in/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "NRR calculator",
+     "item": "https://onevio.in/nrr-calculator/"
+    }
+   ]
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "WebApplication",
+   "name": "NRR and GRR calculator",
+   "url": "https://onevio.in/nrr-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "description": "Free calculator for net revenue retention (NRR), gross revenue retention (GRR) and ending ARR, with an ARR bridge chart. It runs in the browser and sends nothing.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is the difference between NRR and GRR?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "NRR counts expansion as well as losses, so it can go above 100%. GRR counts only contraction and churn, so it can never go above 100%. NRR shows whether your existing customers grow on their own; GRR shows how much revenue you keep."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does this calculator store or send my numbers?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The calculation runs in your browser and nothing you type is sent anywhere or saved. You can disconnect from the internet after the page loads and it still works."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which time period should I use?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Twelve months is the usual choice: starting ARR from a year ago, and the expansion, contraction and churn that happened since. Use the same period for every input, and do not mix monthly and annual figures."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should new customers be included?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Leave out customers who signed during the period. They have no starting ARR, so including them pushes both ratios towards 100% and hides churn. OneVio applies the same rule automatically."
+     }
+    }
+   ]
+  }
+ ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">NRR calculator</span></nav>
+  <div class="eyebrow mt">Free tool</div>
+  <h1>NRR and GRR calculator</h1>
+  <p class="lead">Work out net and gross revenue retention in seconds. Nothing you type leaves your browser.</p>
+</div></section>
+
+<section class="calc-section" aria-label="Calculator"><div class="wrap">
+  <div class="calc" id="nrr-calc">
+    <form class="calc-in" onsubmit="return false" novalidate>
+      <fieldset class="cur"><legend>Currency</legend>
+        <label><input type="radio" name="currency" value="₹" checked><span>₹</span></label>
+        <label><input type="radio" name="currency" value="$"><span>$</span></label>
+        <label><input type="radio" name="currency" value="€"><span>€</span></label>
+        <label><input type="radio" name="currency" value="£"><span>£</span></label>
+      </fieldset>
+      <label class="fld"><span>Starting ARR (12 months ago)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="start" inputmode="decimal" autocomplete="off" placeholder="4,00,00,000"></span></label>
+      <label class="fld"><span>Expansion (upsell, cross-sell, price rises)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="expansion" inputmode="decimal" autocomplete="off" placeholder="60,00,000"></span></label>
+      <label class="fld"><span>Contraction (downgrades)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="contraction" inputmode="decimal" autocomplete="off" placeholder="10,00,000"></span></label>
+      <label class="fld"><span>Churn (lost customers)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="churn" inputmode="decimal" autocomplete="off" placeholder="22,00,000"></span></label>
+      <button type="button" class="btn btn-outline try-example">Load an example</button>
+    </form>
+    <div class="calc-out" aria-live="polite">
+      <p class="calc-idle">Enter your starting ARR and the year's movements to see your retention.</p>
+      <p class="calc-error"></p>
+      <div class="calc-results" hidden>
+        <div class="big-row">
+          <div class="big"><small>Net revenue retention</small><b class="out-nrr"></b></div>
+          <div class="big"><small>Gross revenue retention</small><b class="out-grr"></b></div>
+        </div>
+        <p class="out-end-line">Ending ARR: <b class="out-end"></b></p>
+        <p class="out-note"></p>
+        <figure class="bridge-fig"><figcaption>ARR bridge</figcaption>
+          <svg class="bridge" viewBox="0 0 320 176" role="img" aria-label="ARR bridge"></svg>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <noscript><p class="small">The calculator needs JavaScript to run in your browser. The formulas are below if you would rather use a spreadsheet.</p></noscript>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose calc-copy">
+  <h2>What NRR and GRR measure</h2>
+  <p><strong>Net revenue retention (NRR)</strong> answers one question: of the recurring revenue you had from a group of customers a year ago, how much do you have from those same customers today? It includes upsells and price rises, so it can go above 100%. <strong>Gross revenue retention (GRR)</strong> asks the harsher version: how much did you keep, ignoring any growth? It counts only contraction (downgrades) and churn (lost customers), so it can never go above 100%.</p>
+  <p>Read the two together. A high NRR with a weak GRR often means a few expanding accounts are covering for a leaky base. An NRR and GRR that are both close to 100% describe a stable base that is not growing by itself.</p>
+
+  <h2>The formulas</h2>
+  <ul>
+    <li><strong>Ending ARR</strong> = starting ARR + expansion − contraction − churn</li>
+    <li><strong>NRR</strong> = ending ARR ÷ starting ARR</li>
+    <li><strong>GRR</strong> = (starting ARR − contraction − churn) ÷ starting ARR, capped at 100%</li>
+  </ul>
+  <p>Use only customers you already had at the start of the period. Customers who signed during it have no starting ARR, and counting them inflates both ratios.</p>
+
+  <h2>A worked example</h2>
+  <p>Say you start the year with ₹4,00,00,000 (₹4 crore) of ARR from existing customers. During the year you add ₹60,00,000 of expansion, lose ₹10,00,000 to downgrades and ₹22,00,000 to churn.</p>
+  <ul>
+    <li>Ending ARR = 4,00,00,000 + 60,00,000 − 10,00,000 − 22,00,000 = <strong>₹4,28,00,000</strong></li>
+    <li>NRR = 4,28,00,000 ÷ 4,00,00,000 = <strong>107%</strong></li>
+    <li>GRR = (4,00,00,000 − 10,00,000 − 22,00,000) ÷ 4,00,00,000 = <strong>92%</strong></li>
+  </ul>
+  <p>The base grew 7% without a single new logo, but you still lost 8% of the revenue you started with. Press “Load an example” above to see this in the calculator.</p>
+
+  <h2>What counts as a good NRR or GRR?</h2>
+  <p>There is no single right number. Published ranges differ by source, customer size and contract length, so treat these as general rules of thumb rather than targets. For business software sold on annual contracts, a GRR in the high 80s to the 90s is often considered healthy, with enterprise-focused products tending to sit higher and products for small businesses lower. An NRR above 100% is generally read as expansion outweighing losses. Your own trend over several quarters, within your own segment, tells you more than any average.</p>
+
+  <h2>Common mistakes</h2>
+  <ul>
+    <li><strong>Including new customers.</strong> They distort both ratios.</li>
+    <li><strong>Mixing periods.</strong> Keep every input on the same 12 months.</li>
+    <li><strong>Mixing currencies.</strong> Convert to one currency first, then calculate.</li>
+    <li><strong>Hiding contraction.</strong> A downgrade is not churn, but it still lowers GRR.</li>
+  </ul>
+
+  <h2>How OneVio calculates these for you</h2>
+  <p>This calculator is a quick check on figures you already have. <a href="/">OneVio</a> works them out from your accounts, with no spreadsheet. An account counts as an existing customer when its start date is more than 365 days ago, and only existing customers count towards NRR and GRR. The dashboard shows a 12-month ARR bridge in US dollars: opening ARR, plus new business, plus expansion, minus contraction, minus churn, equals closing ARR. Each account is converted at the rates set in Settings. Read more on the <a href="/nrr-grr-reporting/">NRR and GRR reporting</a> page.</p>
+
+  <div class="callout">
+    <div><b>Get these numbers automatically.</b><span>OneVio calculates NRR, GRR and the ARR bridge from your accounts, every month.</span></div>
+    <a class="btn btn-primary" href="#demo">Book a demo</a>
+  </div>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/nrr-grr-reporting/"><b>NRR and GRR reporting</b><small>The 12-month ARR bridge, churn analysis and cohorts.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/customer-health-score/"><b>Customer health score</b><small>Five weighted inputs and three bands.</small></a>
+  </div>
+</div></section>
+
+<!-- @include demo -->
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">NRR calculator questions</h2>
+  <div class="faq">
+    <details open><summary>What is the difference between NRR and GRR?</summary><p>NRR counts expansion as well as losses, so it can go above 100%. GRR counts only contraction and churn, so it can never go above 100%. NRR shows whether your existing customers grow on their own; GRR shows how much revenue you keep.</p></details>
+    <details><summary>Does this calculator store or send my numbers?</summary><p>No. The calculation runs in your browser and nothing you type is sent anywhere or saved. You can disconnect from the internet after the page loads and it still works.</p></details>
+    <details><summary>Which time period should I use?</summary><p>Twelve months is the usual choice: starting ARR from a year ago, and the expansion, contraction and churn that happened since. Use the same period for every input, and do not mix monthly and annual figures.</p></details>
+    <details><summary>Should new customers be included?</summary><p>No. Leave out customers who signed during the period. They have no starting ARR, so including them pushes both ratios towards 100% and hides churn. OneVio applies the same rule automatically.</p></details>
+  </div>
+</div></section>
+</main>
+<!-- @include footer -->
+<script type="module" src="/nrr-calculator.js"></script>
+</body>
+</html>
