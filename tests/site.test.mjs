@@ -79,6 +79,10 @@ test('Login links point exactly at the CRM', () => {
   }
 });
 
+test('PLANNED lists only pages that do not exist yet (prune your entry when you build one)', () => {
+  for (const p of PLANNED) assert.ok(!byPath.has(p), `${p} is built now: remove it from PLANNED`);
+});
+
 test('internal links and anchors resolve', () => {
   for (const p of pages) {
     const pageIds = ids(p.html);
@@ -97,6 +101,58 @@ test('internal links and anchors resolve', () => {
       }
     }
   }
+});
+
+// ---------- Home page ----------
+const home = byPath.get('/');
+const decode = (t) => t.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const jsonld = (html) => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+
+test('home: title and H1 match the spec', () => {
+  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'OneVio: Customer Success Software for Renewals, Health Scores & NRR');
+  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'See every renewal coming. Keep every customer.');
+});
+
+test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with required fields', () => {
+  const by = Object.fromEntries(jsonld(home.html).map((j) => [j['@type'], j]));
+  const org = by.Organization, app = by.SoftwareApplication, faq = by.FAQPage;
+  assert.ok(org && app && faq, 'all three types present');
+  assert.equal(org.name, 'OneVio'); assert.equal(org.url, 'https://onevio.in/');
+  assert.match(org.logo, /^https:\/\/onevio\.in\//);
+  assert.equal(org.contactPoint?.email, 'manshw@gmail.com');
+  assert.equal(app.name, 'OneVio'); assert.equal(app.applicationCategory, 'BusinessApplication');
+  assert.equal(app.operatingSystem, 'Web'); assert.equal(app.url, 'https://onevio.in/');
+  for (const k of ['aggregateRating', 'review', 'offers']) assert.ok(!(k in app), `no ${k}`);
+  assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length === 8, '8 questions');
+  for (const q of faq.mainEntity) {
+    assert.equal(q['@type'], 'Question'); assert.ok(q.name);
+    assert.equal(q.acceptedAnswer?.['@type'], 'Answer'); assert.ok(q.acceptedAnswer.text.length > 60, `${q.name}: full answer`);
+  }
+});
+
+test('home: FAQPage JSON-LD equals the visible FAQ, question and answer', () => {
+  const faq = jsonld(home.html).find((j) => j['@type'] === 'FAQPage');
+  const visible = [...home.html.matchAll(/<details[^>]*><summary>([\s\S]*?)<\/summary><p>([\s\S]*?)<\/p><\/details>/g)]
+    .map((m) => [decode(m[1]), decode(m[2])]);
+  assert.deepEqual(visible, faq.mainEntity.map((q) => [q.name, q.acceptedAnswer.text]));
+});
+
+test('every <img> and <source> has alt (img), width and height; only the hero loads eagerly', () => {
+  for (const p of pages) {
+    for (const m of p.html.matchAll(/<(img|source)\b[^>]*>/g)) {
+      const tag = m[0];
+      if (m[1] === 'img') assert.match(tag, /\salt="[^"]{10,}"/, `${p.file}: img alt ${tag}`);
+      assert.match(tag, /\swidth="\d+"/, `${p.file}: width ${tag}`);
+      assert.match(tag, /\sheight="\d+"/, `${p.file}: height ${tag}`);
+      if (m[1] === 'source') for (const u of tag.match(/srcset="([^"]+)"/)[1].split(',')) assert.ok(existsSync(join(ROOT, u.trim().split(' ')[0])), `${p.file}: ${u} missing`);
+      else assert.ok(existsSync(join(ROOT, tag.match(/src="([^"]+)"/)[1])), `${p.file}: img src missing`);
+    }
+  }
+  const imgs = [...home.html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
+  assert.ok(imgs.length >= 7, 'hero + six feature screenshots');
+  assert.match(imgs[0], /loading="eager"/); assert.match(imgs[0], /fetchpriority="high"/);
+  assert.match(imgs[0], /customer-success-dashboard/);
+  for (const i of imgs.slice(1)) { assert.match(i, /loading="lazy"/); assert.doesNotMatch(i, /fetchpriority/); }
 });
 
 // ---------- Browser checks ----------

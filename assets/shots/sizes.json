@@ -1,0 +1,30 @@
+{
+  "customer-success-dashboard": {
+    "width": 1600,
+    "height": 1000
+  },
+  "customer-health-score": {
+    "width": 1600,
+    "height": 1049
+  },
+  "renewal-management": {
+    "width": 1600,
+    "height": 1158
+  },
+  "arr-bridge-nrr-grr": {
+    "width": 1600,
+    "height": 488
+  },
+  "customer-account-record": {
+    "width": 1600,
+    "height": 1248
+  },
+  "team-tasks": {
+    "width": 1600,
+    "height": 902
+  },
+  "license-deployment": {
+    "width": 1600,
+    "height": 286
+  }
+}

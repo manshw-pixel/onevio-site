@@ -355,3 +355,37 @@ textarea.input { min-height: 96px; resize: vertical }
   .btn-primary:hover { transform: none }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth } }
+
+/* ---------- Home page (Task 8) ---------- */
+figure { margin: 0 }
+.mt { margin-top: 10px }
+.catch { margin: 6px 0 0 }
+.hero .hero-shot { margin: 56px auto 0; max-width: 1060px; border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0 }
+.shot .url { margin-left: auto; margin-right: auto }
+.shot { box-shadow: var(--shadow-md) }
+.shot img { border-top: 1px solid var(--line-soft) }
+.shot-note { margin: 64px 0 0; text-align: center; font-size: 13px; color: var(--faint) }
+.feat .txt { min-width: 0 }
+.feat .shot { min-width: 0 }
+.grp { font-family: var(--font-body); line-height: 1.4 }
+.t-top { display: flex; align-items: center; justify-content: space-between; gap: 8px }
+.t h4 { margin: 0; font-family: var(--font-head); font-weight: 800; font-size: 18px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink) }
+.num small { font-family: var(--font-body); font-weight: 500; font-size: 14px; color: var(--faint) }
+.num small.warn { color: var(--red-ink) }
+.num.sm { font-size: 20px; line-height: 1.6 }
+.viz i { background: var(--accent); opacity: .85 }
+.viz i:nth-child(1) { opacity: .35 } .viz i:nth-child(2) { opacity: .45 } .viz i:nth-child(3) { opacity: .6 } .viz i:nth-child(4) { opacity: .75 }
+.viz.cohort i { opacity: 1 } .viz.cohort i:nth-child(2) { opacity: .8 } .viz.cohort i:nth-child(3) { opacity: .62 } .viz.cohort i:nth-child(4) { opacity: .46 } .viz.cohort i:nth-child(5) { opacity: .3 }
+.hbar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin-block: 9px }
+.hbar i { display: block } .hbar .g { background: #22c55e } .hbar .y { background: #eab308 } .hbar .r { background: #ef4444 }
+.bar.lg { height: 14px; margin-block: 9px; border-radius: 7px }
+ol.steps { list-style: none; padding: 0 }
+.teams h2 { color: var(--panel-ink) }
+.teams .lead { margin-bottom: 0 }
+.faq-section { padding-top: 40px }
+@media (max-width: 860px) { .shot-note { margin-top: 48px } }
+@media (max-width: 560px) { .hero .hero-shot { margin-top: 40px } .num { font-size: 24px } }
+@media (min-width: 861px) {
+  .feat { grid-template-columns: .85fr 1.35fr; gap: 56px }
+  .feat.flip { grid-template-columns: 1.35fr .85fr }
+}
