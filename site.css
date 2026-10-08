@@ -285,6 +285,12 @@ textarea.input { min-height: 96px; resize: vertical }
 .form-msg.ok { background: var(--grn-bg); color: var(--grn-ink); font-weight: 600 }
 .form-msg.err { background: var(--red-bg); color: var(--red-ink) }
 .form-msg .email { user-select: all; font-weight: 600 }
+.form-status:empty { display: none }
+.form-status .form-msg + .form-msg { margin-top: 8px }
+.contact-line { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; margin: 10px 0 0; font-size: 15px; color: var(--red-ink) }
+.contact-line .btn { padding: 6px 12px; font-size: 13px }
+.btn[disabled] { opacity: .7; cursor: progress }
+.demo > .form-msg.ok { align-self: start }
 
 /* ---------- FAQ ---------- */
 .faq { max-width: 820px; margin: 40px auto 0; text-align: left }

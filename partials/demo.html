@@ -6,7 +6,7 @@
       <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
       <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
     </div>
-    <form class="form" id="demo-form" method="post" action="https://demo.onevio.in/">
+    <form class="form" id="demo-form" novalidate>
       <div class="g2">
         <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
         <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
@@ -17,10 +17,13 @@
       </div>
       <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
       <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
-      <div class="turnstile-slot"></div>
+      <!-- The Turnstile site key lives only here: replace __TURNSTILE_SITE_KEY__ at handover. -->
+      <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__"></div>
       <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
-      <p class="form-msg ok" role="status" hidden>Thanks — we'll be in touch within one working day.</p>
-      <p class="form-msg err" role="alert" hidden>Something went wrong. Please email us at <span class="email">manshw@gmail.com</span>.</p>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at manshw@gmail.com.</p></noscript>
     </form>
   </div>
 </div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
