@@ -23,6 +23,14 @@
     "width": 1600,
     "height": 902
   },
+  "health-score-weights": {
+    "width": 1600,
+    "height": 797
+  },
+  "renewal-playbook": {
+    "width": 1600,
+    "height": 907
+  },
   "license-deployment": {
     "width": 1600,
     "height": 286

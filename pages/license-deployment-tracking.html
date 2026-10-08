@@ -1,0 +1,146 @@
+<!-- @meta {
+ "title": "License Deployment Tracking: Find Shelfware Early | OneVio",
+ "description": "Track total vs deployed licenses on every account, see deployment % across your book and the five lowest-deployed accounts before they reach renewal.",
+ "path": "/license-deployment-tracking/",
+ "ogImage": "/assets/shots/og-license-deployment-tracking.png",
+ "jsonld": [
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://onevio.in/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "License deployment tracking",
+     "item": "https://onevio.in/license-deployment-tracking/"
+    }
+   ]
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "SoftwareApplication",
+   "name": "OneVio",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web",
+   "url": "https://onevio.in/",
+   "description": "Track total vs deployed licenses on every account, see deployment % across your book and the five lowest-deployed accounts before they reach renewal."
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What does a blank deployed licenses field mean?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not recorded. OneVio treats a blank deployed count differently from zero, so an account without the figure is never shown as 0% deployed and is left out of the deployment percentage."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is the overall deployment percentage calculated?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Deployed licenses divided by total licenses, summed only across accounts that have both figures. The card also says how many accounts have a total but no deployed count yet."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which accounts does the License deployment card highlight?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The five accounts with the lowest deployment percentage, among those with both figures. Any account below 50% deployed is shown in amber."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I import license counts from a spreadsheet?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The account CSV import reads the licenses and deployedLicenses columns, and also accepts the headers Total licenses and Deployed licenses. CSV export includes both columns."
+     }
+    }
+   ]
+  }
+ ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">License deployment tracking</span></nav>
+  <div class="eyebrow mt">License tracking</div>
+  <h1>License deployment tracking that finds shelfware before renewal</h1>
+  <p class="lead">Unused seats are a renewal risk you can measure. OneVio records how many licenses each customer bought and how many they have deployed, and puts the lowest-deployed accounts on your dashboard.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="/">See all features</a></div>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose">
+<h2>Why license utilisation matters</h2>
+  <p>A customer who bought 200 seats and rolled out 60 is paying for shelfware. They may not say so, but at renewal the procurement team will notice, and the conversation turns from expansion to a discount. Low deployment is one of the earliest and most concrete signs that a renewal will be hard.</p>
+  <p>The fix is to see it early, while there is still time to run an adoption push. That needs two numbers per account and a view that does not mislead you when one of them is missing.</p>
+  <p>License deployment tracking is not the same as usage analytics. It does not measure how often people log in; it answers a simpler commercial question: of the seats this customer is paying for, how many have they actually handed out? If the answer is half or less, the customer is unlikely to renew at the same size without help, and your CSM has a concrete, specific reason to call: training for the teams not yet onboarded, a rollout plan with the champion, or a frank talk about the right number of seats before procurement has it for you.</p>
+
+  <h2>How OneVio tracks total vs deployed licenses</h2>
+  <p>Every account has two fields on its Edit form: <strong>Total licenses</strong>, the number the customer bought, and <strong>Deployed licenses</strong>, the number in use. Deployment percentage is deployed ÷ total.</p>
+  <p>Deployed licenses is optional, and a blank means <strong>not recorded</strong>, which OneVio treats differently from zero deployed. An account with no deployed figure is never shown as 0% deployed. That one rule keeps the numbers honest when your data is incomplete, which in most CS teams it is.</p>
+
+  <h2>The License deployment card</h2>
+  <p>The dashboard’s License deployment card sums licenses across the accounts in view, your own book or the whole team:</p>
+  <ul>
+    <li><strong>Total vs deployed</strong> across the book, with an overall deployment percentage.</li>
+    <li>The totals and percentage use <strong>only accounts with both figures</strong>, so missing data never drags the number down.</li>
+    <li>The card tells you how many accounts have a total but no deployed count yet, so you know there is data to chase.</li>
+    <li>The <strong>five lowest-deployed accounts</strong> are listed by percentage, and any below 50% is highlighted in amber.</li>
+  </ul>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/license-deployment-800.webp 800w, /assets/shots/license-deployment-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="286">
+      <img src="/assets/shots/license-deployment-1600.png" alt="OneVio License deployment card showing total and deployed licenses, overall deployment percentage and the five lowest-deployed accounts" width="1600" height="286" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>Click an account in the list to open it, check its <a href="/customer-health-score/">health score</a> and renewal date, and decide whether it needs an adoption plan before the renewal playbook starts.</p>
+
+  <h2>Importing license counts from CSV</h2>
+  <p>You do not need to type license counts in one by one. The account CSV import reads a <code>licenses</code> column for the total and a <code>deployedLicenses</code> column for the deployed count. Spreadsheet-style headers work too: “Total licenses” and “Deployed licenses” are matched to the same fields. A blank deployed cell stays not recorded, and a number OneVio cannot read is left unchanged and reported, rather than imported as zero. CSV export writes both columns back out.</p>
+
+  <h2>Who uses it</h2>
+  <p><strong>CSMs</strong> use the lowest-five list to choose where to run adoption work. <strong>CS managers</strong> watch overall deployment alongside health and <a href="/renewal-management/">renewals</a>. <strong>Leaders</strong> get an early read on which renewals may come back smaller, which is exactly the contraction that shows up later in <a href="/nrr-grr-reporting/">NRR and GRR</a>.</p>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/customer-health-score/"><b>Customer health score</b><small>Five weighted inputs, three bands, alerts when a score slips.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
+    <a href="/nrr-calculator/"><b>Free NRR calculator</b><small>Work out NRR and GRR from four numbers.</small></a>
+  </div>
+</div></section>
+
+<!-- @include demo -->
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">License tracking questions</h2>
+  <div class="faq">
+    <details open><summary>What does a blank deployed licenses field mean?</summary><p>Not recorded. OneVio treats a blank deployed count differently from zero, so an account without the figure is never shown as 0% deployed and is left out of the deployment percentage.</p></details>
+    <details><summary>How is the overall deployment percentage calculated?</summary><p>Deployed licenses divided by total licenses, summed only across accounts that have both figures. The card also says how many accounts have a total but no deployed count yet.</p></details>
+    <details><summary>Which accounts does the License deployment card highlight?</summary><p>The five accounts with the lowest deployment percentage, among those with both figures. Any account below 50% deployed is shown in amber.</p></details>
+    <details><summary>Can I import license counts from a spreadsheet?</summary><p>Yes. The account CSV import reads the licenses and deployedLicenses columns, and also accepts the headers Total licenses and Deployed licenses. CSV export includes both columns.</p></details>
+  </div>
+</div></section>
+</main>
+<!-- @include footer -->
+</body>
+</html>

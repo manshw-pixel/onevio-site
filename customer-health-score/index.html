@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Health Score Software with Tunable Weights | OneVio</title>
+<meta name="description" content="OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops.">
+<link rel="canonical" href="https://onevio.in/customer-health-score/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap">
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="Customer Health Score Software with Tunable Weights | OneVio">
+<meta property="og:description" content="OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops.">
+<meta property="og:url" content="https://onevio.in/customer-health-score/">
+<meta property="og:image" content="https://onevio.in/assets/shots/og-customer-health-score.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Customer Health Score Software with Tunable Weights | OneVio">
+<meta name="twitter:description" content="OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops.">
+<meta name="twitter:image" content="https://onevio.in/assets/shots/og-customer-health-score.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"Customer health score","item":"https://onevio.in/customer-health-score/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OneVio","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://onevio.in/","description":"OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What inputs make up the OneVio health score?","acceptedAnswer":{"@type":"Answer","text":"Five inputs: product usage, sentiment, support tickets, engagement recency and NPS, weighted 30%, 20%, 15%, 20% and 15% by default. An optional Value input, built from three yes/no proof-of-value checks, ships at weight 0 until you raise it."}},{"@type":"Question","name":"Can I change the health score weights?","acceptedAnswer":{"@type":"Answer","text":"Yes. The weights are sliders in Settings. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Every account is re-scored as soon as you save."}},{"@type":"Question","name":"What score counts as Green, Yellow or Red?","acceptedAnswer":{"@type":"Answer","text":"Green is 70 or above, Yellow is 40 to 69 and Red is below 40. When an account moves into a worse band it shows in the notification bell and the Recently declined card for 30 days, and the health playbook creates follow-up tasks for its CSM."}},{"@type":"Question","name":"How is engagement recency scored?","acceptedAnswer":{"@type":"Answer","text":"By default, any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days. You can switch to per-type recency, where calls, emails, QBRs, tickets, notes and renewals each have their own window and weight, blended into one recency score."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#demo">Book a demo</a>
+  </nav>
+  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Features</span>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">More</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script>
+(function(){var d=document;function c(s){d.querySelectorAll(s).forEach(function(e){e.open=false})}
+d.addEventListener('click',function(e){if(!e.target.closest('.dd'))c('.dd[open]');if(e.target.closest('.mnav-panel a,.dd-panel a'))c('.mnav[open],.dd[open]')});
+d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelector('.dd[open],.mnav[open]');if(o){o.open=false;o.querySelector('summary').focus()}}})})();
+</script>
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Customer health score</span></nav>
+  <div class="eyebrow mt">Customer health score</div>
+  <h1>Customer health score software that explains every score</h1>
+  <p class="lead">OneVio turns five signals you already have into one 0–100 score per account, shows exactly how it was built, and tells your team the day an account slips into a worse band.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="/">See all features</a></div>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose">
+<h2>Why a customer health score matters</h2>
+  <p>Most churn is visible weeks before the cancellation email. Usage tails off, the champion stops replying, tickets pile up. The trouble is that those signals live in different places, and nobody adds them up until the renewal call goes badly.</p>
+  <p>A customer health score does the adding for you. It gives every account one number and one colour, so a CSM can sort a book of fifty accounts and know where to spend Monday morning. It only works if people trust it, though, and people only trust a score they can explain. That is the design rule behind OneVio’s health score: every point traces back to an input you can see and a weight you chose.</p>
+
+  <h2>How OneVio calculates the health score</h2>
+  <p>Each account is scored from five inputs, each converted to a 0–100 scale:</p>
+  <ul>
+    <li><strong>Product usage</strong> (default weight 30%): entered as 0–100.</li>
+    <li><strong>Sentiment</strong> (20%): your read of the relationship, 0–100.</li>
+    <li><strong>Support tickets</strong> (15%): open tickets count against the score, 10 points each, so ten or more open tickets score zero.</li>
+    <li><strong>Engagement recency</strong> (20%): worked out from the activity log. Any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days.</li>
+    <li><strong>NPS</strong> (15%): the −100 to +100 range is rescaled to 0–100.</li>
+  </ul>
+  <p>The score is the weighted average of those five. A sixth input, <strong>Value</strong>, ships at weight 0: three yes/no checks for a published case study, savings approved by the customer and ROI approved by the customer. Raise its weight when you are ready for proof of value to count.</p>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/health-score-weights-800.webp 800w, /assets/shots/health-score-weights-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="797">
+      <img src="/assets/shots/health-score-weights-1600.png" alt="OneVio Settings showing health score weights: product usage 30%, sentiment 20%, support tickets 15%, engagement recency 20%, NPS 15% and value 0%" width="1600" height="797" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>Weights live in Settings, with the formula written out above the sliders. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Scores update everywhere the moment you save.</p>
+  <p>Recency can go one step further. Turn on <strong>Score recency per activity type</strong> and each type gets its own window and weight: calls and emails are fresh for 7 days and stale at 60, a QBR for 90 and 180, a renewal for a year and two. The recency input becomes the weighted blend of those per-type scores. Because a blend can only score an account the same or lower than the any-activity rule, it is off by default, and Settings shows how many accounts would drop a band before you switch it on.</p>
+
+  <h2>Green, Yellow and Red: what happens when a score moves</h2>
+  <p>Every score falls into a band: <strong>Green</strong> at 70 and above, <strong>Yellow</strong> from 40 to 69, <strong>Red</strong> below 40. Bands drive the work, not just the colour of a pill:</p>
+  <ul>
+    <li>When an account drops into a worse band, it appears in the notification bell as “Health dropped to Yellow” or “Red” and stays there for 30 days.</li>
+    <li>The dashboard’s Recently declined card lists every band drop from the last 30 days, most recent first.</li>
+    <li>Crossing into Yellow or Red creates the health playbook tasks for the account’s CSM, such as a check-in call within 3 days or an escalation within 1. Recovering to Green re-arms them.</li>
+  </ul>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/customer-health-score-800.webp 800w, /assets/shots/customer-health-score-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="1049">
+      <img src="/assets/shots/customer-health-score-1600.png" alt="OneVio accounts list sorted by health score, with Red, Yellow and Green scores beside NRR, GRR and renewal flags" width="1600" height="1049" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>On the account page, the Health trend card plots the score over time and says when the inputs were last updated, with a prompt to refresh them once they are 30 days old. A score built on stale inputs is flagged rather than trusted.</p>
+
+  <h2>Who uses it</h2>
+  <p><strong>CSMs</strong> sort their book by score and work the Red and Yellow accounts first. <strong>CS managers</strong> watch the health mix and the bell to see which accounts are sliding before a renewal is in danger. <strong>Leaders</strong> get a score whose weights they signed off, which makes it far easier to bring into a forecast or a QBR. To see how health feeds the rest of the renewal process, read about <a href="/renewal-management/">renewal management</a>.</p>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
+    <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
+    <a href="/nrr-calculator/"><b>Free NRR calculator</b><small>Work out NRR and GRR from four numbers.</small></a>
+  </div>
+</div></section>
+
+<section id="demo" class="demo-section" aria-labelledby="demo-title"><div class="wrap">
+  <div class="demo">
+    <div>
+      <div class="eyebrow">Book a demo</div>
+      <h2 id="demo-title">See OneVio with your own renewals.</h2>
+      <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
+      <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
+    </div>
+    <form class="form" id="demo-form" novalidate>
+      <div class="g2">
+        <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
+        <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
+      </div>
+      <div class="g2">
+        <label class="fld"><span>Work email <span class="req" aria-hidden="true">*</span></span><input class="input" type="email" name="email" autocomplete="email" required maxlength="200"></label>
+        <label class="fld"><span>Team size</span><select class="input" name="team_size"><option value="">Choose…</option><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+      </div>
+      <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <!-- The Turnstile site key lives only here: replace __TURNSTILE_SITE_KEY__ at handover. -->
+      <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__"></div>
+      <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at manshw@gmail.com.</p></noscript>
+    </form>
+  </div>
+</div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Health score questions</h2>
+  <div class="faq">
+    <details open><summary>What inputs make up the OneVio health score?</summary><p>Five inputs: product usage, sentiment, support tickets, engagement recency and NPS, weighted 30%, 20%, 15%, 20% and 15% by default. An optional Value input, built from three yes/no proof-of-value checks, ships at weight 0 until you raise it.</p></details>
+    <details><summary>Can I change the health score weights?</summary><p>Yes. The weights are sliders in Settings. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Every account is re-scored as soon as you save.</p></details>
+    <details><summary>What score counts as Green, Yellow or Red?</summary><p>Green is 70 or above, Yellow is 40 to 69 and Red is below 40. When an account moves into a worse band it shows in the notification bell and the Recently declined card for 30 days, and the health playbook creates follow-up tasks for its CSM.</p></details>
+    <details><summary>How is engagement recency scored?</summary><p>By default, any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days. You can switch to per-type recency, where calls, emails, QBRs, tickets, notes and renewals each have their own window and weight, blended into one recency score.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p class="email">manshw@gmail.com</p>
+  </div>
+  <nav aria-label="Product"><h2>Product</h2>
+    <a href="/customer-health-score/">Customer health score</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/privacy/">Privacy</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+</body>
+</html>

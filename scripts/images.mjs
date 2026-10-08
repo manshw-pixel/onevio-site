@@ -19,6 +19,8 @@ export const SHOTS = [
   { name: 'arr-bridge-nrr-grr', src: 'dashboard.png', crop: { left: 355, top: 300, width: 2490, height: 760 } },
   { name: 'customer-account-record', src: 'account.png', crop: { left: 350, top: 105, width: 1666, height: 1300 } },
   { name: 'team-tasks', src: 'tasks.png', crop: { left: 360, top: 115, width: 2484, height: 1400 } },
+  { name: 'health-score-weights', src: 'settings-weights.png', crop: { left: 1615, top: 40, width: 1235, height: 615 } },
+  { name: 'renewal-playbook', src: 'settings-weights.png', crop: { left: 362, top: 1100, width: 1235, height: 700 } },
   { name: 'license-deployment', src: 'licenses.png', crop: { left: 355, top: 1255, width: 2490, height: 445 } },
 ];
 
@@ -36,6 +38,17 @@ writeFileSync(join(OUT, 'sizes.json'), JSON.stringify(sizes, null, 2) + '\n');
 // OG for the home page: top-left of the dashboard (tiles + ARR bridge).
 await sharp(join(SRC, 'dashboard.png')).extract({ left: 0, top: 0, width: 2880, height: 1512 })
   .resize(1200, 630).png({ palette: true, compressionLevel: 9 }).toFile(join(OUT, 'og-home.png'));
+
+// OG images for the feature pages: 1200x630 (1.905:1) crops of the matching screen.
+const OGS = [
+  ['og-customer-health-score', 'health.png', { left: 360, top: 115, width: 1800, height: 945 }],
+  ['og-renewal-management', 'renewals.png', { left: 360, top: 115, width: 1830, height: 961 }],
+  ['og-nrr-grr-reporting', 'dashboard.png', { left: 355, top: 115, width: 2490, height: 1307 }],
+  ['og-license-deployment-tracking', 'licenses.png', { left: 355, top: 115, width: 2490, height: 1307 }],
+];
+for (const [name, src, crop] of OGS) {
+  await sharp(join(SRC, src)).extract(crop).resize(1200, 630).png({ palette: true, compressionLevel: 9 }).toFile(join(OUT, name + '.png'));
+}
 
 const logo = `<g transform="translate(96 96) scale(1.5)"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g>`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">

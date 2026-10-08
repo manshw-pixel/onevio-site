@@ -395,3 +395,19 @@ ol.steps { list-style: none; padding: 0 }
   .feat { grid-template-columns: .85fr 1.35fr; gap: 56px }
   .feat.flip { grid-template-columns: 1.35fr .85fr }
 }
+
+/* ---------- Feature pages (Task 10) ---------- */
+.fp-hero .lead { margin-top: 16px }
+.fp-hero .cta { justify-content: flex-start }
+.fp-hero h1 { max-width: 22ch }
+.fp-body { padding-top: 8px }
+.prose .shot { margin: 28px 0 }
+.prose code { font-size: .92em; background: var(--surface-2); border-radius: 5px; padding: 1px 5px }
+.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 16px }
+.prose .related a { display: grid; gap: 4px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); color: var(--ink); text-decoration: none }
+.prose .related a:hover { border-color: var(--accent-line) }
+.related b { font-weight: 600 }
+.related small { color: var(--muted); font-size: 14px; line-height: 1.45 }
+.fp-hero .wrap { max-width: 808px }
+.fp-body .prose { max-width: 808px; margin-inline: auto }
+.related { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) }

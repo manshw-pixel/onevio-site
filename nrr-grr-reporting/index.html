@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NRR and GRR Reporting with a 12-Month ARR Bridge | OneVio</title>
+<meta name="description" content="Report net and gross revenue retention from existing customers only, with a 12-month ARR bridge in USD across INR, USD and PHP accounts, plus churn and cohorts.">
+<link rel="canonical" href="https://onevio.in/nrr-grr-reporting/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap">
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="NRR and GRR Reporting with a 12-Month ARR Bridge | OneVio">
+<meta property="og:description" content="Report net and gross revenue retention from existing customers only, with a 12-month ARR bridge in USD across INR, USD and PHP accounts, plus churn and cohorts.">
+<meta property="og:url" content="https://onevio.in/nrr-grr-reporting/">
+<meta property="og:image" content="https://onevio.in/assets/shots/og-nrr-grr-reporting.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NRR and GRR Reporting with a 12-Month ARR Bridge | OneVio">
+<meta name="twitter:description" content="Report net and gross revenue retention from existing customers only, with a 12-month ARR bridge in USD across INR, USD and PHP accounts, plus churn and cohorts.">
+<meta name="twitter:image" content="https://onevio.in/assets/shots/og-nrr-grr-reporting.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"NRR & GRR reporting","item":"https://onevio.in/nrr-grr-reporting/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OneVio","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://onevio.in/","description":"Report net and gross revenue retention from existing customers only, with a 12-month ARR bridge in USD across INR, USD and PHP accounts, plus churn and cohorts."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Who counts as an existing customer in OneVio?","acceptedAnswer":{"@type":"Answer","text":"An account whose start date is more than 365 days ago. Only existing customers count towards NRR and GRR; customers signed within the last 12 months appear as new business in the ARR bridge instead."}},{"@type":"Question","name":"How is NRR different from GRR?","acceptedAnswer":{"@type":"Answer","text":"NRR includes expansion, so it can go above 100%. GRR counts only contraction and churn, so it never goes above 100%. Both use the same opening ARR from existing customers over the trailing 12 months."}},{"@type":"Question","name":"Which currencies does OneVio support?","acceptedAnswer":{"@type":"Answer","text":"Each account can bill in Indian rupees (INR), US dollars (USD) or Philippine pesos (PHP). Dashboard totals, the ARR bridge, NRR and GRR are converted to USD using the rates set in Settings."}},{"@type":"Question","name":"Can I see why customers churned?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every churn is recorded with a reason: Price, Product fit, Champion left, Competitor, Business closed or Other. Churn analysis breaks lost ARR down by reason, CSM, tier or quarter."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#demo">Book a demo</a>
+  </nav>
+  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Features</span>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">More</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script>
+(function(){var d=document;function c(s){d.querySelectorAll(s).forEach(function(e){e.open=false})}
+d.addEventListener('click',function(e){if(!e.target.closest('.dd'))c('.dd[open]');if(e.target.closest('.mnav-panel a,.dd-panel a'))c('.mnav[open],.dd[open]')});
+d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelector('.dd[open],.mnav[open]');if(o){o.open=false;o.querySelector('summary').focus()}}})})();
+</script>
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">NRR &amp; GRR reporting</span></nav>
+  <div class="eyebrow mt">NRR &amp; GRR reporting</div>
+  <h1>NRR and GRR reporting you can defend in the board meeting</h1>
+  <p class="lead">OneVio calculates net and gross revenue retention from the movements your team records, shows them in a 12-month ARR bridge, and keeps new business out of the retention numbers.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="/">See all features</a></div>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose">
+<h2>NRR vs GRR, and why the definition matters</h2>
+  <p><strong>Net revenue retention (NRR)</strong> is the share of last year’s recurring revenue you still have today, counting expansion. It can go above 100%. <strong>Gross revenue retention (GRR)</strong> counts only what you lost to contraction and churn, so it never goes above 100%. NRR tells you whether the base grows on its own; GRR tells you how leaky it is. Read together, they separate a healthy customer base from a business that only grows by replacing the customers it loses.</p>
+  <p>Both are easy to inflate by accident. The most common mistake is letting customers signed during the year into the calculation: they have no opening ARR, so they push both ratios towards 100% and hide churn. OneVio avoids that by design.</p>
+
+  <h2>How OneVio calculates NRR and GRR</h2>
+  <p>An account counts as an <strong>existing customer</strong> when its start date is more than 365 days ago. Only existing customers count towards NRR and GRR. Over the trailing 12 months, OneVio adds up three movements for them:</p>
+  <ul>
+    <li><strong>Expansion</strong>: ARR increases, from renewals at a higher price or ARR changes on the account.</li>
+    <li><strong>Contraction</strong>: ARR decreases from the same sources.</li>
+    <li><strong>Churn</strong>: the ARR of accounts lost in the window.</li>
+  </ul>
+  <p>Opening ARR is rebuilt from today’s ARR by undoing those movements. Then NRR = (opening − churn − contraction + expansion) ÷ opening, and GRR = (opening − churn − contraction) ÷ opening. Want to try the formula on your own numbers first? Use the free <a href="/nrr-calculator/">NRR calculator</a>.</p>
+
+  <h2>The 12-month ARR bridge</h2>
+  <p>The dashboard shows the same figures as an ARR bridge: opening ARR from existing customers a year ago, plus new business, plus expansion, minus contraction, minus churn, equals closing ARR today. New business is the current ARR of customers signed inside the window, with their first-year upsells included, which is the usual convention. A customer signed and lost inside the window nets to zero and is counted separately.</p>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/arr-bridge-nrr-grr-800.webp 800w, /assets/shots/arr-bridge-nrr-grr-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="488">
+      <img src="/assets/shots/arr-bridge-nrr-grr-1600.png" alt="OneVio dashboard showing total ARR in USD, NRR and GRR for the last 12 months, and an ARR bridge from opening to closing ARR" width="1600" height="488" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>Every figure is in US dollars. Each account bills in its own currency, Indian rupees, US dollars or Philippine pesos, and OneVio converts to USD with the rates set in Settings. Account pages keep the native amount, so a CSM in Bengaluru still sees the rupee contract value.</p>
+
+  <h2>Churn analysis, cohorts and trends</h2>
+  <p>Retention numbers raise the next question: why? The Analytics section answers it with:</p>
+  <ul>
+    <li><strong>Churn analysis</strong>: lost ARR and logos broken down by churn reason, CSM or tier, or by quarter over the last eight quarters.</li>
+    <li><strong>Cohort retention</strong>: accounts grouped by the quarter they started (by year for anything older than three years), showing what share of logos and ARR survived each quarter since.</li>
+    <li><strong>Monthly trends</strong>: OneVio takes a snapshot each month and draws total ARR, NRR and GRR as trend lines once two snapshots exist.</li>
+    <li><strong>Renewal outcomes by quarter</strong>: ARR renewed against ARR churned, with the win rate.</li>
+  </ul>
+
+  <h2>Who uses it</h2>
+  <p><strong>Founders and CS leaders</strong> take NRR, GRR and the bridge into board and investor updates. <strong>Finance</strong> gets one USD figure with the conversion rates written down. <strong>CS managers</strong> use churn reasons and cohorts to decide where to act, then use <a href="/renewal-management/">renewal management</a> to act on it.</p>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/customer-health-score/"><b>Customer health score</b><small>Five weighted inputs, three bands, alerts when a score slips.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
+    <a href="/nrr-calculator/"><b>Free NRR calculator</b><small>Work out NRR and GRR from four numbers.</small></a>
+  </div>
+</div></section>
+
+<section id="demo" class="demo-section" aria-labelledby="demo-title"><div class="wrap">
+  <div class="demo">
+    <div>
+      <div class="eyebrow">Book a demo</div>
+      <h2 id="demo-title">See OneVio with your own renewals.</h2>
+      <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
+      <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
+    </div>
+    <form class="form" id="demo-form" novalidate>
+      <div class="g2">
+        <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
+        <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
+      </div>
+      <div class="g2">
+        <label class="fld"><span>Work email <span class="req" aria-hidden="true">*</span></span><input class="input" type="email" name="email" autocomplete="email" required maxlength="200"></label>
+        <label class="fld"><span>Team size</span><select class="input" name="team_size"><option value="">Choose…</option><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+      </div>
+      <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <!-- The Turnstile site key lives only here: replace __TURNSTILE_SITE_KEY__ at handover. -->
+      <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__"></div>
+      <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at manshw@gmail.com.</p></noscript>
+    </form>
+  </div>
+</div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">NRR and GRR questions</h2>
+  <div class="faq">
+    <details open><summary>Who counts as an existing customer in OneVio?</summary><p>An account whose start date is more than 365 days ago. Only existing customers count towards NRR and GRR; customers signed within the last 12 months appear as new business in the ARR bridge instead.</p></details>
+    <details><summary>How is NRR different from GRR?</summary><p>NRR includes expansion, so it can go above 100%. GRR counts only contraction and churn, so it never goes above 100%. Both use the same opening ARR from existing customers over the trailing 12 months.</p></details>
+    <details><summary>Which currencies does OneVio support?</summary><p>Each account can bill in Indian rupees (INR), US dollars (USD) or Philippine pesos (PHP). Dashboard totals, the ARR bridge, NRR and GRR are converted to USD using the rates set in Settings.</p></details>
+    <details><summary>Can I see why customers churned?</summary><p>Yes. Every churn is recorded with a reason: Price, Product fit, Champion left, Competitor, Business closed or Other. Churn analysis breaks lost ARR down by reason, CSM, tier or quarter.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p class="email">manshw@gmail.com</p>
+  </div>
+  <nav aria-label="Product"><h2>Product</h2>
+    <a href="/customer-health-score/">Customer health score</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/privacy/">Privacy</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+</body>
+</html>

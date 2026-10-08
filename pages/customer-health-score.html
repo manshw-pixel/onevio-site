@@ -1,0 +1,156 @@
+<!-- @meta {
+ "title": "Customer Health Score Software with Tunable Weights | OneVio",
+ "description": "OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops.",
+ "path": "/customer-health-score/",
+ "ogImage": "/assets/shots/og-customer-health-score.png",
+ "jsonld": [
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://onevio.in/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Customer health score",
+     "item": "https://onevio.in/customer-health-score/"
+    }
+   ]
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "SoftwareApplication",
+   "name": "OneVio",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web",
+   "url": "https://onevio.in/",
+   "description": "OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops."
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What inputs make up the OneVio health score?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Five inputs: product usage, sentiment, support tickets, engagement recency and NPS, weighted 30%, 20%, 15%, 20% and 15% by default. An optional Value input, built from three yes/no proof-of-value checks, ships at weight 0 until you raise it."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I change the health score weights?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The weights are sliders in Settings. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Every account is re-scored as soon as you save."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What score counts as Green, Yellow or Red?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Green is 70 or above, Yellow is 40 to 69 and Red is below 40. When an account moves into a worse band it shows in the notification bell and the Recently declined card for 30 days, and the health playbook creates follow-up tasks for its CSM."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is engagement recency scored?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "By default, any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days. You can switch to per-type recency, where calls, emails, QBRs, tickets, notes and renewals each have their own window and weight, blended into one recency score."
+     }
+    }
+   ]
+  }
+ ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Customer health score</span></nav>
+  <div class="eyebrow mt">Customer health score</div>
+  <h1>Customer health score software that explains every score</h1>
+  <p class="lead">OneVio turns five signals you already have into one 0–100 score per account, shows exactly how it was built, and tells your team the day an account slips into a worse band.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="/">See all features</a></div>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose">
+<h2>Why a customer health score matters</h2>
+  <p>Most churn is visible weeks before the cancellation email. Usage tails off, the champion stops replying, tickets pile up. The trouble is that those signals live in different places, and nobody adds them up until the renewal call goes badly.</p>
+  <p>A customer health score does the adding for you. It gives every account one number and one colour, so a CSM can sort a book of fifty accounts and know where to spend Monday morning. It only works if people trust it, though, and people only trust a score they can explain. That is the design rule behind OneVio’s health score: every point traces back to an input you can see and a weight you chose.</p>
+
+  <h2>How OneVio calculates the health score</h2>
+  <p>Each account is scored from five inputs, each converted to a 0–100 scale:</p>
+  <ul>
+    <li><strong>Product usage</strong> (default weight 30%): entered as 0–100.</li>
+    <li><strong>Sentiment</strong> (20%): your read of the relationship, 0–100.</li>
+    <li><strong>Support tickets</strong> (15%): open tickets count against the score, 10 points each, so ten or more open tickets score zero.</li>
+    <li><strong>Engagement recency</strong> (20%): worked out from the activity log. Any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days.</li>
+    <li><strong>NPS</strong> (15%): the −100 to +100 range is rescaled to 0–100.</li>
+  </ul>
+  <p>The score is the weighted average of those five. A sixth input, <strong>Value</strong>, ships at weight 0: three yes/no checks for a published case study, savings approved by the customer and ROI approved by the customer. Raise its weight when you are ready for proof of value to count.</p>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/health-score-weights-800.webp 800w, /assets/shots/health-score-weights-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="797">
+      <img src="/assets/shots/health-score-weights-1600.png" alt="OneVio Settings showing health score weights: product usage 30%, sentiment 20%, support tickets 15%, engagement recency 20%, NPS 15% and value 0%" width="1600" height="797" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>Weights live in Settings, with the formula written out above the sliders. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Scores update everywhere the moment you save.</p>
+  <p>Recency can go one step further. Turn on <strong>Score recency per activity type</strong> and each type gets its own window and weight: calls and emails are fresh for 7 days and stale at 60, a QBR for 90 and 180, a renewal for a year and two. The recency input becomes the weighted blend of those per-type scores. Because a blend can only score an account the same or lower than the any-activity rule, it is off by default, and Settings shows how many accounts would drop a band before you switch it on.</p>
+
+  <h2>Green, Yellow and Red: what happens when a score moves</h2>
+  <p>Every score falls into a band: <strong>Green</strong> at 70 and above, <strong>Yellow</strong> from 40 to 69, <strong>Red</strong> below 40. Bands drive the work, not just the colour of a pill:</p>
+  <ul>
+    <li>When an account drops into a worse band, it appears in the notification bell as “Health dropped to Yellow” or “Red” and stays there for 30 days.</li>
+    <li>The dashboard’s Recently declined card lists every band drop from the last 30 days, most recent first.</li>
+    <li>Crossing into Yellow or Red creates the health playbook tasks for the account’s CSM, such as a check-in call within 3 days or an escalation within 1. Recovering to Green re-arms them.</li>
+  </ul>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/customer-health-score-800.webp 800w, /assets/shots/customer-health-score-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="1049">
+      <img src="/assets/shots/customer-health-score-1600.png" alt="OneVio accounts list sorted by health score, with Red, Yellow and Green scores beside NRR, GRR and renewal flags" width="1600" height="1049" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>On the account page, the Health trend card plots the score over time and says when the inputs were last updated, with a prompt to refresh them once they are 30 days old. A score built on stale inputs is flagged rather than trusted.</p>
+
+  <h2>Who uses it</h2>
+  <p><strong>CSMs</strong> sort their book by score and work the Red and Yellow accounts first. <strong>CS managers</strong> watch the health mix and the bell to see which accounts are sliding before a renewal is in danger. <strong>Leaders</strong> get a score whose weights they signed off, which makes it far easier to bring into a forecast or a QBR. To see how health feeds the rest of the renewal process, read about <a href="/renewal-management/">renewal management</a>.</p>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
+    <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
+    <a href="/nrr-calculator/"><b>Free NRR calculator</b><small>Work out NRR and GRR from four numbers.</small></a>
+  </div>
+</div></section>
+
+<!-- @include demo -->
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Health score questions</h2>
+  <div class="faq">
+    <details open><summary>What inputs make up the OneVio health score?</summary><p>Five inputs: product usage, sentiment, support tickets, engagement recency and NPS, weighted 30%, 20%, 15%, 20% and 15% by default. An optional Value input, built from three yes/no proof-of-value checks, ships at weight 0 until you raise it.</p></details>
+    <details><summary>Can I change the health score weights?</summary><p>Yes. The weights are sliders in Settings. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Every account is re-scored as soon as you save.</p></details>
+    <details><summary>What score counts as Green, Yellow or Red?</summary><p>Green is 70 or above, Yellow is 40 to 69 and Red is below 40. When an account moves into a worse band it shows in the notification bell and the Recently declined card for 30 days, and the health playbook creates follow-up tasks for its CSM.</p></details>
+    <details><summary>How is engagement recency scored?</summary><p>By default, any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days. You can switch to per-type recency, where calls, emails, QBRs, tickets, notes and renewals each have their own window and weight, blended into one recency score.</p></details>
+  </div>
+</div></section>
+</main>
+<!-- @include footer -->
+</body>
+</html>

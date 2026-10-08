@@ -14,10 +14,7 @@ const LOGIN = 'https://crm.onevio.in/crm.html';
 
 // Pages linked from the shared header/footer that later tasks build. Each task
 // that adds one of these pages must delete it from this list.
-const PLANNED = new Set([
-  '/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/',
-  '/license-deployment-tracking/', '/nrr-calculator/',
-]);
+const PLANNED = new Set(['/nrr-calculator/']);
 
 const pageNames = readdirSync(join(ROOT, 'pages')).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)).sort();
 const pages = pageNames.map((name) => {
@@ -130,11 +127,81 @@ test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with requi
   }
 });
 
-test('home: FAQPage JSON-LD equals the visible FAQ, question and answer', () => {
-  const faq = jsonld(home.html).find((j) => j['@type'] === 'FAQPage');
-  const visible = [...home.html.matchAll(/<details[^>]*><summary>([\s\S]*?)<\/summary><p>([\s\S]*?)<\/p><\/details>/g)]
-    .map((m) => [decode(m[1]), decode(m[2])]);
-  assert.deepEqual(visible, faq.mainEntity.map((q) => [q.name, q.acceptedAnswer.text]));
+test('every FAQPage JSON-LD equals its page\'s visible FAQ, question and answer', () => {
+  const withFaq = pages.filter((p) => jsonld(p.html).some((j) => j['@type'] === 'FAQPage'));
+  assert.ok(withFaq.length >= 5, 'home + four feature pages have FAQs');
+  for (const p of withFaq) {
+    const faq = jsonld(p.html).find((j) => j['@type'] === 'FAQPage');
+    const visible = [...p.html.matchAll(/<details[^>]*><summary>([\s\S]*?)<\/summary><p>([\s\S]*?)<\/p><\/details>/g)]
+      .map((m) => [decode(m[1]), decode(m[2])]);
+    assert.deepEqual(visible, faq.mainEntity.map((q) => [q.name, q.acceptedAnswer.text]), p.file);
+  }
+});
+
+// ---------- Feature pages ----------
+const FEATURE_PATHS = ['/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/'];
+const linksOf = (html) => new Set(attrs(html, 'a', 'href'));
+const titleOf = (html) => decode(html.match(/<title>([^<]*)<\/title>/)[1]);
+const descOf = (html) => decode(html.match(/<meta name="description" content="([^"]*)">/)[1]);
+const bodyOf = (html) => html.slice(html.indexOf('</header>'), html.indexOf('<footer'));
+
+test('titles and descriptions are unique across pages', () => {
+  const t = pages.map((p) => titleOf(p.html)), d = pages.map((p) => descOf(p.html));
+  assert.equal(new Set(t).size, t.length, `duplicate title in ${t.join(' | ')}`);
+  assert.equal(new Set(d).size, d.length, 'duplicate description');
+});
+
+test('breadcrumb JSON-LD is a valid BreadcrumbList matching the visible breadcrumb', () => {
+  for (const p of pages.filter((x) => x.path !== '/' && x.name !== '404')) {
+    const bc = jsonld(p.html).find((j) => j['@type'] === 'BreadcrumbList');
+    assert.ok(bc, `${p.file}: BreadcrumbList`);
+    const items = bc.itemListElement;
+    assert.ok(Array.isArray(items) && items.length >= 2, p.file);
+    items.forEach((it, i) => {
+      assert.equal(it['@type'], 'ListItem'); assert.equal(it.position, i + 1); assert.ok(it.name, 'name');
+      assert.match(it.item, /^https:\/\/onevio\.in\//);
+    });
+    assert.equal(items[0].item, 'https://onevio.in/');
+    assert.equal(items.at(-1).item, 'https://onevio.in' + p.path, `${p.file}: last crumb is the page`);
+    const crumbs = p.html.match(/<nav class="crumbs"[^>]*>([\s\S]*?)<\/nav>/);
+    assert.ok(crumbs, `${p.file}: visible breadcrumb`);
+    assert.equal(decode(crumbs[1]).replace(/\s*\/\s*/g, ' / '), items.map((it) => it.name).join(' / '), `${p.file}: visible crumbs match JSON-LD`);
+  }
+});
+
+test('feature pages: title/description length, one H1 with JSON-LD, screenshots, links and length', () => {
+  for (const path of FEATURE_PATHS) {
+    const p = byPath.get(path);
+    assert.ok(p, `${path} built`);
+    const title = titleOf(p.html), desc = descOf(p.html);
+    assert.ok(title.length >= 50 && title.length <= 60, `${path} title length ${title.length}`);
+    assert.ok(desc.length >= 140 && desc.length <= 160, `${path} description length ${desc.length}`);
+    const ld = jsonld(p.html);
+    for (const t of ['BreadcrumbList', 'SoftwareApplication', 'FAQPage']) assert.ok(ld.some((j) => j['@type'] === t), `${path} ${t}`);
+    const app = ld.find((j) => j['@type'] === 'SoftwareApplication');
+    assert.equal(app.name, 'OneVio');
+    for (const k of ['aggregateRating', 'review', 'offers']) assert.ok(!(k in app), `${path}: no ${k}`);
+    const nFaq = ld.find((j) => j['@type'] === 'FAQPage').mainEntity.length;
+    assert.ok(nFaq >= 3 && nFaq <= 4, `${path}: 3-4 FAQs`);
+    const prose = p.html.match(/<section class="fp-body">([\s\S]*?)<\/section>/)[1];
+    const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus "Related"
+    assert.ok(h2 >= 3 && h2 <= 5, `${path}: ${h2} content H2s`);
+    const imgs = (p.html.match(/<img\b/g) || []).length;
+    assert.ok(imgs >= 1 && imgs <= 2, `${path}: 1-2 screenshots`);
+    assert.ok(p.html.includes('id="demo"'), `${path}: demo partial`);
+    assert.ok(p.html.includes(`property="og:image" content="https://onevio.in/assets/shots/og-${p.name}.png"`), `${path}: own OG image`);
+    const links = linksOf(bodyOf(p.html));
+    for (const h of ['/', '#demo', '/nrr-calculator/', ...FEATURE_PATHS.filter((x) => x !== path)]) assert.ok(links.has(h), `${path}: body links to ${h}`);
+    const words = decode((p.html.match(/<section class="page-hero[\s\S]*?<\/section>/)[0] + prose).replace(/<[^>]+>/g, ' ')).split(' ').length;
+    assert.ok(words >= 600 && words <= 900, `${path}: ${words} words`);
+  }
+});
+
+test('every feature page is linked from the home page body and from every footer', () => {
+  for (const path of FEATURE_PATHS) {
+    assert.ok(linksOf(bodyOf(home.html)).has(path), `home links ${path}`);
+    for (const p of pages) assert.ok(linksOf(p.html.slice(p.html.indexOf('<footer'))).has(path), `${p.file} footer links ${path}`);
+  }
 });
 
 test('every <img> and <source> has alt (img), width and height; only the hero loads eagerly', () => {
