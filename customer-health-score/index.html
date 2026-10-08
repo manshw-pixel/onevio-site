@@ -95,7 +95,7 @@ d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelec
   <ul>
     <li><strong>Product usage</strong> (default weight 30%): entered as 0–100.</li>
     <li><strong>Sentiment</strong> (20%): your read of the relationship, 0–100.</li>
-    <li><strong>Support tickets</strong> (15%): open tickets count against the score, 10 points each, so ten or more open tickets score zero.</li>
+    <li><strong>Support tickets</strong> (15%): each support ticket counts against the score, 10 points each, so ten or more tickets score zero.</li>
     <li><strong>Engagement recency</strong> (20%): worked out from the activity log. Any logged activity in the last 7 days scores 100, falling in a straight line to 0 at 60 days.</li>
     <li><strong>NPS</strong> (15%): the −100 to +100 range is rescaled to 0–100.</li>
   </ul>
@@ -122,7 +122,7 @@ d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelec
       <img src="/assets/shots/customer-health-score-1600.png" alt="OneVio accounts list sorted by health score, with Red, Yellow and Green scores beside NRR, GRR and renewal flags" width="1600" height="1049" loading="lazy" decoding="async">
     </picture>
   </figure>
-  <p>On the account page, the Health trend card plots the score over time and says when the inputs were last updated, with a prompt to refresh them once they are 30 days old. A score built on stale inputs is flagged rather than trusted.</p>
+  <p>On the account page, the Health trend card plots the score over time and says when the inputs were last updated, with a prompt to refresh them once they are 30 days old. The date turns amber at 30 days and red at 45: a score built on stale inputs is flagged so you know to refresh it.</p>
 
   <h2>Who uses it</h2>
   <p><strong>CSMs</strong> sort their book by score and work the Red and Yellow accounts first. <strong>CS managers</strong> watch the health mix and the bell to see which accounts are sliding before a renewal is in danger. <strong>Leaders</strong> get a score whose weights they signed off, which makes it far easier to bring into a forecast or a QBR. To see how health feeds the rest of the renewal process, read about <a href="/renewal-management/">renewal management</a>.</p>

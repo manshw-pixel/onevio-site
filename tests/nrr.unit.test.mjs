@@ -58,6 +58,9 @@ test('parseAmount strips commas and spaces', () => {
   assert.equal(parseAmount(''), 0);
   assert.equal(parseAmount('', { allowEmpty: true }), null);
   assert.ok(Number.isNaN(parseAmount('12abc')));
+  assert.ok(Number.isNaN(parseAmount('1.000,50')), 'European format is rejected, not read as 1.0005');
+  assert.ok(Number.isNaN(parseAmount('4.000.000,00')));
+  assert.equal(parseAmount('1,000.50'), 1000.5);
   assert.equal(parseAmount('-5'), -5);
 });
 
@@ -82,4 +85,12 @@ test('bridge bars stay inside the viewBox and share one scale', () => {
   }
   const bars = bridgeBars({ ...EX, end: 42800000 });
   assert.ok(bars[4].height > bars[0].height); // end > start
+});
+
+test('contraction + churn equal to start in floating point is not an error', () => {
+  const r = calcRetention({ start: 0.3, expansion: 0, contraction: 0.1, churn: 0.2 });
+  assert.equal(r.ok, true);
+  assert.equal(r.end, 0);
+  assert.equal(r.grr, 0);
+  assert.equal(calcRetention({ start: 0.3, expansion: 0, contraction: 0.1, churn: 0.21 }).error, MSG.over);
 });

@@ -22,9 +22,12 @@ export function calcRetention({ start, expansion, contraction, churn }) {
   if (!v.every((n) => typeof n === 'number' && Number.isFinite(n))) return { ok: false, error: MSG.nan };
   if (!(start > 0)) return { ok: false, error: MSG.start };
   if (expansion < 0 || contraction < 0 || churn < 0) return { ok: false, error: MSG.negative };
-  if (contraction + churn > start) return { ok: false, error: MSG.over };
-  const end = start + expansion - contraction - churn;
-  return { ok: true, end, nrr: end / start, grr: Math.min(1, (start - contraction - churn) / start) };
+  // Relative epsilon: 0.1 + 0.2 is a hair above 0.3 in floating point.
+  if (contraction + churn > start * (1 + 1e-9)) return { ok: false, error: MSG.over };
+  const snap = (x) => (Math.abs(x) < start * 1e-9 ? 0 : x);
+  const end = snap(start + expansion - contraction - churn);
+  const kept = snap(start - contraction - churn);
+  return { ok: true, end, nrr: end / start, grr: Math.min(1, kept / start) };
 }
 
 // Whole-number percentage for display only; the epsilon keeps 106.5 from landing on 106.
@@ -32,7 +35,10 @@ export const pct = (ratio) => Math.round(ratio * 100 + 1e-9);
 
 // "4,00,00,000" / "4,000,000" / " 4 000 000 " -> number. '' -> 0 (or null with allowEmpty). Junk -> NaN.
 export function parseAmount(text, { allowEmpty = false } = {}) {
-  const s = String(text ?? '').replace(/[,\s ]/g, '');
+  const raw = String(text ?? '');
+  // '1.000,50' (European grouping) would otherwise read as 1.0005: reject a comma after a dot.
+  if (/\..*,/.test(raw)) return NaN;
+  const s = raw.replace(/[,\s ]/g, '');
   if (s === '') return allowEmpty ? null : 0;
   return /^[+-]?(\d+\.?\d*|\.\d+)$/.test(s) ? Number(s) : NaN;
 }
