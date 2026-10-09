@@ -84,7 +84,7 @@ test('a 400 shows the Worker message, the email line, and resets Turnstile', asy
   await err.waitFor();
   const text = await err.textContent();
   assert.match(text, /^Please check your email address\./);
-  assert.match(text, /Or email us at manshw@gmail\.com/);
+  assert.match(text, /Or email us at support@onevio.in/);
   assert.equal(await page.locator('.form-status button', { hasText: 'Copy' }).count(), 1);
   await page.waitForFunction(() => window.__resets === 1);
   assert.equal(await page.getByText(THANKS).count(), 0);
@@ -100,7 +100,7 @@ test('a network failure shows the generic error and the email line, never succes
   await err.waitFor();
   const text = await err.textContent();
   assert.ok(text.startsWith(GENERIC), text);
-  assert.match(text, /Or email us at manshw@gmail\.com/);
+  assert.match(text, /Or email us at support@onevio.in/);
   assert.equal(await page.getByText(THANKS).count(), 0);
   assert.equal(await page.locator('#demo-form').count(), 1);
   await ctx.close();
@@ -155,7 +155,7 @@ test('Copy falls back to selecting the address when the clipboard is refused', a
   await fill(page);
   await submit(page);
   await page.locator('.form-status button', { hasText: 'Copy' }).click();
-  await page.waitForFunction(() => window.getSelection().toString() === 'manshw@gmail.com');
+  await page.waitForFunction(() => window.getSelection().toString() === 'support@onevio.in');
   await ctx.close();
 });
 

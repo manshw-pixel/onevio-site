@@ -117,7 +117,7 @@ test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with requi
   assert.ok(org && app && faq, 'all three types present');
   assert.equal(org.name, 'OneVio'); assert.equal(org.url, 'https://onevio.in/');
   assert.match(org.logo, /^https:\/\/onevio\.in\//);
-  assert.equal(org.contactPoint?.email, 'manshw@gmail.com');
+  assert.equal(org.contactPoint?.email, 'support@onevio.in');
   assert.equal(app.name, 'OneVio'); assert.equal(app.applicationCategory, 'BusinessApplication');
   assert.equal(app.operatingSystem, 'Web'); assert.equal(app.url, 'https://onevio.in/');
   for (const k of ['aggregateRating', 'review', 'offers']) assert.ok(!(k in app), `no ${k}`);
@@ -346,7 +346,7 @@ test('every src and srcset file referenced by any page exists', () => {
 test('privacy page states the required facts', () => {
   const t = decode(bodyOf(byPath.get('/privacy/').html));
   for (const s of ['name, company, work email, team size', 'message', 'Supabase', 'Cloudflare Turnstile', 'no tracking cookies',
-    'no analytics or tracking scripts', 'never sell', 'manshw@gmail.com', 'Last updated 8 October 2026']) assert.ok(t.includes(s), `privacy: ${s}`);
+    'no analytics or tracking scripts', 'never sell', 'support@onevio.in', 'Last updated 8 October 2026']) assert.ok(t.includes(s), `privacy: ${s}`);
 });
 
 test('404 links home and to Login, and is noindex', () => {

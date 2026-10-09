@@ -2,7 +2,7 @@
 // Loads as an ES module in the browser and in Node (tests import buildPayload); the DOM wiring only
 // runs when there is a document. No dependencies.
 export const ENDPOINT = 'https://demo.onevio.in/';
-export const CONTACT_EMAIL = 'manshw@gmail.com';
+export const CONTACT_EMAIL = 'support@onevio.in';
 export const MSG = {
   name: 'Please enter your name.',
   company: 'Please enter your company.',
