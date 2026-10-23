@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://demo.onevio.in https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security and data protection at OneVio | OneVio CRM</title>
+<meta name="description" content="How OneVio keeps each customer's CRM data private: access controls, sign-in, encryption, file storage, the providers we use and how to report an issue.">
+<link rel="canonical" href="https://onevio.in/security/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="Security and data protection at OneVio | OneVio CRM">
+<meta property="og:description" content="How OneVio keeps each customer's CRM data private: access controls, sign-in, encryption, file storage, the providers we use and how to report an issue.">
+<meta property="og:url" content="https://onevio.in/security/">
+<meta property="og:image" content="https://onevio.in/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security and data protection at OneVio | OneVio CRM">
+<meta name="twitter:description" content="How OneVio keeps each customer's CRM data private: access controls, sign-in, encryption, file storage, the providers we use and how to report an issue.">
+<meta name="twitter:image" content="https://onevio.in/assets/og-default.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"Security","item":"https://onevio.in/security/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a href="/finance-invoicing/"><b>Finance &amp; invoicing</b><small>POs, billing schedules and invoices</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#demo">Book a demo</a>
+  </nav>
+  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Features</span>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">More</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script src="/nav.js" defer></script>
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Security</span></nav>
+  <h1>Security and data protection</h1>
+  <p class="lead">Your customer list, renewal dates and invoices are some of the most sensitive data a SaaS company has. This page explains how OneVio protects them, in plain terms.</p>
+</div></section>
+<section class="fp-body"><div class="wrap prose">
+  <h2 style="margin-top:0">Your workspace is yours alone</h2>
+  <p>Each customer of OneVio gets its own workspace. The separation is enforced inside the database itself, with row-level security on every table, so a request for another company's data is refused by the database no matter where it comes from. The screens are not the only line of defence.</p>
+  <p>Every change to OneVio runs an automated suite that signs in as real users of different workspaces and checks that none of them can read or change another's data. A change cannot go live unless those tests pass.</p>
+
+  <h2>Who can see what inside a workspace</h2>
+  <ul>
+    <li><strong>Admins</strong> manage users and settings for their own workspace.</li>
+    <li><strong>Users</strong> work with the accounts in their workspace.</li>
+    <li><strong>Leads</strong> see only the accounts they own and the records attached to them.</li>
+    <li><strong>Finance access</strong> is a separate switch an admin turns on per person. Only those people can approve purchase orders, raise invoices or mark them paid.</li>
+  </ul>
+  <p>Disabling a user removes their access straight away, on every device.</p>
+  <p>OneVio staff can enter a workspace to set it up or help with a support request. We do this only to provide the service, and never to use your data for anything else.</p>
+
+  <h2>Signing in</h2>
+  <p>People join a workspace only by invitation from an admin. A new login must confirm its email address before it can join, so nobody can claim an invitation by signing up with an address they do not own. Passwords are handled by our authentication provider and are never stored or visible in readable form.</p>
+
+  <h2>Encryption and files</h2>
+  <p>All traffic to OneVio and to this website is encrypted with HTTPS, and plain HTTP is redirected. Your data is encrypted at rest by our database provider.</p>
+  <p>Attachments, purchase orders and invoice PDFs are kept in private storage, never at a public address. When you open one, the app creates a link that works for 60 seconds and only for someone allowed to see that file.</p>
+
+  <h2>How the app itself is built</h2>
+  <p>The OneVio app loads no third-party scripts and runs no analytics or advertising trackers. Every library it needs is bundled into the app, and a Content Security Policy blocks the browser from running code from anywhere else. Every change goes through a pull request, and the protected main branch only accepts it once the automated tests pass.</p>
+  <p>If you forward emails into OneVio to log them on an account, an email is accepted only when it passes domain authentication checks (DKIM and DMARC), is forwarded by a user of your workspace and matches one of your accounts' contacts.</p>
+
+  <h2>Who processes your data</h2>
+  <p>OneVio uses a small number of service providers to run the product. Each one receives only what it needs.</p>
+  <div class="tbl-wrap"><table class="subproc">
+    <thead><tr><th scope="col">Provider</th><th scope="col">What it does for OneVio</th></tr></thead>
+    <tbody>
+      <tr><td>Supabase</td><td>Database, sign-in and file storage for your workspace data</td></tr>
+      <tr><td>GitHub Pages</td><td>Serves the app's code and this website (holds none of your CRM data)</td></tr>
+      <tr><td>Cloudflare</td><td>DNS, the demo form and receiving emails you forward into OneVio</td></tr>
+      <tr><td>Brevo</td><td>Sends OneVio's emails, such as alerts and invoices</td></tr>
+    </tbody>
+  </table></div>
+  <p>We never sell your data or use it to train models or for advertising.</p>
+
+  <h2>Your data, your call</h2>
+  <p>You can export your accounts to CSV at any time. To have your workspace data deleted, email <a href="mailto:support@onevio.in">support@onevio.in</a> from an admin address and we will remove it. For how we handle details sent through this website's demo form, see the <a href="/privacy/">privacy page</a>.</p>
+
+  <h2>Reporting a security issue</h2>
+  <p>If you think you have found a security problem in OneVio or this website, email <a href="mailto:support@onevio.in">support@onevio.in</a> with "Security" in the subject. Please give us a chance to fix it before telling anyone else. We will reply, keep you updated and credit you if you would like. Please do not access or change other people's data while testing.</p>
+  <p>Our contact details for researchers are also published at <a href="/.well-known/security.txt">/.well-known/security.txt</a>.</p>
+
+  <h2>What we have not done yet</h2>
+  <p>OneVio is not SOC 2 or ISO 27001 certified yet, and has not had an independent penetration test. If your procurement process needs either, tell us and we will share where we are.</p>
+  <p><em>Last updated 23 October 2026.</em></p>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p class="email">support@onevio.in</p>
+  </div>
+  <nav aria-label="Product"><h2>Product</h2>
+    <a href="/customer-health-score/">Customer health score</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+    <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/security/">Security</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+</body>
+</html>

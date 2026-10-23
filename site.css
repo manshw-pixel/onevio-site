@@ -311,6 +311,12 @@ textarea.input { min-height: 96px; resize: vertical }
 .prose h2 { margin: 48px 0 12px; font-size: clamp(24px, 2.6vw, 32px) }
 .prose h3 { margin: 28px 0 8px }
 .prose ul { padding-left: 1.2em }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--card); margin: 16px 0 }
+.subproc { width: 100%; border-collapse: collapse; font-size: 15px }
+.subproc th, .subproc td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top }
+.subproc tr:last-child td { border-bottom: 0 }
+.subproc th { color: var(--muted); font-weight: 600; font-size: 13px }
+.subproc td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap }
 .prose li + li { margin-top: 6px }
 .prose strong { color: var(--ink) }
 

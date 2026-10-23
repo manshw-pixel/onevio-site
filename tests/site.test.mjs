@@ -346,7 +346,7 @@ test('every src and srcset file referenced by any page exists', () => {
 test('privacy page states the required facts', () => {
   const t = decode(bodyOf(byPath.get('/privacy/').html));
   for (const s of ['name, company, work email, team size', 'message', 'Supabase', 'Cloudflare Turnstile', 'no tracking cookies',
-    'no analytics or tracking scripts', 'never sell', 'support@onevio.in', 'Last updated 8 October 2026']) assert.ok(t.includes(s), `privacy: ${s}`);
+    'no analytics or tracking scripts', 'never sell', 'support@onevio.in', 'Last updated 23 October 2026', 'Security and data protection']) assert.ok(t.includes(s), `privacy: ${s}`);
 });
 
 test('404 links home and to Login, and is noindex', () => {
@@ -423,4 +423,15 @@ test('no CSP violations when every page loads', async () => {
     for (const p of pages) { bad.length = 0; await page.goto(server.url + p.path, { waitUntil: 'load' }); await page.waitForTimeout(300);
       assert.deepEqual(bad, [], `${p.file}: ${bad.join(' | ')}`); }
   } finally { await ctx.close(); }
+});
+
+test('security page states the required facts and security.txt points at it', () => {
+  const t = decode(bodyOf(byPath.get('/security/').html));
+  for (const s of ['row-level security', 'confirm its email address', '60 seconds', 'OneVio staff can enter a workspace',
+    'Supabase', 'Cloudflare', 'Brevo', 'GitHub Pages', 'not SOC 2', 'support@onevio.in', 'Last updated 23 October 2026']) assert.ok(t.includes(s), `security: ${s}`);
+  const txt = readFileSync(join(ROOT, '.well-known', 'security.txt'), 'utf8');
+  assert.match(txt, /^Contact: mailto:support@onevio\.in$/m);
+  assert.match(txt, /^Policy: https:\/\/onevio\.in\/security\/$/m);
+  const exp = Date.parse(txt.match(/^Expires: (.+)$/m)[1]);
+  assert.ok(exp > Date.now(), 'security.txt has expired: renew the Expires line');
 });

@@ -1,0 +1,77 @@
+<!-- @meta {
+  "title": "Security and data protection at OneVio | OneVio CRM",
+  "description": "How OneVio keeps each customer's CRM data private: access controls, sign-in, encryption, file storage, the providers we use and how to report an issue.",
+  "path": "/security/",
+  "jsonld": [
+    {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://onevio.in/"},
+      {"@type": "ListItem", "position": 2, "name": "Security", "item": "https://onevio.in/security/"}]}
+  ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Security</span></nav>
+  <h1>Security and data protection</h1>
+  <p class="lead">Your customer list, renewal dates and invoices are some of the most sensitive data a SaaS company has. This page explains how OneVio protects them, in plain terms.</p>
+</div></section>
+<section class="fp-body"><div class="wrap prose">
+  <h2 style="margin-top:0">Your workspace is yours alone</h2>
+  <p>Each customer of OneVio gets its own workspace. The separation is enforced inside the database itself, with row-level security on every table, so a request for another company's data is refused by the database no matter where it comes from. The screens are not the only line of defence.</p>
+  <p>Every change to OneVio runs an automated suite that signs in as real users of different workspaces and checks that none of them can read or change another's data. A change cannot go live unless those tests pass.</p>
+
+  <h2>Who can see what inside a workspace</h2>
+  <ul>
+    <li><strong>Admins</strong> manage users and settings for their own workspace.</li>
+    <li><strong>Users</strong> work with the accounts in their workspace.</li>
+    <li><strong>Leads</strong> see only the accounts they own and the records attached to them.</li>
+    <li><strong>Finance access</strong> is a separate switch an admin turns on per person. Only those people can approve purchase orders, raise invoices or mark them paid.</li>
+  </ul>
+  <p>Disabling a user removes their access straight away, on every device.</p>
+  <p>OneVio staff can enter a workspace to set it up or help with a support request. We do this only to provide the service, and never to use your data for anything else.</p>
+
+  <h2>Signing in</h2>
+  <p>People join a workspace only by invitation from an admin. A new login must confirm its email address before it can join, so nobody can claim an invitation by signing up with an address they do not own. Passwords are handled by our authentication provider and are never stored or visible in readable form.</p>
+
+  <h2>Encryption and files</h2>
+  <p>All traffic to OneVio and to this website is encrypted with HTTPS, and plain HTTP is redirected. Your data is encrypted at rest by our database provider.</p>
+  <p>Attachments, purchase orders and invoice PDFs are kept in private storage, never at a public address. When you open one, the app creates a link that works for 60 seconds and only for someone allowed to see that file.</p>
+
+  <h2>How the app itself is built</h2>
+  <p>The OneVio app loads no third-party scripts and runs no analytics or advertising trackers. Every library it needs is bundled into the app, and a Content Security Policy blocks the browser from running code from anywhere else. Every change goes through a pull request, and the protected main branch only accepts it once the automated tests pass.</p>
+  <p>If you forward emails into OneVio to log them on an account, an email is accepted only when it passes domain authentication checks (DKIM and DMARC), is forwarded by a user of your workspace and matches one of your accounts' contacts.</p>
+
+  <h2>Who processes your data</h2>
+  <p>OneVio uses a small number of service providers to run the product. Each one receives only what it needs.</p>
+  <div class="tbl-wrap"><table class="subproc">
+    <thead><tr><th scope="col">Provider</th><th scope="col">What it does for OneVio</th></tr></thead>
+    <tbody>
+      <tr><td>Supabase</td><td>Database, sign-in and file storage for your workspace data</td></tr>
+      <tr><td>GitHub Pages</td><td>Serves the app's code and this website (holds none of your CRM data)</td></tr>
+      <tr><td>Cloudflare</td><td>DNS, the demo form and receiving emails you forward into OneVio</td></tr>
+      <tr><td>Brevo</td><td>Sends OneVio's emails, such as alerts and invoices</td></tr>
+    </tbody>
+  </table></div>
+  <p>We never sell your data or use it to train models or for advertising.</p>
+
+  <h2>Your data, your call</h2>
+  <p>You can export your accounts to CSV at any time. To have your workspace data deleted, email <a href="mailto:support@onevio.in">support@onevio.in</a> from an admin address and we will remove it. For how we handle details sent through this website's demo form, see the <a href="/privacy/">privacy page</a>.</p>
+
+  <h2>Reporting a security issue</h2>
+  <p>If you think you have found a security problem in OneVio or this website, email <a href="mailto:support@onevio.in">support@onevio.in</a> with "Security" in the subject. Please give us a chance to fix it before telling anyone else. We will reply, keep you updated and credit you if you would like. Please do not access or change other people's data while testing.</p>
+  <p>Our contact details for researchers are also published at <a href="/.well-known/security.txt">/.well-known/security.txt</a>.</p>
+
+  <h2>What we have not done yet</h2>
+  <p>OneVio is not SOC 2 or ISO 27001 certified yet, and has not had an independent penetration test. If your procurement process needs either, tell us and we will share where we are.</p>
+  <p><em>Last updated 23 October 2026.</em></p>
+</div></section>
+</main>
+<!-- @include footer -->
+</body>
+</html>
