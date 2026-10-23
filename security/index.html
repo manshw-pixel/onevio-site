@@ -104,6 +104,9 @@
   <p>All traffic to OneVio and to this website is encrypted with HTTPS, and plain HTTP is redirected. Your data is encrypted at rest by our database provider.</p>
   <p>Attachments, purchase orders and invoice PDFs are kept in private storage, never at a public address. When you open one, the app creates a link that works for 60 seconds and only for someone allowed to see that file.</p>
 
+  <h2>Where your data is stored</h2>
+  <p>Your workspace data, meaning the database, sign-in details and files, is stored in India, in Mumbai (the Amazon Web Services <code>ap-south-1</code> region), through our database provider Supabase.</p>
+
   <h2>How the app itself is built</h2>
   <p>The OneVio app loads no third-party scripts and runs no analytics or advertising trackers. Every library it needs is bundled into the app, and a Content Security Policy blocks the browser from running code from anywhere else. Every change goes through a pull request, and the protected main branch only accepts it once the automated tests pass.</p>
   <p>If you forward emails into OneVio to log them on an account, an email is accepted only when it passes domain authentication checks (DKIM and DMARC), is forwarded by a user of your workspace and matches one of your accounts' contacts.</p>
@@ -113,7 +116,7 @@
   <div class="tbl-wrap"><table class="subproc">
     <thead><tr><th scope="col">Provider</th><th scope="col">What it does for OneVio</th></tr></thead>
     <tbody>
-      <tr><td>Supabase</td><td>Database, sign-in and file storage for your workspace data</td></tr>
+      <tr><td>Supabase</td><td>Database, sign-in and file storage for your workspace data, hosted in Mumbai, India</td></tr>
       <tr><td>GitHub Pages</td><td>Serves the app's code and this website (holds none of your CRM data)</td></tr>
       <tr><td>Cloudflare</td><td>DNS, the demo form and receiving emails you forward into OneVio</td></tr>
       <tr><td>Brevo</td><td>Sends OneVio's emails, such as alerts and invoices</td></tr>
