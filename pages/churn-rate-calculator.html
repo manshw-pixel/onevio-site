@@ -1,0 +1,168 @@
+<!-- @meta {
+ "title": "Churn Rate Calculator: Customer and Revenue Churn | OneVio",
+ "description": "Free churn rate calculator for SaaS. Work out customer churn and revenue churn, monthly or annual, and see what a monthly rate means over a year.",
+ "path": "/churn-rate-calculator/",
+ "jsonld": [
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://onevio.in/" },
+    { "@type": "ListItem", "position": 2, "name": "Churn rate calculator", "item": "https://onevio.in/churn-rate-calculator/" }
+   ]
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "WebApplication",
+   "name": "Churn rate calculator",
+   "url": "https://onevio.in/churn-rate-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "description": "Free calculator for customer churn rate and revenue churn rate, monthly or annual. It runs in the browser and sends nothing.",
+   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is the formula for churn rate?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Customer churn rate is the number of customers lost during a period divided by the number of customers at the start of it. Revenue churn rate is the recurring revenue lost to cancellations and downgrades, divided by the recurring revenue at the start." }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I turn a monthly churn rate into an annual one?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Do not multiply by 12. Churn compounds, because each month you lose a share of a smaller base. The annual rate is 1 minus (1 minus the monthly rate) to the power of 12. A 2% monthly churn rate is about 21.5% a year, not 24%." }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the difference between customer churn and revenue churn?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Customer churn (also called logo churn) counts accounts. Revenue churn counts money. Losing ten small customers and losing one large one can give the same revenue churn and very different customer churn, so track both." }
+    },
+    {
+     "@type": "Question",
+     "name": "Does this calculator store or send my numbers?",
+     "acceptedAnswer": { "@type": "Answer", "text": "No. The calculation runs in your browser and nothing you type is sent anywhere or saved." }
+    }
+   ]
+  }
+ ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Churn rate calculator</span></nav>
+  <div class="eyebrow mt">Free tool</div>
+  <h1>Churn rate calculator</h1>
+  <p class="lead">Work out customer churn and revenue churn for a month or a year. Nothing you type leaves your browser.</p>
+</div></section>
+
+<section class="calc-section" aria-label="Calculator"><div class="wrap">
+  <div class="calc" id="churn-calc">
+    <form class="calc-in" novalidate>
+      <fieldset class="cur"><legend>Period</legend>
+        <label><input type="radio" name="period" value="12" checked><span>Year</span></label>
+        <label><input type="radio" name="period" value="1"><span>Month</span></label>
+      </fieldset>
+      <label class="fld"><span>Customers at the start of the period</span><input class="input" name="customers" inputmode="numeric" autocomplete="off" placeholder="200"></label>
+      <label class="fld"><span>Customers lost during the period</span><input class="input" name="lost" inputmode="numeric" autocomplete="off" placeholder="18"></label>
+      <fieldset class="cur"><legend>Currency</legend>
+        <label><input type="radio" name="currency" value="₹" checked><span>₹</span></label>
+        <label><input type="radio" name="currency" value="$"><span>$</span></label>
+        <label><input type="radio" name="currency" value="€"><span>€</span></label>
+        <label><input type="radio" name="currency" value="£"><span>£</span></label>
+      </fieldset>
+      <label class="fld"><span>Recurring revenue at the start (optional)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="revenue" inputmode="decimal" autocomplete="off" placeholder="4,00,00,000"></span></label>
+      <label class="fld"><span>Revenue lost to cancellations and downgrades (optional)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="revenueLost" inputmode="decimal" autocomplete="off" placeholder="32,00,000"></span></label>
+      <button type="button" class="btn btn-outline try-example">Load an example</button>
+    </form>
+    <div class="calc-out" aria-live="polite">
+      <p class="calc-idle">Enter your customer counts to see your churn rate. Add revenue to see revenue churn too.</p>
+      <p class="calc-error"></p>
+      <div class="calc-results" hidden>
+        <div class="big-row">
+          <div class="big"><small>Customer churn</small><b class="out-logo"></b></div>
+          <div class="big out-rev-box"><small>Revenue churn</small><b class="out-rev"></b></div>
+        </div>
+        <p class="out-end-line out-note"></p>
+        <p class="out-note out-annual" hidden></p>
+      </div>
+    </div>
+  </div>
+  <noscript><p class="small">The calculator needs JavaScript to run in your browser. The formulas are below if you would rather use a spreadsheet.</p></noscript>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose calc-copy">
+  <h2>What churn rate measures</h2>
+  <p><strong>Churn rate</strong> is the share of something you had at the start of a period that was gone by the end of it. For a subscription business there are two versions worth tracking. <strong>Customer churn</strong> (or logo churn) counts accounts that cancelled. <strong>Revenue churn</strong> counts the recurring revenue lost to cancellations and downgrades. Losing ten small accounts and losing one large one can give the same revenue churn and very different customer churn, so read them together.</p>
+
+  <h2>The formulas</h2>
+  <ul>
+    <li><strong>Customer churn rate</strong> = customers lost ÷ customers at the start</li>
+    <li><strong>Revenue churn rate</strong> = (revenue from cancellations + revenue from downgrades) ÷ recurring revenue at the start</li>
+    <li><strong>Annual rate from a monthly one</strong> = 1 − (1 − monthly rate)<sup>12</sup></li>
+  </ul>
+  <p>Count only customers you had at the start. Customers who signed and left within the same period distort the rate, so leave them out of both numbers.</p>
+
+  <h2>A worked example</h2>
+  <p>You start the year with 200 customers paying ₹4,00,00,000 (₹4 crore) in annual recurring revenue. During the year 18 customers cancel, and cancellations and downgrades together cost ₹32,00,000.</p>
+  <ul>
+    <li>Customer churn = 18 ÷ 200 = <strong>9%</strong></li>
+    <li>Revenue churn = 32,00,000 ÷ 4,00,00,000 = <strong>8%</strong></li>
+  </ul>
+  <p>Revenue churn is lower than customer churn here, which usually means the accounts that left were smaller than average. Press “Load an example” above to see this in the calculator.</p>
+
+  <h2>Why you should not multiply monthly churn by 12</h2>
+  <p>Churn compounds. Each month you lose a share of a base that is already smaller than last month's, so a 2% monthly rate works out to about 21.5% over a year, not 24%. Switch the calculator to Month and it shows the compounded annual figure for you.</p>
+
+  <h2>Churn rate versus revenue retention</h2>
+  <p>Revenue churn tells you what you lost. Gross revenue retention (GRR) is the other side of the same number: what you kept. Net revenue retention (NRR) adds expansion on top. If you know your expansion revenue too, the <a href="/nrr-calculator/">NRR and GRR calculator</a> shows all three with an ARR bridge.</p>
+
+  <h2>How to bring churn down</h2>
+  <ul>
+    <li><strong>See risk before the renewal.</strong> Most churn is visible months earlier in falling usage, unhappy contacts or rising support tickets. A <a href="/customer-health-score-guide/">customer health score</a> puts those signals in one number.</li>
+    <li><strong>Start renewals early.</strong> A renewal you start working on 90 days out gives you time to fix problems. One you notice in the final week does not.</li>
+    <li><strong>Watch unused licenses.</strong> Customers who paid for seats they never deployed tend to downgrade at renewal. <a href="/license-deployment-tracking/">License deployment tracking</a> shows them early.</li>
+  </ul>
+
+  <h2>How OneVio tracks churn for you</h2>
+  <p>This calculator is a quick check on figures you already have. <a href="/">OneVio</a> tracks churn from your accounts as your team works: every account gets a health score with Green, Yellow and Red bands, renewals get playbook tasks 90 days out, and the dashboard reports NRR, GRR and a 12-month ARR bridge with churn and contraction shown separately.</p>
+
+  <div class="callout">
+    <div><b>Catch churn before it happens.</b><span>See OneVio's health scores, renewal pipeline and churn reporting on your own accounts in a 30-minute demo.</span></div>
+    <a class="btn btn-primary" href="#demo">Book a demo</a>
+  </div>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/nrr-calculator/"><b>NRR calculator</b><small>Net and gross revenue retention with an ARR bridge.</small></a>
+    <a href="/customer-health-score-guide/"><b>Customer health score guide</b><small>How to build a score that predicts churn.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+  </div>
+</div></section>
+
+<!-- @include demo -->
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Churn rate questions</h2>
+  <div class="faq">
+    <details open><summary>What is the formula for churn rate?</summary><p>Customer churn rate is the number of customers lost during a period divided by the number of customers at the start of it. Revenue churn rate is the recurring revenue lost to cancellations and downgrades, divided by the recurring revenue at the start.</p></details>
+    <details><summary>How do I turn a monthly churn rate into an annual one?</summary><p>Do not multiply by 12. Churn compounds, because each month you lose a share of a smaller base. The annual rate is 1 minus (1 minus the monthly rate) to the power of 12. A 2% monthly churn rate is about 21.5% a year, not 24%.</p></details>
+    <details><summary>What is the difference between customer churn and revenue churn?</summary><p>Customer churn (also called logo churn) counts accounts. Revenue churn counts money. Losing ten small customers and losing one large one can give the same revenue churn and very different customer churn, so track both.</p></details>
+    <details><summary>Does this calculator store or send my numbers?</summary><p>No. The calculation runs in your browser and nothing you type is sent anywhere or saved.</p></details>
+  </div>
+</div></section>
+</main>
+<!-- @include footer -->
+<script type="module" src="/churn-calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://demo.onevio.in https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Churn Rate Calculator: Customer and Revenue Churn | OneVio</title>
+<meta name="description" content="Free churn rate calculator for SaaS. Work out customer churn and revenue churn, monthly or annual, and see what a monthly rate means over a year.">
+<link rel="canonical" href="https://onevio.in/churn-rate-calculator/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="Churn Rate Calculator: Customer and Revenue Churn | OneVio">
+<meta property="og:description" content="Free churn rate calculator for SaaS. Work out customer churn and revenue churn, monthly or annual, and see what a monthly rate means over a year.">
+<meta property="og:url" content="https://onevio.in/churn-rate-calculator/">
+<meta property="og:image" content="https://onevio.in/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Churn Rate Calculator: Customer and Revenue Churn | OneVio">
+<meta name="twitter:description" content="Free churn rate calculator for SaaS. Work out customer churn and revenue churn, monthly or annual, and see what a monthly rate means over a year.">
+<meta name="twitter:image" content="https://onevio.in/assets/og-default.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"Churn rate calculator","item":"https://onevio.in/churn-rate-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Churn rate calculator","url":"https://onevio.in/churn-rate-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free calculator for customer churn rate and revenue churn rate, monthly or annual. It runs in the browser and sends nothing.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the formula for churn rate?","acceptedAnswer":{"@type":"Answer","text":"Customer churn rate is the number of customers lost during a period divided by the number of customers at the start of it. Revenue churn rate is the recurring revenue lost to cancellations and downgrades, divided by the recurring revenue at the start."}},{"@type":"Question","name":"How do I turn a monthly churn rate into an annual one?","acceptedAnswer":{"@type":"Answer","text":"Do not multiply by 12. Churn compounds, because each month you lose a share of a smaller base. The annual rate is 1 minus (1 minus the monthly rate) to the power of 12. A 2% monthly churn rate is about 21.5% a year, not 24%."}},{"@type":"Question","name":"What is the difference between customer churn and revenue churn?","acceptedAnswer":{"@type":"Answer","text":"Customer churn (also called logo churn) counts accounts. Revenue churn counts money. Losing ten small customers and losing one large one can give the same revenue churn and very different customer churn, so track both."}},{"@type":"Question","name":"Does this calculator store or send my numbers?","acceptedAnswer":{"@type":"Answer","text":"No. The calculation runs in your browser and nothing you type is sent anywhere or saved."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a href="/finance-invoicing/"><b>Finance &amp; invoicing</b><small>POs, billing schedules and invoices</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#demo">Book a demo</a>
+  </nav>
+  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Features</span>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">More</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/churn-rate-calculator/">Churn rate calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script src="/nav.js" defer></script>
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Churn rate calculator</span></nav>
+  <div class="eyebrow mt">Free tool</div>
+  <h1>Churn rate calculator</h1>
+  <p class="lead">Work out customer churn and revenue churn for a month or a year. Nothing you type leaves your browser.</p>
+</div></section>
+
+<section class="calc-section" aria-label="Calculator"><div class="wrap">
+  <div class="calc" id="churn-calc">
+    <form class="calc-in" novalidate>
+      <fieldset class="cur"><legend>Period</legend>
+        <label><input type="radio" name="period" value="12" checked><span>Year</span></label>
+        <label><input type="radio" name="period" value="1"><span>Month</span></label>
+      </fieldset>
+      <label class="fld"><span>Customers at the start of the period</span><input class="input" name="customers" inputmode="numeric" autocomplete="off" placeholder="200"></label>
+      <label class="fld"><span>Customers lost during the period</span><input class="input" name="lost" inputmode="numeric" autocomplete="off" placeholder="18"></label>
+      <fieldset class="cur"><legend>Currency</legend>
+        <label><input type="radio" name="currency" value="₹" checked><span>₹</span></label>
+        <label><input type="radio" name="currency" value="$"><span>$</span></label>
+        <label><input type="radio" name="currency" value="€"><span>€</span></label>
+        <label><input type="radio" name="currency" value="£"><span>£</span></label>
+      </fieldset>
+      <label class="fld"><span>Recurring revenue at the start (optional)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="revenue" inputmode="decimal" autocomplete="off" placeholder="4,00,00,000"></span></label>
+      <label class="fld"><span>Revenue lost to cancellations and downgrades (optional)</span><span class="amt"><span class="sym" aria-hidden="true">₹</span><input class="input" name="revenueLost" inputmode="decimal" autocomplete="off" placeholder="32,00,000"></span></label>
+      <button type="button" class="btn btn-outline try-example">Load an example</button>
+    </form>
+    <div class="calc-out" aria-live="polite">
+      <p class="calc-idle">Enter your customer counts to see your churn rate. Add revenue to see revenue churn too.</p>
+      <p class="calc-error"></p>
+      <div class="calc-results" hidden>
+        <div class="big-row">
+          <div class="big"><small>Customer churn</small><b class="out-logo"></b></div>
+          <div class="big out-rev-box"><small>Revenue churn</small><b class="out-rev"></b></div>
+        </div>
+        <p class="out-end-line out-note"></p>
+        <p class="out-note out-annual" hidden></p>
+      </div>
+    </div>
+  </div>
+  <noscript><p class="small">The calculator needs JavaScript to run in your browser. The formulas are below if you would rather use a spreadsheet.</p></noscript>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose calc-copy">
+  <h2>What churn rate measures</h2>
+  <p><strong>Churn rate</strong> is the share of something you had at the start of a period that was gone by the end of it. For a subscription business there are two versions worth tracking. <strong>Customer churn</strong> (or logo churn) counts accounts that cancelled. <strong>Revenue churn</strong> counts the recurring revenue lost to cancellations and downgrades. Losing ten small accounts and losing one large one can give the same revenue churn and very different customer churn, so read them together.</p>
+
+  <h2>The formulas</h2>
+  <ul>
+    <li><strong>Customer churn rate</strong> = customers lost ÷ customers at the start</li>
+    <li><strong>Revenue churn rate</strong> = (revenue from cancellations + revenue from downgrades) ÷ recurring revenue at the start</li>
+    <li><strong>Annual rate from a monthly one</strong> = 1 − (1 − monthly rate)<sup>12</sup></li>
+  </ul>
+  <p>Count only customers you had at the start. Customers who signed and left within the same period distort the rate, so leave them out of both numbers.</p>
+
+  <h2>A worked example</h2>
+  <p>You start the year with 200 customers paying ₹4,00,00,000 (₹4 crore) in annual recurring revenue. During the year 18 customers cancel, and cancellations and downgrades together cost ₹32,00,000.</p>
+  <ul>
+    <li>Customer churn = 18 ÷ 200 = <strong>9%</strong></li>
+    <li>Revenue churn = 32,00,000 ÷ 4,00,00,000 = <strong>8%</strong></li>
+  </ul>
+  <p>Revenue churn is lower than customer churn here, which usually means the accounts that left were smaller than average. Press “Load an example” above to see this in the calculator.</p>
+
+  <h2>Why you should not multiply monthly churn by 12</h2>
+  <p>Churn compounds. Each month you lose a share of a base that is already smaller than last month's, so a 2% monthly rate works out to about 21.5% over a year, not 24%. Switch the calculator to Month and it shows the compounded annual figure for you.</p>
+
+  <h2>Churn rate versus revenue retention</h2>
+  <p>Revenue churn tells you what you lost. Gross revenue retention (GRR) is the other side of the same number: what you kept. Net revenue retention (NRR) adds expansion on top. If you know your expansion revenue too, the <a href="/nrr-calculator/">NRR and GRR calculator</a> shows all three with an ARR bridge.</p>
+
+  <h2>How to bring churn down</h2>
+  <ul>
+    <li><strong>See risk before the renewal.</strong> Most churn is visible months earlier in falling usage, unhappy contacts or rising support tickets. A <a href="/customer-health-score-guide/">customer health score</a> puts those signals in one number.</li>
+    <li><strong>Start renewals early.</strong> A renewal you start working on 90 days out gives you time to fix problems. One you notice in the final week does not.</li>
+    <li><strong>Watch unused licenses.</strong> Customers who paid for seats they never deployed tend to downgrade at renewal. <a href="/license-deployment-tracking/">License deployment tracking</a> shows them early.</li>
+  </ul>
+
+  <h2>How OneVio tracks churn for you</h2>
+  <p>This calculator is a quick check on figures you already have. <a href="/">OneVio</a> tracks churn from your accounts as your team works: every account gets a health score with Green, Yellow and Red bands, renewals get playbook tasks 90 days out, and the dashboard reports NRR, GRR and a 12-month ARR bridge with churn and contraction shown separately.</p>
+
+  <div class="callout">
+    <div><b>Catch churn before it happens.</b><span>See OneVio's health scores, renewal pipeline and churn reporting on your own accounts in a 30-minute demo.</span></div>
+    <a class="btn btn-primary" href="#demo">Book a demo</a>
+  </div>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/nrr-calculator/"><b>NRR calculator</b><small>Net and gross revenue retention with an ARR bridge.</small></a>
+    <a href="/customer-health-score-guide/"><b>Customer health score guide</b><small>How to build a score that predicts churn.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+  </div>
+</div></section>
+
+<section id="demo" class="demo-section" aria-labelledby="demo-title"><div class="wrap">
+  <div class="demo">
+    <div>
+      <div class="eyebrow">Book a demo</div>
+      <h2 id="demo-title">See OneVio with your own renewals.</h2>
+      <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
+      <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
+    </div>
+    <form class="form" id="demo-form" novalidate>
+      <div class="g2">
+        <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
+        <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
+      </div>
+      <div class="g2">
+        <label class="fld"><span>Work email <span class="req" aria-hidden="true">*</span></span><input class="input" type="email" name="email" autocomplete="email" required maxlength="200"></label>
+        <label class="fld"><span>Team size</span><select class="input" name="team_size"><option value="">Choose…</option><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+      </div>
+      <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <!-- The Turnstile site key lives only here: replace 0x4AAAAAAFROylqQka_Maavm at handover. -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFROylqQka_Maavm"></div>
+      <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at support@onevio.in.</p></noscript>
+    </form>
+  </div>
+</div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Churn rate questions</h2>
+  <div class="faq">
+    <details open><summary>What is the formula for churn rate?</summary><p>Customer churn rate is the number of customers lost during a period divided by the number of customers at the start of it. Revenue churn rate is the recurring revenue lost to cancellations and downgrades, divided by the recurring revenue at the start.</p></details>
+    <details><summary>How do I turn a monthly churn rate into an annual one?</summary><p>Do not multiply by 12. Churn compounds, because each month you lose a share of a smaller base. The annual rate is 1 minus (1 minus the monthly rate) to the power of 12. A 2% monthly churn rate is about 21.5% a year, not 24%.</p></details>
+    <details><summary>What is the difference between customer churn and revenue churn?</summary><p>Customer churn (also called logo churn) counts accounts. Revenue churn counts money. Losing ten small customers and losing one large one can give the same revenue churn and very different customer churn, so track both.</p></details>
+    <details><summary>Does this calculator store or send my numbers?</summary><p>No. The calculation runs in your browser and nothing you type is sent anywhere or saved.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p class="email">support@onevio.in</p>
+  </div>
+  <nav aria-label="Product"><h2>Product</h2>
+    <a href="/customer-health-score/">Customer health score</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+    <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/churn-rate-calculator/">Churn rate calculator</a>
+    <a href="/customer-health-score-guide/">Health score guide</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/security/">Security</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+<script type="module" src="/churn-calculator.js"></script>
+</body>
+</html>

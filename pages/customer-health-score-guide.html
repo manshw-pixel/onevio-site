@@ -1,0 +1,160 @@
+<!-- @meta {
+ "title": "How to Build a Customer Health Score, Step by Step | OneVio",
+ "description": "Build a customer health score step by step: which inputs to use, how to weight them, a spreadsheet formula, a worked example and mistakes to avoid.",
+ "path": "/customer-health-score-guide/",
+ "jsonld": [
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://onevio.in/" },
+    { "@type": "ListItem", "position": 2, "name": "Customer health score guide", "item": "https://onevio.in/customer-health-score-guide/" }
+   ]
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "How to build a customer health score",
+   "description": "Which inputs to use, how to weight them, a spreadsheet formula, a worked example and the common mistakes.",
+   "url": "https://onevio.in/customer-health-score-guide/",
+   "datePublished": "2026-10-23",
+   "dateModified": "2026-10-23",
+   "author": { "@type": "Organization", "name": "OneVio", "url": "https://onevio.in/" },
+   "publisher": { "@type": "Organization", "name": "OneVio", "logo": { "@type": "ImageObject", "url": "https://onevio.in/assets/favicon.svg" } }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What should a customer health score include?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Start with four to six signals you already collect reliably: product usage, how recently you were in touch, support ticket load, your read of the relationship (sentiment) and NPS are common choices. A few inputs you trust beat many you have to guess." }
+    },
+    {
+     "@type": "Question",
+     "name": "How do you calculate a customer health score?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Convert each input to the same 0 to 100 scale, multiply each by its weight, and add them up, with weights that total 100%. Then split the result into bands, for example Green at 70 and above, Yellow from 40 to 69 and Red below 40." }
+    },
+    {
+     "@type": "Question",
+     "name": "How often should a health score be updated?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Inputs that come from systems, such as activity dates, can update every day. Inputs a person enters, such as sentiment, should be refreshed at least monthly. A score built on inputs that are months old should be flagged as stale rather than trusted." }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I build a health score in Excel or Google Sheets?",
+     "acceptedAnswer": { "@type": "Answer", "text": "Yes. Put one account per row, one input per column on a 0 to 100 scale, and use SUMPRODUCT against a row of weights. The hard part is not the formula but keeping the inputs current and making sure someone acts when a score drops." }
+    }
+   ]
+  }
+ ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @include head -->
+</head>
+<body>
+<!-- @include header -->
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Customer health score guide</span></nav>
+  <div class="eyebrow mt">Guide</div>
+  <h1>How to build a customer health score</h1>
+  <p class="lead">Which inputs to use, how to weight them, the formula for a spreadsheet, and what to do when a score drops.</p>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose calc-copy">
+  <h2>What a customer health score is for</h2>
+  <p>A <strong>customer health score</strong> is one number, usually 0 to 100, that sums up how likely an account is to renew and grow. Its job is to tell a customer success manager where to spend time this week. If a score cannot change what someone does on Monday morning, it is decoration.</p>
+  <p>The signals that predict churn usually exist already: usage drops, the champion stops replying, tickets pile up, the last real conversation was months ago. The trouble is that they live in different places. A health score adds them up so nobody has to.</p>
+
+  <h2>Step 1: pick four to six inputs you trust</h2>
+  <p>Choose signals you already collect reliably for every account. Common choices:</p>
+  <ul>
+    <li><strong>Product usage</strong>: logins, active users or key actions, compared with what the customer bought.</li>
+    <li><strong>Engagement recency</strong>: days since the last meaningful contact, such as a call, meeting or QBR.</li>
+    <li><strong>Support tickets</strong>: open or recent tickets, where more tickets lower the score.</li>
+    <li><strong>Sentiment</strong>: the CSM's read of the relationship, entered on a fixed scale.</li>
+    <li><strong>NPS</strong> or another survey score, if you run one.</li>
+    <li><strong>License deployment</strong>: seats in use compared with seats paid for.</li>
+  </ul>
+  <p>Leave out anything you would have to guess for half your accounts. A missing input quietly drags scores towards the middle and makes the whole score less trustworthy.</p>
+
+  <h2>Step 2: put every input on a 0–100 scale</h2>
+  <p>Inputs arrive in different units, so convert each one before combining them. Some simple conversions:</p>
+  <ul>
+    <li><strong>Recency</strong>: 100 if the last contact was within 7 days, falling in a straight line to 0 at 60 days.</li>
+    <li><strong>Tickets</strong>: 100 minus 10 points per ticket, with a floor of 0.</li>
+    <li><strong>NPS</strong>: rescale −100…+100 to 0…100 with (NPS + 100) ÷ 2.</li>
+    <li><strong>Deployment</strong>: deployed seats ÷ purchased seats × 100, capped at 100.</li>
+  </ul>
+
+  <h2>Step 3: weight the inputs</h2>
+  <p>Give each input a weight so the weights add up to 100%. Start from a sensible default, for example usage 30%, sentiment 20%, support 15%, recency 20% and NPS 15%. Then check it against history: look at accounts that churned last year and ask whether the score would have flagged them. If it would not, move weight towards the input that did change before they left.</p>
+  <p>Agree the weights with your CS leader. A score whose weights leadership signed off is far easier to use in a forecast or a QBR.</p>
+
+  <h2>Step 4: the formula</h2>
+  <p>The health score is the weighted average of your 0–100 inputs:</p>
+  <ul>
+    <li><strong>Health score</strong> = (usage × 30%) + (sentiment × 20%) + (support × 15%) + (recency × 20%) + (NPS × 15%)</li>
+  </ul>
+  <p>In Excel or Google Sheets, put the five inputs for each account in columns B to F and the weights in row 1 of the same columns, then use:</p>
+  <ul>
+    <li><code>=SUMPRODUCT(B2:F2, $B$1:$F$1) / SUM($B$1:$F$1)</code></li>
+  </ul>
+  <p>Dividing by the sum of the weights means you can enter weights as relative importance (3, 2, 1.5…) and the result still lands on 0–100.</p>
+
+  <h2>A worked example</h2>
+  <p>An account has usage 80, sentiment 60, two open tickets (support 80), last contact 20 days ago (recency about 76) and NPS +20 (60).</p>
+  <ul>
+    <li>(80 × 0.30) + (60 × 0.20) + (80 × 0.15) + (76 × 0.20) + (60 × 0.15)</li>
+    <li>= 24 + 12 + 12 + 15.2 + 9 = <strong>72.2</strong></li>
+  </ul>
+  <p>That account is just inside Green. If the CSM misses the next check-in and recency falls to 40, the score drops to about 65, which is Yellow, and that drop should trigger a response.</p>
+
+  <h2>Step 5: set bands and decide what each one triggers</h2>
+  <p>Split scores into three bands, for example <strong>Green</strong> at 70 and above, <strong>Yellow</strong> from 40 to 69 and <strong>Red</strong> below 40. The most important part of the whole exercise is this: decide in advance what happens when an account moves into a worse band. For example, a check-in call within 3 days for Yellow and an escalation within 1 day for Red. A band change that nobody hears about is the same as having no score.</p>
+
+  <h2>Mistakes that make health scores useless</h2>
+  <ul>
+    <li><strong>Stale inputs.</strong> A sentiment score from six months ago is not a sentiment score. Show when each input was last updated and flag anything older than a month.</li>
+    <li><strong>A black box.</strong> If a CSM cannot see why an account is Yellow, they will ignore the colour. Show the inputs beside the score.</li>
+    <li><strong>Too many inputs.</strong> Fifteen signals at 5% each move nothing. Fewer inputs with real weight are easier to explain and to act on.</li>
+    <li><strong>No alert on a drop.</strong> The value is in the change, not the number. Somebody must be told when a band drops.</li>
+    <li><strong>Never revisiting the weights.</strong> Check every few quarters which inputs actually moved before churn, and adjust.</li>
+  </ul>
+
+  <h2>Outgrowing the spreadsheet</h2>
+  <p>A spreadsheet is a fine place to design your score. It gets hard to keep running: inputs go stale, nobody sees a drop until the renewal call, and the sheet drifts away from the CRM. <a href="/customer-health-score/">OneVio's customer health score</a> uses the same model. It has five weighted inputs with weights you set in Settings, and recency is worked out from the activity log. Scores fall into Green, Yellow and Red bands. When an account drops a band, it shows up in the notification bell and creates playbook tasks for its CSM. Inputs are flagged once they are 30 days old.</p>
+
+  <div class="callout">
+    <div><b>See a health score your team will trust.</b><span>Book a 30-minute demo and we will walk through scoring, bands and alerts on example accounts.</span></div>
+    <a class="btn btn-primary" href="#demo">Book a demo</a>
+  </div>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/customer-health-score/"><b>Customer health score</b><small>How OneVio scores, bands and alerts.</small></a>
+    <a href="/churn-rate-calculator/"><b>Churn rate calculator</b><small>Customer and revenue churn, monthly or annual.</small></a>
+    <a href="/nrr-calculator/"><b>NRR calculator</b><small>Net and gross revenue retention with an ARR bridge.</small></a>
+  </div>
+</div></section>
+
+<!-- @include demo -->
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Health score questions</h2>
+  <div class="faq">
+    <details open><summary>What should a customer health score include?</summary><p>Start with four to six signals you already collect reliably: product usage, how recently you were in touch, support ticket load, your read of the relationship (sentiment) and NPS are common choices. A few inputs you trust beat many you have to guess.</p></details>
+    <details><summary>How do you calculate a customer health score?</summary><p>Convert each input to the same 0 to 100 scale, multiply each by its weight, and add them up, with weights that total 100%. Then split the result into bands, for example Green at 70 and above, Yellow from 40 to 69 and Red below 40.</p></details>
+    <details><summary>How often should a health score be updated?</summary><p>Inputs that come from systems, such as activity dates, can update every day. Inputs a person enters, such as sentiment, should be refreshed at least monthly. A score built on inputs that are months old should be flagged as stale rather than trusted.</p></details>
+    <details><summary>Can I build a health score in Excel or Google Sheets?</summary><p>Yes. Put one account per row, one input per column on a 0 to 100 scale, and use SUMPRODUCT against a row of weights. The hard part is not the formula but keeping the inputs current and making sure someone acts when a score drops.</p></details>
+  </div>
+</div></section>
+</main>
+<!-- @include footer -->
+</body>
+</html>
