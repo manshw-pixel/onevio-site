@@ -34,5 +34,17 @@
   "license-deployment": {
     "width": 1600,
     "height": 286
+  },
+  "finance-invoicing": {
+    "width": 1600,
+    "height": 1054
+  },
+  "finance-overview": {
+    "width": 1600,
+    "height": 392
+  },
+  "finance-queues": {
+    "width": 1600,
+    "height": 222
   }
 }

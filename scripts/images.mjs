@@ -22,6 +22,9 @@ export const SHOTS = [
   { name: 'health-score-weights', src: 'settings-weights.png', crop: { left: 1615, top: 40, width: 1235, height: 615 } },
   { name: 'renewal-playbook', src: 'settings-weights.png', crop: { left: 362, top: 1100, width: 1235, height: 700 } },
   { name: 'license-deployment', src: 'licenses.png', crop: { left: 355, top: 1255, width: 2490, height: 445 } },
+  { name: 'finance-invoicing', src: 'finance.png', crop: { left: 355, top: 115, width: 2490, height: 1640 } },
+  { name: 'finance-overview', src: 'finance.png', crop: { left: 355, top: 190, width: 2490, height: 610 } },
+  { name: 'finance-queues', src: 'finance.png', crop: { left: 355, top: 455, width: 2490, height: 345 } },
 ];
 
 const sizes = {};
@@ -45,6 +48,7 @@ const OGS = [
   ['og-renewal-management', 'renewals.png', { left: 360, top: 115, width: 1830, height: 961 }],
   ['og-nrr-grr-reporting', 'dashboard.png', { left: 355, top: 115, width: 2490, height: 1307 }],
   ['og-license-deployment-tracking', 'licenses.png', { left: 355, top: 115, width: 2490, height: 1307 }],
+  ['og-finance-invoicing', 'finance.png', { left: 355, top: 115, width: 2490, height: 1307 }],
 ];
 for (const [name, src, crop] of OGS) {
   await sharp(join(SRC, src)).extract(crop).resize(1200, 630).png({ palette: true, compressionLevel: 9 }).toFile(join(OUT, name + '.png'));

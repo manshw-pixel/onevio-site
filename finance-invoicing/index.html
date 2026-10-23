@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoicing and Purchase Orders for SaaS Teams | OneVio</title>
+<meta name="description" content="Turn approved purchase orders into a billing schedule, raise GST, VAT or sales-tax invoices from the CRM, and track paid, pending and overdue by currency.">
+<link rel="canonical" href="https://onevio.in/finance-invoicing/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="Invoicing and Purchase Orders for SaaS Teams | OneVio">
+<meta property="og:description" content="Turn approved purchase orders into a billing schedule, raise GST, VAT or sales-tax invoices from the CRM, and track paid, pending and overdue by currency.">
+<meta property="og:url" content="https://onevio.in/finance-invoicing/">
+<meta property="og:image" content="https://onevio.in/assets/shots/og-finance-invoicing.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Invoicing and Purchase Orders for SaaS Teams | OneVio">
+<meta name="twitter:description" content="Turn approved purchase orders into a billing schedule, raise GST, VAT or sales-tax invoices from the CRM, and track paid, pending and overdue by currency.">
+<meta name="twitter:image" content="https://onevio.in/assets/shots/og-finance-invoicing.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"Finance and invoicing","item":"https://onevio.in/finance-invoicing/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OneVio","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://onevio.in/","description":"Turn approved purchase orders into a billing schedule, raise GST, VAT or sales-tax invoices from the CRM, and track paid, pending and overdue by currency."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I raise an invoice without a purchase order?","acceptedAnswer":{"@type":"Answer","text":"No. Every invoice is raised from a period on an approved purchase order, and each period can be invoiced only once. That rule is enforced in the database, not just in the screen."}},{"@type":"Question","name":"Does OneVio add up invoices in different currencies?","acceptedAnswer":{"@type":"Answer","text":"No. Paid, pending, overdue and waived totals are shown per currency, so INR, USD and PHP amounts are never summed together or converted."}},{"@type":"Question","name":"Who can approve purchase orders and mark invoices paid?","acceptedAnswer":{"@type":"Answer","text":"Users with Finance access, which an admin switches on per user. Anyone on the team can submit a purchase order and see the Finance page, but without Finance access it is read-only."}},{"@type":"Question","name":"Can an invoice be changed after it is sent?","acceptedAnswer":{"@type":"Answer","text":"No. Once sent, an invoice's number, line items and amounts are fixed. Only its status changes: pending, paid with a date and reference, or waived with a reason."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a href="/finance-invoicing/"><b>Finance &amp; invoicing</b><small>POs, billing schedules and invoices</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#demo">Book a demo</a>
+  </nav>
+  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Features</span>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">More</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script>
+(function(){var d=document;function c(s){d.querySelectorAll(s).forEach(function(e){e.open=false})}
+d.addEventListener('click',function(e){if(!e.target.closest('.dd'))c('.dd[open]');if(e.target.closest('.mnav-panel a,.dd-panel a'))c('.mnav[open],.dd[open]')});
+d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelector('.dd[open],.mnav[open]');if(o){o.open=false;o.querySelector('summary').focus()}}})})();
+</script>
+<main id="main">
+<section class="page-hero fp-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Finance and invoicing</span></nav>
+  <div class="eyebrow mt">Finance</div>
+  <h1>Invoicing and purchase orders, in the same place as your customers</h1>
+  <p class="lead">OneVio takes a customer's purchase order from submission to approval, builds the billing schedule, and lets Finance raise and send each invoice when it falls due. Paid, pending and overdue are tracked by currency, next to the account they belong to.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="/">See all features</a></div>
+</div></section>
+
+<section class="fp-body"><div class="wrap prose">
+<h2>Why billing belongs next to customer success</h2>
+  <p>In most SaaS teams the purchase order lives in someone's inbox, the billing schedule lives in a spreadsheet, and the invoice lives in an accounting tool the CSM never opens. When a customer asks why they were billed for a quarter they think is covered, nobody can answer without three tabs and a chat thread.</p>
+  <p>Putting the money next to the account fixes that. The CSM can see whether the customer's PO is approved and what has been invoiced against it. Finance can see who owns the account before chasing a payment. And an overdue invoice shows up beside the <a href="/customer-health-score/">health score</a> and the <a href="/renewal-management/">renewal date</a>, where it is a signal, not just a number in a ledger.</p>
+
+  <h2>From purchase order to billing schedule</h2>
+  <p>Anyone on the team can submit a purchase order from the account's Purchase orders tab: the PO file, its number, date, value, currency, the number of years and the billing cycle (quarterly, half-yearly or annual). The form shows the schedule it will create before you submit.</p>
+  <p>The PO then waits in the <strong>POs awaiting approval</strong> queue on the Finance page. A Finance user opens it, checks the file, and can adjust the amount of each period before approving. The schedule splits the PO value evenly by default, with any remainder on the last period. If the edited amounts no longer add up to the PO value, OneVio asks for confirmation instead of quietly accepting it. Rejecting a PO needs a reason, and the submitter is emailed either way.</p>
+  <p>An approved PO is locked. If the deal changes, Finance cancels it, which removes only the periods not yet invoiced, and a new PO is submitted.</p>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/finance-queues-800.webp 800w, /assets/shots/finance-queues-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="222">
+      <img src="/assets/shots/finance-queues-1600.png" alt="OneVio Finance page showing purchase orders awaiting approval and billing periods due to raise, each with a Raise invoice button" width="1600" height="222" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+
+  <h2>Raising and sending invoices</h2>
+  <p>When a period starts, it appears under <strong>Due to raise</strong>. Clicking Raise invoice opens a form already filled in: the line item names the period and the PO number, and the account's billing entity, billing email and owning CSM are set. The due date defaults to 30 days and every field stays editable, with tax and totals worked out as you type.</p>
+  <p>Tax follows the billing entity and the customer. An Indian entity billing an Indian customer applies CGST and SGST in the same state, or IGST across states, and an export to a foreign customer is zero-rated with the LUT note. Philippine entities add VAT and US entities can add sales tax. An account can be marked tax exempt with a note, and Finance can still switch tax on or off per invoice.</p>
+  <p>Send numbers the invoice from the entity's own series, stores the PDF and emails it to the customer's billing contact with the CSM copied. A sent invoice never changes, so the number series stays auditable.</p>
+
+  <h2>Tracking paid, pending and overdue</h2>
+  <p>The Finance page opens with a card per currency: paid, pending, overdue and waived, plus the share already collected. Totals are <strong>never added across currencies</strong>, so an INR book and a USD book are each shown as they are.</p>
+  <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
+    <picture>
+      <source type="image/webp" srcset="/assets/shots/finance-invoicing-800.webp 800w, /assets/shots/finance-invoicing-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="1054">
+      <img src="/assets/shots/finance-invoicing-1600.png" alt="OneVio Finance page with paid, pending, overdue and waived totals per currency above a table of invoices with status and a Paid checkbox" width="1600" height="1054" loading="lazy" decoding="async">
+    </picture>
+  </figure>
+  <p>Below sits every invoice across all accounts, filterable by status, entity and issue date, and exportable to CSV. Ticking <strong>Paid</strong> asks for the payment date and an optional reference. Waiving an invoice needs a reason. An invoice past its due date shows as overdue on its own, with no one having to remember to flag it. Each account also has an Invoices tab with the same list, so a CSM preparing a <a href="/nrr-grr-reporting/">renewal or NRR review</a> can see the billing history without asking Finance.</p>
+
+  <h2>Related</h2>
+  <div class="related">
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses, before renewal.</small></a>
+    <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
+    <a href="/nrr-calculator/"><b>Free NRR calculator</b><small>Work out NRR and GRR from four numbers.</small></a>
+  </div>
+</div></section>
+
+<section id="demo" class="demo-section" aria-labelledby="demo-title"><div class="wrap">
+  <div class="demo">
+    <div>
+      <div class="eyebrow">Book a demo</div>
+      <h2 id="demo-title">See OneVio with your own renewals.</h2>
+      <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
+      <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
+    </div>
+    <form class="form" id="demo-form" novalidate>
+      <div class="g2">
+        <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
+        <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
+      </div>
+      <div class="g2">
+        <label class="fld"><span>Work email <span class="req" aria-hidden="true">*</span></span><input class="input" type="email" name="email" autocomplete="email" required maxlength="200"></label>
+        <label class="fld"><span>Team size</span><select class="input" name="team_size"><option value="">Choose…</option><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+      </div>
+      <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <!-- The Turnstile site key lives only here: replace 0x4AAAAAAFROylqQka_Maavm at handover. -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFROylqQka_Maavm"></div>
+      <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at support@onevio.in.</p></noscript>
+    </form>
+  </div>
+</div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <div class="eyebrow">FAQ</div>
+  <h2 id="faq-title" class="mt">Finance and invoicing questions</h2>
+  <div class="faq">
+    <details open><summary>Can I raise an invoice without a purchase order?</summary><p>No. Every invoice is raised from a period on an approved purchase order, and each period can be invoiced only once. That rule is enforced in the database, not just in the screen.</p></details>
+    <details><summary>Does OneVio add up invoices in different currencies?</summary><p>No. Paid, pending, overdue and waived totals are shown per currency, so INR, USD and PHP amounts are never summed together or converted.</p></details>
+    <details><summary>Who can approve purchase orders and mark invoices paid?</summary><p>Users with Finance access, which an admin switches on per user. Anyone on the team can submit a purchase order and see the Finance page, but without Finance access it is read-only.</p></details>
+    <details><summary>Can an invoice be changed after it is sent?</summary><p>No. Once sent, an invoice's number, line items and amounts are fixed. Only its status changes: pending, paid with a date and reference, or waived with a reason.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p class="email">support@onevio.in</p>
+  </div>
+  <nav aria-label="Product"><h2>Product</h2>
+    <a href="/customer-health-score/">Customer health score</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+    <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/privacy/">Privacy</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+</body>
+</html>

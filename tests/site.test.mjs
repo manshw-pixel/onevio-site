@@ -140,7 +140,7 @@ test('every FAQPage JSON-LD equals its page\'s visible FAQ, question and answer'
 });
 
 // ---------- Feature pages ----------
-const FEATURE_PATHS = ['/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/'];
+const FEATURE_PATHS = ['/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/', '/finance-invoicing/'];
 const linksOf = (html) => new Set(attrs(html, 'a', 'href'));
 const titleOf = (html) => decode(html.match(/<title>([^<]*)<\/title>/)[1]);
 const descOf = (html) => decode(html.match(/<meta name="description" content="([^"]*)">/)[1]);
@@ -264,7 +264,7 @@ test('desktop Features dropdown opens without JS', async () => {
     await page.locator('.dd > summary').click();
     const links = page.locator('.dd-panel a');
     await links.first().waitFor({ state: 'visible' });
-    assert.equal(await links.count(), 5);
+    assert.equal(await links.count(), 6);
     assert.equal(await page.locator('.dd-panel a').last().getAttribute('href'), '/#features');
   } finally { await ctx.close(); }
 });
