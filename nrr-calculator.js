@@ -187,4 +187,6 @@ function init(root) {
 if (typeof document !== 'undefined') {
   const root = document.getElementById('nrr-calc');
   if (root) init(root);
+  // Enter in an input must not submit (and reload) the page; set here because the CSP forbids inline handlers.
+  document.querySelectorAll('form.calc-in').forEach((f) => f.addEventListener('submit', (e) => e.preventDefault()));
 }

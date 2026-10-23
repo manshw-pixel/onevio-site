@@ -39,8 +39,4 @@
     </nav>
   </details>
 </div></header>
-<script>
-(function(){var d=document;function c(s){d.querySelectorAll(s).forEach(function(e){e.open=false})}
-d.addEventListener('click',function(e){if(!e.target.closest('.dd'))c('.dd[open]');if(e.target.closest('.mnav-panel a,.dd-panel a'))c('.mnav[open],.dd[open]')});
-d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelector('.dd[open],.mnav[open]');if(o){o.open=false;o.querySelector('summary').focus()}}})})();
-</script>
+<script src="/nav.js" defer></script>

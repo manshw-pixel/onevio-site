@@ -394,3 +394,33 @@ test('mobile menu at 360px reaches every nav link on every page', async () => {
     }
   } finally { await ctx.close(); }
 });
+
+// ---------- Content-Security-Policy ----------
+const { createHash } = await import('node:crypto');
+const cspOf = (html) => decode(html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/)[1]);
+
+test('every page carries the CSP, and it allows every inline handler and no inline script', () => {
+  for (const p of pages) {
+    const csp = cspOf(p.html);
+    for (const m of p.html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      const attrs = m[1] || '';
+      if (/type="application\/ld\+json"/.test(attrs)) continue;   // data block, never executed
+      assert.match(attrs, /\ssrc="/, `${p.file}: inline <script> would be blocked by the CSP`);
+    }
+    for (const m of p.html.matchAll(/\son[a-z]+="([^"]*)"/g)) {
+      const h = 'sha256-' + createHash('sha256').update(decode(m[1])).digest('base64');
+      assert.ok(csp.includes(`'${h}'`), `${p.file}: handler ${m[1]} not hashed in the CSP`);
+    }
+  }
+});
+
+test('no CSP violations when every page loads', async () => {
+  const ctx = await browser.newContext();
+  const page = await ctx.newPage();
+  const bad = [];
+  page.on('console', (m) => { if (/Content Security Policy|Refused to/i.test(m.text())) bad.push(m.text()); });
+  try {
+    for (const p of pages) { bad.length = 0; await page.goto(server.url + p.path, { waitUntil: 'load' }); await page.waitForTimeout(300);
+      assert.deepEqual(bad, [], `${p.file}: ${bad.join(' | ')}`); }
+  } finally { await ctx.close(); }
+});

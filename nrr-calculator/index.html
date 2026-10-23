@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://demo.onevio.in https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free NRR and GRR Calculator with ARR Bridge | OneVio</title>
 <meta name="description" content="Free NRR and GRR calculator. Enter starting ARR, expansion, contraction and churn to see net and gross revenue retention and an ARR bridge. No sign-up.">
@@ -12,9 +14,9 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" data-swap>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" data-swap>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
 <link rel="stylesheet" href="/site.css">
 <meta property="og:type" content="website">
@@ -75,11 +77,7 @@
     </nav>
   </details>
 </div></header>
-<script>
-(function(){var d=document;function c(s){d.querySelectorAll(s).forEach(function(e){e.open=false})}
-d.addEventListener('click',function(e){if(!e.target.closest('.dd'))c('.dd[open]');if(e.target.closest('.mnav-panel a,.dd-panel a'))c('.mnav[open],.dd[open]')});
-d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelector('.dd[open],.mnav[open]');if(o){o.open=false;o.querySelector('summary').focus()}}})})();
-</script>
+<script src="/nav.js" defer></script>
 <main id="main">
 <section class="page-hero fp-hero"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">NRR calculator</span></nav>
@@ -90,7 +88,7 @@ d.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=d.querySelec
 
 <section class="calc-section" aria-label="Calculator"><div class="wrap">
   <div class="calc" id="nrr-calc">
-    <form class="calc-in" onsubmit="return false" novalidate>
+    <form class="calc-in" novalidate>
       <fieldset class="cur"><legend>Currency</legend>
         <label><input type="radio" name="currency" value="₹" checked><span>₹</span></label>
         <label><input type="radio" name="currency" value="$"><span>$</span></label>
