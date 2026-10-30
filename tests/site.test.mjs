@@ -108,7 +108,7 @@ const jsonld = (html) => [...html.matchAll(/<script type="application\/ld\+json"
 
 test('home: title and H1 match the spec', () => {
   assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'Customer Success Software: Onboarding to Payment | OneVio');
-  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'Customer success, onboarding to payment.');
+  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'The whole customer journey, in one place.');
 });
 
 test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with required fields', () => {
