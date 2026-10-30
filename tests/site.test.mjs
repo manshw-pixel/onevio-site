@@ -107,7 +107,7 @@ const decode = (t) => t.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(
 const jsonld = (html) => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
 
 test('home: title and H1 match the spec', () => {
-  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'Customer Success Software: Onboarding to Payment | OneVio');
+  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'Customer Success Platform for B2B SaaS Teams | OneVio');
   assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'The whole customer journey, in one place.');
 });
 
@@ -210,7 +210,7 @@ test('every feature page is linked from the home page body and from every footer
 test('customer onboarding page: H1, JSON-LD, sitemap, linked from home body and every footer', () => {
   const p = byPath.get('/customer-onboarding/');
   assert.ok(p && p.html, 'built');
-  assert.equal(titleOf(p.html), 'Customer Onboarding Software for CS Teams | OneVio');
+  assert.equal(titleOf(p.html), 'Customer Onboarding and Implementation Software | OneVio');
   const d = descOf(p.html).length; assert.ok(d >= 140 && d <= 160, `description ${d}`);
   const h1 = p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) || [];
   assert.equal(h1.length, 1);
