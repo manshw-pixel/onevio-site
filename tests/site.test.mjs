@@ -107,8 +107,8 @@ const decode = (t) => t.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(
 const jsonld = (html) => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
 
 test('home: title and H1 match the spec', () => {
-  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'OneVio: Customer Success Software for Renewals, Health Scores & NRR');
-  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'See every renewal coming. Keep every customer.');
+  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'Customer Success Software: Onboarding to Payment | OneVio');
+  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'Customer success, onboarding to payment.');
 });
 
 test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with required fields', () => {
@@ -121,7 +121,7 @@ test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with requi
   assert.equal(app.name, 'OneVio'); assert.equal(app.applicationCategory, 'BusinessApplication');
   assert.equal(app.operatingSystem, 'Web'); assert.equal(app.url, 'https://onevio.in/');
   for (const k of ['aggregateRating', 'review', 'offers']) assert.ok(!(k in app), `no ${k}`);
-  assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length === 8, '8 questions');
+  assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length === 10, '10 questions');
   for (const q of faq.mainEntity) {
     assert.equal(q['@type'], 'Question'); assert.ok(q.name);
     assert.equal(q.acceptedAnswer?.['@type'], 'Answer'); assert.ok(q.acceptedAnswer.text.length > 60, `${q.name}: full answer`);
@@ -217,10 +217,10 @@ test('every <img> and <source> has alt (img), width and height; only the hero lo
     }
   }
   const imgs = [...home.html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
-  assert.ok(imgs.length >= 7, 'hero + six feature screenshots');
-  assert.match(imgs[0], /loading="eager"/); assert.match(imgs[0], /fetchpriority="high"/);
-  assert.match(imgs[0], /customer-success-dashboard/);
-  for (const i of imgs.slice(1)) { assert.match(i, /loading="lazy"/); assert.doesNotMatch(i, /fetchpriority/); }
+  // The Bento hero is mini-cards, not a screenshot, so every home image is below the fold.
+  assert.ok(imgs.length >= 3, 'onboarding tile + dashboard + finance screenshots');
+  assert.ok(imgs.some((i) => /customer-success-dashboard/.test(i)), 'dashboard screenshot');
+  for (const i of imgs) { assert.match(i, /loading="lazy"/); assert.doesNotMatch(i, /fetchpriority/); }
 });
 
 // ---------- Browser checks ----------
@@ -287,11 +287,10 @@ test('dark scheme applies dark tokens; light applies light', async () => {
 });
 
 // ---------- Site-wide SEO (Task 12) ----------
-// Recorded exceptions: the home title (67) and description (161) are the user-approved
-// wording from the spec, so they are exempt from the 50-60 / 140-160 windows.
-const SEO_EXCEPTIONS = { '/': { title: 67, description: 161 } };
+// Recorded exceptions (none since the Bento home title and description fit the windows).
+const SEO_EXCEPTIONS = {};
 
-test('SEO: every page has a 50-60 char title and 140-160 char description (home exempt, recorded)', () => {
+test('SEO: every page has a 50-60 char title and 140-160 char description (exceptions recorded)', () => {
   for (const p of pages) {
     const t = titleOf(p.html).length, d = descOf(p.html).length, ex = SEO_EXCEPTIONS[p.path];
     if (ex) { assert.equal(t, ex.title, `${p.file}: exempt title changed length`); assert.equal(d, ex.description, `${p.file}: exempt description changed length`); continue; }
