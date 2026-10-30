@@ -279,6 +279,22 @@ test('no horizontal scroll at 360px, menu open or closed', async () => {
   } finally { await ctx.close(); }
 });
 
+// A section's `padding` shorthand once zeroed the .wrap side gutter, so the hero text touched
+// the screen edge on phones while the overflow test above still passed.
+test('every page keeps a side gutter at 360px', async () => {
+  const ctx = await browser.newContext({ viewport: { width: 360, height: 780 } });
+  const page = await ctx.newPage();
+  try {
+    for (const p of pages) {
+      await page.goto(urlOf(p));
+      const tight = await page.evaluate(() => [...document.querySelectorAll('main h1, main h2, main p')]
+        .filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.left < 12 || r.right > innerWidth - 12); })
+        .map(e => e.tagName + ': ' + e.textContent.trim().slice(0, 40)));
+      assert.deepEqual(tight, [], `${p.file} has text within 12px of the screen edge`);
+    }
+  } finally { await ctx.close(); }
+});
+
 test('desktop Features dropdown opens without JS', async () => {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, javaScriptEnabled: false });
   const page = await ctx.newPage();

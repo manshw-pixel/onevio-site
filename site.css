@@ -83,7 +83,8 @@ section { padding-block: 84px }
 /* ---------- Type ---------- */
 h1, h2, h3 { font-family: var(--font-head); font-weight: 900; letter-spacing: -.03em; text-wrap: balance; margin: 0; color: var(--ink) }
 h1 { font-size: clamp(38px, 5.6vw, 66px); line-height: 1.03; letter-spacing: -.035em }
-h1 mark, h2 mark { background: var(--mark); color: var(--mark-ink); padding: 0 .14em; border-radius: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
+/* Highlighter stroke across the lower half: never covers descenders (j, y, p) or the line below. */
+h1 mark, h2 mark { background: linear-gradient(transparent 56%, var(--mark) 56%, var(--mark) 90%, transparent 90%); color: inherit; padding: 0 .04em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
 h2 { font-size: clamp(28px, 3.8vw, 44px); line-height: 1.08 }
 h3 { font-size: 19px; line-height: 1.3; letter-spacing: -.015em; font-weight: 800 }
 .lead, .lede { font-size: clamp(17px, 1.8vw, 19px); color: var(--body); max-width: 60ch; text-wrap: pretty }
@@ -353,18 +354,19 @@ figure { margin: 0 }
 /* ---------- Bento components (site refresh) ----------
    Prefixed names (.bhero, .bento) kept from the foundation task. */
 .ctas { display: flex; gap: 12px; flex-wrap: wrap }
-.bhero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding: 64px 0 40px }
+.bhero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding-block: 64px 40px }
 .bhero h1 { margin: 10px 0 18px }
 .bhero .lead { margin: 0 0 28px; max-width: 560px }
 .trust { margin-top: 22px; font-size: 14px; color: var(--muted); display: flex; gap: 18px; flex-wrap: wrap }
 .trust span::before { content: "\2713  "; color: var(--g-ink); font-weight: 800 }
 
 /* Floating mini-cards */
-.stack { position: relative; height: 420px }
-.stack .c { position: absolute; background: var(--card); border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); padding: 18px; color: var(--ink); animation: float 7s ease-in-out infinite }
+/* Staggered 2x2 cluster: cards sit close together, no empty band between rows. */
+.stack { display: grid; grid-template-columns: 1.45fr 1fr; gap: 16px; align-items: start }
+.stack .c { position: relative; min-width: 0; background: var(--card); border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); padding: 18px; color: var(--ink); animation: float 7s ease-in-out infinite }
 .stack .c:nth-child(2) { animation-delay: -2s } .stack .c:nth-child(3) { animation-delay: -4s } .stack .c:nth-child(4) { animation-delay: -1s }
 @keyframes float { 50% { transform: translateY(-6px) } }
-.c1 { left: 0; top: 16px; width: 64% } .c2 { right: 0; top: 0; width: 40% } .c3 { left: 10%; bottom: 10px; width: 58% } .c4 { right: 2%; bottom: 70px; width: 38% }
+.c2 { margin-top: 28px } .c3 { margin-left: 12% } .c4 { margin-top: -12px }
 .stack .k { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em }
 .stack .v { font-size: 28px; font-weight: 800; letter-spacing: -.02em }
 .stack .bar { height: 8px; border-radius: 9px; background: var(--line); margin-top: 10px }
@@ -376,7 +378,7 @@ figure { margin: 0 }
 @media (max-width: 940px) {
   .bhero { grid-template-columns: 1fr; padding-top: 40px }
   .stack { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
-  .stack .c { position: static; width: auto; animation: none; min-width: 0 }
+  .stack .c { position: static; width: auto; animation: none; min-width: 0; margin: 0 }
 }
 @media (max-width: 520px) { .stack { grid-template-columns: 1fr } }
 
@@ -444,7 +446,6 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 /* Customer onboarding page */
 .onb-hero { padding-block: 0 }
 .onb-hero .crumbs { margin-bottom: 14px }
-@media (min-width: 941px) { .onb-hero .c4 { bottom: auto; top: 150px } }
 .onb-block { padding-block: 56px }
 .onb-block .copy > p:last-child { margin-top: 18px; color: var(--body) }
 .onb-note { max-width: 720px; margin: 22px auto 0; color: var(--body) }
