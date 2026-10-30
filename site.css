@@ -440,3 +440,13 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 @media (prefers-reduced-motion: reduce) {
   .stack .c { animation: none } a.tile:hover, .btn:hover { transform: none }
 }
+
+/* Customer onboarding page */
+.onb-hero { padding-block: 0 }
+.onb-hero .crumbs { margin-bottom: 14px }
+@media (min-width: 941px) { .onb-hero .c4 { bottom: auto; top: 150px } }
+.onb-block { padding-block: 56px }
+.onb-block .copy > p:last-child { margin-top: 18px; color: var(--body) }
+.onb-note { max-width: 720px; margin: 22px auto 0; color: var(--body) }
+.onb-board { margin-top: 32px; text-align: left }
+@media (max-width: 900px) { .onb-block { padding-block: 36px } }

@@ -140,7 +140,7 @@ test('every FAQPage JSON-LD equals its page\'s visible FAQ, question and answer'
 });
 
 // ---------- Feature pages ----------
-const FEATURE_PATHS = ['/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/', '/finance-invoicing/'];
+const FEATURE_PATHS = ['/customer-onboarding/', '/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/', '/finance-invoicing/'];
 const linksOf = (html) => new Set(attrs(html, 'a', 'href'));
 const titleOf = (html) => decode(html.match(/<title>([^<]*)<\/title>/)[1]);
 const descOf = (html) => decode(html.match(/<meta name="description" content="([^"]*)">/)[1]);
@@ -188,7 +188,9 @@ test('feature pages: title/description length, one H1 with JSON-LD, screenshots,
     const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus "Related"
     assert.ok(h2 >= 3 && h2 <= 5, `${path}: ${h2} content H2s`);
     const imgs = (p.html.match(/<img\b/g) || []).length;
-    assert.ok(imgs >= 1 && imgs <= 2, `${path}: 1-2 screenshots`);
+    // The onboarding page carries the board plus one shot per split (approved design).
+    const maxImgs = path === '/customer-onboarding/' ? 4 : 2;
+    assert.ok(imgs >= 1 && imgs <= maxImgs, `${path}: 1-${maxImgs} screenshots`);
     assert.ok(p.html.includes('id="demo"'), `${path}: demo partial`);
     assert.ok(p.html.includes(`property="og:image" content="https://onevio.in/assets/shots/og-${p.name}.png"`), `${path}: own OG image`);
     const links = linksOf(bodyOf(p.html));
@@ -203,6 +205,27 @@ test('every feature page is linked from the home page body and from every footer
     assert.ok(linksOf(bodyOf(home.html)).has(path), `home links ${path}`);
     for (const p of pages) assert.ok(linksOf(p.html.slice(p.html.indexOf('<footer'))).has(path), `${p.file} footer links ${path}`);
   }
+});
+
+test('customer onboarding page: H1, JSON-LD, sitemap, linked from home body and every footer', () => {
+  const p = byPath.get('/customer-onboarding/');
+  assert.ok(p && p.html, 'built');
+  assert.equal(titleOf(p.html), 'Customer Onboarding Software for CS Teams | OneVio');
+  const d = descOf(p.html).length; assert.ok(d >= 140 && d <= 160, `description ${d}`);
+  const h1 = p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) || [];
+  assert.equal(h1.length, 1);
+  assert.match(decode(h1[0]).toLowerCase(), /customer onboarding software/);
+  const types = jsonld(p.html).map((j) => j['@type']);
+  for (const t of ['SoftwareApplication', 'FAQPage', 'BreadcrumbList']) assert.ok(types.includes(t), t);
+  assert.ok(readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').includes('<loc>https://onevio.in/customer-onboarding/</loc>'), 'in sitemap');
+  assert.ok(linksOf(bodyOf(home.html)).has('/customer-onboarding/'), 'home body');
+  for (const q of pages) assert.ok(linksOf(q.html.slice(q.html.indexOf('<footer'))).has('/customer-onboarding/'), `${q.file} footer`);
+  for (const s of ['customer-onboarding-board', 'onboarding-handover-checklist', 'onboarding-project-plan', 'onboarding-csm-signoff'])
+    assert.ok(p.html.includes(`/assets/shots/${s}-1600.png`), `uses ${s}`);
+});
+
+test('home onboarding tile has a short accessible name', () => {
+  assert.match(home.html, /<a class="tile t1" href="\/customer-onboarding\/" aria-label="Customer onboarding">/);
 });
 
 test('every <img> and <source> has alt (img), width and height; only the hero loads eagerly', () => {
