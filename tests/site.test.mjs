@@ -185,7 +185,7 @@ test('feature pages: title/description length, one H1 with JSON-LD, screenshots,
     const nFaq = ld.find((j) => j['@type'] === 'FAQPage').mainEntity.length;
     assert.ok(nFaq >= 3 && nFaq <= 4, `${path}: 3-4 FAQs`);
     const prose = p.html.match(/<section class="fp-body">([\s\S]*?)<\/section>/)[1];
-    const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus "Related"
+    const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus the closing "Part of the OneVio suite" H2
     assert.ok(h2 >= 3 && h2 <= 5, `${path}: ${h2} content H2s`);
     const imgs = (p.html.match(/<img\b/g) || []).length;
     // The onboarding page carries the board plus one shot per split (approved design).
