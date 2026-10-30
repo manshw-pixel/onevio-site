@@ -107,8 +107,8 @@ const decode = (t) => t.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(
 const jsonld = (html) => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
 
 test('home: title and H1 match the spec', () => {
-  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'OneVio: Customer Success Software for Renewals, Health Scores & NRR');
-  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'See every renewal coming. Keep every customer.');
+  assert.equal(decode(home.html.match(/<title>([^<]*)<\/title>/)[1]), 'Customer Success Software: Onboarding to Payment | OneVio');
+  assert.equal(decode(home.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), 'Customer success, onboarding to payment.');
 });
 
 test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with required fields', () => {
@@ -121,7 +121,7 @@ test('home: JSON-LD has Organization, SoftwareApplication and FAQPage with requi
   assert.equal(app.name, 'OneVio'); assert.equal(app.applicationCategory, 'BusinessApplication');
   assert.equal(app.operatingSystem, 'Web'); assert.equal(app.url, 'https://onevio.in/');
   for (const k of ['aggregateRating', 'review', 'offers']) assert.ok(!(k in app), `no ${k}`);
-  assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length === 8, '8 questions');
+  assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length === 10, '10 questions');
   for (const q of faq.mainEntity) {
     assert.equal(q['@type'], 'Question'); assert.ok(q.name);
     assert.equal(q.acceptedAnswer?.['@type'], 'Answer'); assert.ok(q.acceptedAnswer.text.length > 60, `${q.name}: full answer`);
@@ -140,7 +140,7 @@ test('every FAQPage JSON-LD equals its page\'s visible FAQ, question and answer'
 });
 
 // ---------- Feature pages ----------
-const FEATURE_PATHS = ['/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/', '/finance-invoicing/'];
+const FEATURE_PATHS = ['/customer-onboarding/', '/customer-health-score/', '/renewal-management/', '/nrr-grr-reporting/', '/license-deployment-tracking/', '/finance-invoicing/'];
 const linksOf = (html) => new Set(attrs(html, 'a', 'href'));
 const titleOf = (html) => decode(html.match(/<title>([^<]*)<\/title>/)[1]);
 const descOf = (html) => decode(html.match(/<meta name="description" content="([^"]*)">/)[1]);
@@ -185,10 +185,12 @@ test('feature pages: title/description length, one H1 with JSON-LD, screenshots,
     const nFaq = ld.find((j) => j['@type'] === 'FAQPage').mainEntity.length;
     assert.ok(nFaq >= 3 && nFaq <= 4, `${path}: 3-4 FAQs`);
     const prose = p.html.match(/<section class="fp-body">([\s\S]*?)<\/section>/)[1];
-    const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus "Related"
+    const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus the closing "Part of the OneVio suite" H2
     assert.ok(h2 >= 3 && h2 <= 5, `${path}: ${h2} content H2s`);
     const imgs = (p.html.match(/<img\b/g) || []).length;
-    assert.ok(imgs >= 1 && imgs <= 2, `${path}: 1-2 screenshots`);
+    // The onboarding page carries the board plus one shot per split (approved design).
+    const maxImgs = path === '/customer-onboarding/' ? 4 : 2;
+    assert.ok(imgs >= 1 && imgs <= maxImgs, `${path}: 1-${maxImgs} screenshots`);
     assert.ok(p.html.includes('id="demo"'), `${path}: demo partial`);
     assert.ok(p.html.includes(`property="og:image" content="https://onevio.in/assets/shots/og-${p.name}.png"`), `${path}: own OG image`);
     const links = linksOf(bodyOf(p.html));
@@ -205,6 +207,27 @@ test('every feature page is linked from the home page body and from every footer
   }
 });
 
+test('customer onboarding page: H1, JSON-LD, sitemap, linked from home body and every footer', () => {
+  const p = byPath.get('/customer-onboarding/');
+  assert.ok(p && p.html, 'built');
+  assert.equal(titleOf(p.html), 'Customer Onboarding Software for CS Teams | OneVio');
+  const d = descOf(p.html).length; assert.ok(d >= 140 && d <= 160, `description ${d}`);
+  const h1 = p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) || [];
+  assert.equal(h1.length, 1);
+  assert.match(decode(h1[0]).toLowerCase(), /customer onboarding software/);
+  const types = jsonld(p.html).map((j) => j['@type']);
+  for (const t of ['SoftwareApplication', 'FAQPage', 'BreadcrumbList']) assert.ok(types.includes(t), t);
+  assert.ok(readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').includes('<loc>https://onevio.in/customer-onboarding/</loc>'), 'in sitemap');
+  assert.ok(linksOf(bodyOf(home.html)).has('/customer-onboarding/'), 'home body');
+  for (const q of pages) assert.ok(linksOf(q.html.slice(q.html.indexOf('<footer'))).has('/customer-onboarding/'), `${q.file} footer`);
+  for (const s of ['customer-onboarding-board', 'onboarding-handover-checklist', 'onboarding-project-plan', 'onboarding-csm-signoff'])
+    assert.ok(p.html.includes(`/assets/shots/${s}-1600.png`), `uses ${s}`);
+});
+
+test('home onboarding tile has a short accessible name', () => {
+  assert.match(home.html, /<a class="tile t1" href="\/customer-onboarding\/" aria-label="Customer onboarding">/);
+});
+
 test('every <img> and <source> has alt (img), width and height; only the hero loads eagerly', () => {
   for (const p of pages) {
     for (const m of p.html.matchAll(/<(img|source)\b[^>]*>/g)) {
@@ -217,10 +240,10 @@ test('every <img> and <source> has alt (img), width and height; only the hero lo
     }
   }
   const imgs = [...home.html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
-  assert.ok(imgs.length >= 7, 'hero + six feature screenshots');
-  assert.match(imgs[0], /loading="eager"/); assert.match(imgs[0], /fetchpriority="high"/);
-  assert.match(imgs[0], /customer-success-dashboard/);
-  for (const i of imgs.slice(1)) { assert.match(i, /loading="lazy"/); assert.doesNotMatch(i, /fetchpriority/); }
+  // The Bento hero is mini-cards, not a screenshot, so every home image is below the fold.
+  assert.ok(imgs.length >= 3, 'onboarding tile + dashboard + finance screenshots');
+  assert.ok(imgs.some((i) => /customer-success-dashboard/.test(i)), 'dashboard screenshot');
+  for (const i of imgs) { assert.match(i, /loading="lazy"/); assert.doesNotMatch(i, /fetchpriority/); }
 });
 
 // ---------- Browser checks ----------
@@ -264,13 +287,14 @@ test('desktop Features dropdown opens without JS', async () => {
     await page.locator('.dd > summary').click();
     const links = page.locator('.dd-panel a');
     await links.first().waitFor({ state: 'visible' });
-    assert.equal(await links.count(), 6);
+    assert.equal(await links.count(), 7);
+    assert.equal(await links.first().getAttribute('href'), '/customer-onboarding/', 'Onboarding listed first');
     assert.equal(await page.locator('.dd-panel a').last().getAttribute('href'), '/#features');
   } finally { await ctx.close(); }
 });
 
 test('dark scheme applies dark tokens; light applies light', async () => {
-  for (const [scheme, bg, accent] of [['light', 'rgb(245, 246, 250)', '#4f46e5'], ['dark', 'rgb(12, 15, 29)', '#8b8cf8']]) {
+  for (const [scheme, bg, accent] of [['light', 'rgb(248, 249, 252)', '#4f46e5'], ['dark', 'rgb(11, 17, 32)', '#818cf8']]) {
     const ctx = await browser.newContext({ colorScheme: scheme });
     const page = await ctx.newPage();
     try {
@@ -286,11 +310,10 @@ test('dark scheme applies dark tokens; light applies light', async () => {
 });
 
 // ---------- Site-wide SEO (Task 12) ----------
-// Recorded exceptions: the home title (67) and description (161) are the user-approved
-// wording from the spec, so they are exempt from the 50-60 / 140-160 windows.
-const SEO_EXCEPTIONS = { '/': { title: 67, description: 161 } };
+// Recorded exceptions (none since the Bento home title and description fit the windows).
+const SEO_EXCEPTIONS = {};
 
-test('SEO: every page has a 50-60 char title and 140-160 char description (home exempt, recorded)', () => {
+test('SEO: every page has a 50-60 char title and 140-160 char description (exceptions recorded)', () => {
   for (const p of pages) {
     const t = titleOf(p.html).length, d = descOf(p.html).length, ex = SEO_EXCEPTIONS[p.path];
     if (ex) { assert.equal(t, ex.title, `${p.file}: exempt title changed length`); assert.equal(d, ex.description, `${p.file}: exempt description changed length`); continue; }
@@ -365,8 +388,8 @@ test('dark scheme tokens apply on every page', async () => {
         bg: getComputedStyle(document.body).backgroundColor,
         fg: getComputedStyle(document.body).color,
       }));
-      assert.equal(got.bg, 'rgb(12, 15, 29)', `${p.file}: dark background`);
-      assert.equal(got.fg, 'rgb(238, 240, 250)', `${p.file}: dark text (--ink)`);
+      assert.equal(got.bg, 'rgb(11, 17, 32)', `${p.file}: dark background`);
+      assert.equal(got.fg, 'rgb(226, 232, 240)', `${p.file}: dark text (--ink)`);
     }
   } finally { await ctx.close(); }
 });

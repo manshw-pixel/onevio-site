@@ -9,15 +9,13 @@
 <meta name="description" content="Report net and gross revenue retention from existing customers only, with a 12-month ARR bridge in USD across INR, USD and PHP accounts, plus churn and cohorts.">
 <link rel="canonical" href="https://onevio.in/nrr-grr-reporting/">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" data-swap>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" data-swap>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/site.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OneVio">
@@ -43,9 +41,11 @@
     <span class="word">One<span>Vio</span></span>
   </a>
   <nav class="nav-links" aria-label="Main">
+    <a class="new" href="/customer-onboarding/">Onboarding</a>
     <details class="dd">
       <summary>Features</summary>
       <div class="dd-panel">
+        <a href="/customer-onboarding/"><b>Customer onboarding <span class="badge">New</span></b><small>Handover, plans with hours, CSM sign-off</small></a>
         <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
         <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
         <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
@@ -55,24 +55,24 @@
       </div>
     </details>
     <a href="/nrr-calculator/">NRR calculator</a>
-    <a href="/#how">How it works</a>
-    <a href="/#demo">Book a demo</a>
+    <a href="/churn-rate-calculator/">Churn calculator</a>
   </nav>
-  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <a class="nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <a class="btn btn-nav nav-demo" href="/#demo">Book a demo</a>
   <details class="mnav">
     <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
     <nav class="mnav-panel" aria-label="Mobile">
-      <span class="grp-label">Features</span>
+      <span class="grp-label">Suite</span>
+      <a href="/customer-onboarding/">Customer onboarding <span class="badge">New</span></a>
       <a href="/customer-health-score/">Customer health score</a>
       <a href="/renewal-management/">Renewal management</a>
       <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
       <a href="/license-deployment-tracking/">License deployment tracking</a>
       <a href="/finance-invoicing/">Finance &amp; invoicing</a>
       <a href="/#features">All features</a>
-      <span class="grp-label">More</span>
+      <span class="grp-label">Free tools</span>
       <a href="/nrr-calculator/">NRR calculator</a>
       <a href="/churn-rate-calculator/">Churn rate calculator</a>
-      <a href="/#how">How it works</a>
       <a href="/#demo">Book a demo</a>
       <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
     </nav>
@@ -106,8 +106,8 @@
   <p>The dashboard shows the same figures as an ARR bridge: opening ARR from existing customers a year ago, plus new business, plus expansion, minus contraction, minus churn, equals closing ARR today. New business is the current ARR of customers signed inside the window, with their first-year upsells included, which is the usual convention. A customer signed and lost inside the window nets to zero and is counted separately.</p>
   <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
     <picture>
-      <source type="image/webp" srcset="/assets/shots/arr-bridge-nrr-grr-800.webp 800w, /assets/shots/arr-bridge-nrr-grr-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="488">
-      <img src="/assets/shots/arr-bridge-nrr-grr-1600.png" alt="OneVio dashboard showing total ARR in USD, NRR and GRR for the last 12 months, and an ARR bridge from opening to closing ARR" width="1600" height="488" loading="lazy" decoding="async">
+      <source type="image/webp" srcset="/assets/shots/arr-bridge-nrr-grr-800.webp 800w, /assets/shots/arr-bridge-nrr-grr-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="918">
+      <img src="/assets/shots/arr-bridge-nrr-grr-1600.png" alt="OneVio ARR bridge card showing GRR, churned ARR, and how ARR 12 months ago became ARR today through new customers, expansion, contraction and churn" width="1600" height="918" loading="lazy" decoding="async">
     </picture>
   </figure>
   <p>Every figure is in US dollars. Each account bills in its own currency, Indian rupees, US dollars or Philippine pesos, and OneVio converts to USD with the rates set in Settings. Account pages keep the native amount, so a CSM in Bengaluru still sees the rupee contract value.</p>
@@ -124,8 +124,9 @@
   <h2>Who uses it</h2>
   <p><strong>Founders and CS leaders</strong> take NRR, GRR and the bridge into board and investor updates. <strong>Finance</strong> gets one USD figure with the conversion rates written down. <strong>CS managers</strong> use churn reasons and cohorts to decide where to act, then use <a href="/renewal-management/">renewal management</a> to act on it.</p>
 
-  <h2>Related</h2>
+  <h2>Part of the OneVio suite</h2>
   <div class="related">
+    <a href="/customer-onboarding/"><b>Customer onboarding</b><small>Sales handover, plans with hours, CSM sign-off.</small></a>
     <a href="/customer-health-score/"><b>Customer health score</b><small>Five weighted inputs, three bands, alerts when a score slips.</small></a>
     <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
     <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
@@ -178,11 +179,12 @@
 <footer class="site-footer"><div class="wrap fgrid">
   <div>
     <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
-    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p style="max-width:30ch">Customer success from onboarding to payment.</p>
     <p class="email">support@onevio.in</p>
   </div>
-  <nav aria-label="Product"><h2>Product</h2>
-    <a href="/customer-health-score/">Customer health score</a>
+  <nav aria-label="Suite"><h2>Suite</h2>
+    <a href="/customer-onboarding/">Customer onboarding</a>
+    <a href="/customer-health-score/">Health scores</a>
     <a href="/renewal-management/">Renewal management</a>
     <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
     <a href="/license-deployment-tracking/">License tracking</a>
@@ -196,8 +198,8 @@
   <nav aria-label="Company"><h2>Company</h2>
     <a href="https://crm.onevio.in/crm.html">Login</a>
     <a href="/#demo">Book a demo</a>
-    <a href="/privacy/">Privacy</a>
     <a href="/security/">Security</a>
+    <a href="/privacy/">Privacy</a>
     <p>© 2026 OneVio</p>
   </nav>
 </div></footer>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://demo.onevio.in https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Onboarding Software for CS Teams | OneVio</title>
+<meta name="description" content="Customer onboarding software for CS teams: a sales handover checklist, implementation plans with hours, and a CSM sign-off before the customer goes live.">
+<link rel="canonical" href="https://onevio.in/customer-onboarding/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"></noscript>
+<link rel="stylesheet" href="/site.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneVio">
+<meta property="og:title" content="Customer Onboarding Software for CS Teams | OneVio">
+<meta property="og:description" content="Customer onboarding software for CS teams: a sales handover checklist, implementation plans with hours, and a CSM sign-off before the customer goes live.">
+<meta property="og:url" content="https://onevio.in/customer-onboarding/">
+<meta property="og:image" content="https://onevio.in/assets/shots/og-customer-onboarding.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Customer Onboarding Software for CS Teams | OneVio">
+<meta name="twitter:description" content="Customer onboarding software for CS teams: a sales handover checklist, implementation plans with hours, and a CSM sign-off before the customer goes live.">
+<meta name="twitter:image" content="https://onevio.in/assets/shots/og-customer-onboarding.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onevio.in/"},{"@type":"ListItem","position":2,"name":"Customer onboarding","item":"https://onevio.in/customer-onboarding/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OneVio","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://onevio.in/","description":"Customer onboarding software for CS teams: a sales handover checklist, implementation plans with hours, and a CSM sign-off before the customer goes live."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can we run more than one project for the same customer?","acceptedAnswer":{"@type":"Answer","text":"Yes. An account can have several projects at once, such as an onboarding and a later expansion."}},{"@type":"Question","name":"Who can see the implementation work?","acceptedAnswer":{"@type":"Answer","text":"Implementation leads and implementers have their own roles: the Implementation board plus read-only account records."}},{"@type":"Question","name":"Can a project start before the handover checklist is complete?","acceptedAnswer":{"@type":"Answer","text":"No. A project stays in Handover until every required checklist item is filled, and only then can it move to the queue."}},{"@type":"Question","name":"What happens after go-live?","acceptedAnswer":{"@type":"Answer","text":"The account carries on in OneVio: health scores, renewals, QBRs and invoicing all use the same record."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="/" aria-label="OneVio home">
+    <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/><circle cx="19" cy="32" r="11" fill="none" stroke="#0f172a" stroke-width="7"/><path d="M38 20.5 47 44 56 20.5" fill="none" stroke="#4f46e5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="word">One<span>Vio</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <a class="new" href="/customer-onboarding/">Onboarding</a>
+    <details class="dd">
+      <summary>Features</summary>
+      <div class="dd-panel">
+        <a href="/customer-onboarding/"><b>Customer onboarding <span class="badge">New</span></b><small>Handover, plans with hours, CSM sign-off</small></a>
+        <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
+        <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
+        <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
+        <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed, before renewal</small></a>
+        <a href="/finance-invoicing/"><b>Finance &amp; invoicing</b><small>POs, billing schedules and invoices</small></a>
+        <a class="dd-all" href="/#features">All features →</a>
+      </div>
+    </details>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/churn-rate-calculator/">Churn calculator</a>
+  </nav>
+  <a class="nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <a class="btn btn-nav nav-demo" href="/#demo">Book a demo</a>
+  <details class="mnav">
+    <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+    <nav class="mnav-panel" aria-label="Mobile">
+      <span class="grp-label">Suite</span>
+      <a href="/customer-onboarding/">Customer onboarding <span class="badge">New</span></a>
+      <a href="/customer-health-score/">Customer health score</a>
+      <a href="/renewal-management/">Renewal management</a>
+      <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+      <a href="/license-deployment-tracking/">License deployment tracking</a>
+      <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+      <a href="/#features">All features</a>
+      <span class="grp-label">Free tools</span>
+      <a href="/nrr-calculator/">NRR calculator</a>
+      <a href="/churn-rate-calculator/">Churn rate calculator</a>
+      <a href="/#demo">Book a demo</a>
+      <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
+    </nav>
+  </details>
+</div></header>
+<script src="/nav.js" defer></script>
+<main id="main">
+<section class="page-hero onb-hero"><div class="wrap bhero">
+  <div>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Customer onboarding</span></nav>
+    <span class="kicker">Customer onboarding</span>
+    <h1>Customer onboarding software that <mark>hands over cleanly</mark>.</h1>
+    <p class="lead">Sales closes, implementation brings the customer live, and the CSM takes over, all on the same account record. No tracker spreadsheets, no "who owns this now?"</p>
+    <div class="ctas"><a class="btn btn-primary btn-lg" href="#demo">Book a demo</a><a class="btn btn-ghost btn-lg" href="#stages">How it works</a></div>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <div class="c c1"><div class="k">Handover checklist</div><div class="mini"><span class="av" style="background:var(--g-bg);color:var(--g-ink)">✓</span>Signed order form</div><div class="mini"><span class="av" style="background:var(--g-bg);color:var(--g-ink)">✓</span>Go-live target date</div><div class="mini"><span class="av" style="background:var(--o-bg);color:var(--o-ink)">!</span>Admin contact <b style="margin-left:auto;font-size:11px;color:var(--o-ink)">Required</b></div></div>
+    <div class="c c2"><div class="k">Stage</div><div class="v" style="font-size:22px">In progress</div><div class="bar"><i style="width:62%;background:#6366f1"></i></div></div>
+    <div class="c c3"><div class="k">Plan · Globex onboarding</div><div class="mini"><span class="av" style="background:var(--accent-soft);color:var(--accent-ink)">AR</span>Data migration<b style="margin-left:auto">6.5h</b></div><div class="mini"><span class="av" style="background:var(--accent-soft);color:var(--accent-ink)">AR</span>SSO setup<b style="margin-left:auto">3h</b></div></div>
+    <div class="c c4"><div class="k">CSM review</div><div class="chips"><span style="background:var(--g-bg);color:var(--g-ink)">Signed off</span></div></div>
+  </div>
+</div></section>
+
+<section class="fp-body">
+<div id="stages" class="onb-block"><div class="wrap center">
+  <span class="kicker">One path, every project</span>
+  <h2>From signed deal to live customer</h2>
+  <p class="lead">Onboarding and expansion projects move through the same stages, so leads see every customer's progress at a glance.</p>
+  <ol class="stages">
+    <li><b>1</b><span>Handover</span></li><li><b>2</b><span>Queued</span></li><li><b>3</b><span>Planning</span></li><li><b>4</b><span>In progress</span></li><li><b>5</b><span>CSM review</span></li><li class="live"><b>6</b><span>Live</span></li>
+  </ol>
+  <p class="onb-note">The first project on an account is its onboarding; any later project on the same account is an expansion. A project can be put on hold from any open stage and resumes where it stopped, and an implementation lead can cancel one. Either way, its stage history is kept.</p>
+  <div class="frame onb-board"><picture>
+    <source type="image/webp" srcset="/assets/shots/customer-onboarding-board-800.webp 800w, /assets/shots/customer-onboarding-board-1600.webp 1600w" sizes="(max-width: 1100px) calc(100vw - 32px), 1040px" width="1600" height="621">
+    <img src="/assets/shots/customer-onboarding-board-1600.png" alt="OneVio Implementation board with onboarding and expansion projects grouped in columns from Handover through Queued, Planning, In progress and CSM review to Live" width="1600" height="621" loading="lazy" decoding="async">
+  </picture></div>
+</div></div>
+
+<div class="onb-block"><div class="wrap split">
+  <div class="copy">
+    <span class="kicker">Handover</span>
+    <h2>A checklist sales can't skip</h2>
+    <p class="lead">Your team defines a complete handover. Required items must be filled before the project joins the queue.</p>
+    <ul class="checks"><li>Custom checklist with required fields</li><li>Start onboarding from a won opportunity</li><li>Projects can also arrive from your sales system feed</li></ul>
+    <p>The checklist is yours to shape: tick boxes for things like a signed order form, and text fields for details such as the customer's admin contact or a go-live target date. Mark the items that matter as required. Until every required item is filled, the project stays in Handover and OneVio names the items still missing, so the gap is fixed before anyone starts work rather than discovered in week three.</p>
+  </div>
+  <div class="frame"><picture>
+    <source type="image/webp" srcset="/assets/shots/onboarding-handover-checklist-800.webp 800w, /assets/shots/onboarding-handover-checklist-1600.webp 1600w" sizes="(max-width: 900px) calc(100vw - 32px), 640px" width="1600" height="740">
+    <img src="/assets/shots/onboarding-handover-checklist-1600.png" alt="Handover checklist on a OneVio onboarding project, with completed items ticked and one required item still empty and flagged" width="1600" height="740" loading="lazy" decoding="async">
+  </picture></div>
+</div></div>
+
+<div class="onb-block"><div class="wrap split flip">
+  <div class="copy">
+    <span class="kicker">Plan &amp; deliver</span>
+    <h2>Plans, tasks and hours in one place</h2>
+    <p class="lead">Leads assign the project and start from a saved plan template. Implementers work the tasks and log time.</p>
+    <ul class="checks"><li>Reusable plan templates</li><li>Hours logged per task</li><li>Workload view of active projects and hours per person</li><li>On hold or cancelled, with history kept</li></ul>
+    <p>A queued project moves to Planning once a lead assigns an implementer, and to In progress once the plan has at least one task. Implementers log hours against each task as they go. When every task is done, they send the project to the CSM for review. The workload view shows each person's active projects and hours, so a lead can see who has room before assigning the next customer.</p>
+  </div>
+  <div class="frame"><picture>
+    <source type="image/webp" srcset="/assets/shots/onboarding-project-plan-800.webp 800w, /assets/shots/onboarding-project-plan-1600.webp 1600w" sizes="(max-width: 900px) calc(100vw - 32px), 640px" width="1600" height="1156">
+    <img src="/assets/shots/onboarding-project-plan-1600.png" alt="Project plan in OneVio listing implementation tasks with their owner, status and hours logged against each task" width="1600" height="1156" loading="lazy" decoding="async">
+  </picture></div>
+</div></div>
+
+<div class="onb-block"><div class="wrap split">
+  <div class="copy">
+    <span class="kicker">Sign-off</span>
+    <h2>CSM sign-off before go-live</h2>
+    <p class="lead">The account's CSM reviews the project and sends it back with a note or signs it off. Once every task is signed off, the project goes live and the handover date is recorded on the account.</p>
+    <ul class="checks"><li>Send back with a note, or sign off</li><li>"Impl → CSM" handover date on the account</li><li>Separate implementation roles with read-only account access</li></ul>
+    <p>The CSM signs off each task. Returning one sends the project back to In progress with the note attached, and tasks already signed stay signed. Once every task is signed off, the project goes Live and the account shows the date implementation handed it to the CSM.</p>
+  </div>
+  <div class="frame"><picture>
+    <source type="image/webp" srcset="/assets/shots/onboarding-csm-signoff-800.webp 800w, /assets/shots/onboarding-csm-signoff-1600.webp 1600w" sizes="(max-width: 900px) calc(100vw - 32px), 640px" width="1600" height="889">
+    <img src="/assets/shots/onboarding-csm-signoff-1600.png" alt="Project in CSM review in OneVio, with Sign off and Send back actions on each task and a note field for returns" width="1600" height="889" loading="lazy" decoding="async">
+  </picture></div>
+</div></div>
+
+<div class="onb-block"><div class="wrap prose">
+  <p>After go-live, nothing moves to another tool. The same account feeds the <a href="/customer-health-score/">customer health score</a>, its <a href="/renewal-management/">renewal</a>, <a href="/license-deployment-tracking/">license deployment</a>, <a href="/nrr-grr-reporting/">NRR and GRR reporting</a> and <a href="/finance-invoicing/">invoices</a>. Want to see what retention looks like today? Try the free <a href="/nrr-calculator/">NRR calculator</a>.</p>
+  <p class="shot-note">Screenshots show the OneVio app with fictional demo data.</p>
+  <h2>Part of the OneVio suite</h2>
+  <div class="related">
+    <a href="/customer-health-score/"><b>Customer health score</b><small>Five weighted inputs, three bands, alerts when a score slips.</small></a>
+    <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
+    <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
+    <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
+    <a href="/finance-invoicing/"><b>Finance &amp; invoicing</b><small>From purchase order to paid invoice, by currency.</small></a>
+  </div>
+</div></div>
+</section>
+
+<section id="demo" class="demo-section" aria-labelledby="demo-title"><div class="wrap">
+  <div class="demo">
+    <div>
+      <div class="eyebrow">Book a demo</div>
+      <h2 id="demo-title">See OneVio with your own renewals.</h2>
+      <p class="lead">A 30-minute walkthrough with your accounts in mind. Tell us a little about your team and we'll reply within one working day.</p>
+      <ul class="ticks"><li>A 30-minute walkthrough with a CS lead</li><li>Your own separate workspace if you go ahead</li></ul>
+    </div>
+    <form class="form" id="demo-form" novalidate>
+      <div class="g2">
+        <label class="fld"><span>Your name <span class="req" aria-hidden="true">*</span></span><input class="input" name="name" autocomplete="name" required maxlength="120"></label>
+        <label class="fld"><span>Company <span class="req" aria-hidden="true">*</span></span><input class="input" name="company" autocomplete="organization" required maxlength="120"></label>
+      </div>
+      <div class="g2">
+        <label class="fld"><span>Work email <span class="req" aria-hidden="true">*</span></span><input class="input" type="email" name="email" autocomplete="email" required maxlength="200"></label>
+        <label class="fld"><span>Team size</span><select class="input" name="team_size"><option value="">Choose…</option><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+      </div>
+      <label class="fld"><span>What would you like to see? (optional)</span><textarea class="input" name="message" maxlength="2000"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <!-- The Turnstile site key lives only here: replace 0x4AAAAAAFROylqQka_Maavm at handover. -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFROylqQka_Maavm"></div>
+      <div class="form-row"><button class="btn btn-primary btn-lg" type="submit">Request a demo</button><span class="small">We only use these details to reply. <a href="/privacy/">Privacy</a></span></div>
+      <div class="form-status" aria-live="polite"></div>
+      <noscript><p class="form-msg err">The form needs JavaScript. Please email us at support@onevio.in.</p></noscript>
+    </form>
+  </div>
+</div></section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script type="module" src="/demo-form.js"></script>
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title"><div class="wrap center">
+  <span class="kicker">FAQ</span>
+  <h2 id="faq-title" class="mt">Onboarding questions</h2>
+  <div class="faq">
+    <details open><summary>Can we run more than one project for the same customer?</summary><p>Yes. An account can have several projects at once, such as an onboarding and a later expansion.</p></details>
+    <details><summary>Who can see the implementation work?</summary><p>Implementation leads and implementers have their own roles: the Implementation board plus read-only account records.</p></details>
+    <details><summary>Can a project start before the handover checklist is complete?</summary><p>No. A project stays in Handover until every required checklist item is filled, and only then can it move to the queue.</p></details>
+    <details><summary>What happens after go-live?</summary><p>The account carries on in OneVio: health scores, renewals, QBRs and invoicing all use the same record.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap fgrid">
+  <div>
+    <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
+    <p style="max-width:30ch">Customer success from onboarding to payment.</p>
+    <p class="email">support@onevio.in</p>
+  </div>
+  <nav aria-label="Suite"><h2>Suite</h2>
+    <a href="/customer-onboarding/">Customer onboarding</a>
+    <a href="/customer-health-score/">Health scores</a>
+    <a href="/renewal-management/">Renewal management</a>
+    <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
+    <a href="/license-deployment-tracking/">License tracking</a>
+    <a href="/finance-invoicing/">Finance &amp; invoicing</a>
+  </nav>
+  <nav aria-label="Free tools"><h2>Free tools</h2>
+    <a href="/nrr-calculator/">NRR calculator</a>
+    <a href="/churn-rate-calculator/">Churn rate calculator</a>
+    <a href="/customer-health-score-guide/">Health score guide</a>
+  </nav>
+  <nav aria-label="Company"><h2>Company</h2>
+    <a href="https://crm.onevio.in/crm.html">Login</a>
+    <a href="/#demo">Book a demo</a>
+    <a href="/security/">Security</a>
+    <a href="/privacy/">Privacy</a>
+    <p>© 2026 OneVio</p>
+  </nav>
+</div></footer>
+</body>
+</html>

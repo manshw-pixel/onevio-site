@@ -9,15 +9,13 @@
 <meta name="description" content="OneVio scores every account from usage, sentiment, support tickets, engagement recency and NPS, with weights you set and alerts the day a band drops.">
 <link rel="canonical" href="https://onevio.in/customer-health-score/">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0c0f1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" data-swap>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap" media="print" data-swap>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=OneVio&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" media="print" data-swap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/site.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OneVio">
@@ -43,9 +41,11 @@
     <span class="word">One<span>Vio</span></span>
   </a>
   <nav class="nav-links" aria-label="Main">
+    <a class="new" href="/customer-onboarding/">Onboarding</a>
     <details class="dd">
       <summary>Features</summary>
       <div class="dd-panel">
+        <a href="/customer-onboarding/"><b>Customer onboarding <span class="badge">New</span></b><small>Handover, plans with hours, CSM sign-off</small></a>
         <a href="/customer-health-score/"><b>Customer health score</b><small>Weighted scores, risk bands and alerts</small></a>
         <a href="/renewal-management/"><b>Renewal management</b><small>Pipeline, stages and 90-day playbooks</small></a>
         <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>ARR bridge, churn and cohorts</small></a>
@@ -55,24 +55,24 @@
       </div>
     </details>
     <a href="/nrr-calculator/">NRR calculator</a>
-    <a href="/#how">How it works</a>
-    <a href="/#demo">Book a demo</a>
+    <a href="/churn-rate-calculator/">Churn calculator</a>
   </nav>
-  <a class="btn btn-outline nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <a class="nav-login" href="https://crm.onevio.in/crm.html">Login</a>
+  <a class="btn btn-nav nav-demo" href="/#demo">Book a demo</a>
   <details class="mnav">
     <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
     <nav class="mnav-panel" aria-label="Mobile">
-      <span class="grp-label">Features</span>
+      <span class="grp-label">Suite</span>
+      <a href="/customer-onboarding/">Customer onboarding <span class="badge">New</span></a>
       <a href="/customer-health-score/">Customer health score</a>
       <a href="/renewal-management/">Renewal management</a>
       <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
       <a href="/license-deployment-tracking/">License deployment tracking</a>
       <a href="/finance-invoicing/">Finance &amp; invoicing</a>
       <a href="/#features">All features</a>
-      <span class="grp-label">More</span>
+      <span class="grp-label">Free tools</span>
       <a href="/nrr-calculator/">NRR calculator</a>
       <a href="/churn-rate-calculator/">Churn rate calculator</a>
-      <a href="/#how">How it works</a>
       <a href="/#demo">Book a demo</a>
       <a class="btn btn-primary" href="https://crm.onevio.in/crm.html">Login</a>
     </nav>
@@ -105,8 +105,8 @@
   <p>The score is the weighted average of those five. A sixth input, <strong>Value</strong>, ships at weight 0: three yes/no checks for a published case study, savings approved by the customer and ROI approved by the customer. Raise its weight when you are ready for proof of value to count.</p>
   <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
     <picture>
-      <source type="image/webp" srcset="/assets/shots/health-score-weights-800.webp 800w, /assets/shots/health-score-weights-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="797">
-      <img src="/assets/shots/health-score-weights-1600.png" alt="OneVio Settings showing health score weights: product usage 30%, sentiment 20%, support tickets 15%, engagement recency 20%, NPS 15% and value 0%" width="1600" height="797" loading="lazy" decoding="async">
+      <source type="image/webp" srcset="/assets/shots/health-score-weights-800.webp 800w, /assets/shots/health-score-weights-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="1254">
+      <img src="/assets/shots/health-score-weights-1600.png" alt="OneVio Settings showing health score weights: product usage 30%, sentiment 20%, support tickets 15%, engagement recency 20%, NPS 15% and value 0%" width="1600" height="1254" loading="lazy" decoding="async">
     </picture>
   </figure>
   <p>Weights live in Settings, with the formula written out above the sliders. They are normalised automatically, so you set relative importance and OneVio shows the effective percentage. Scores update everywhere the moment you save.</p>
@@ -121,8 +121,8 @@
   </ul>
   <figure class="browser shot"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">crm.onevio.in</span></div>
     <picture>
-      <source type="image/webp" srcset="/assets/shots/customer-health-score-800.webp 800w, /assets/shots/customer-health-score-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="1049">
-      <img src="/assets/shots/customer-health-score-1600.png" alt="OneVio accounts list sorted by health score, with Red, Yellow and Green scores beside NRR, GRR and renewal flags" width="1600" height="1049" loading="lazy" decoding="async">
+      <source type="image/webp" srcset="/assets/shots/customer-health-score-800.webp 800w, /assets/shots/customer-health-score-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 32px), 720px" width="1600" height="924">
+      <img src="/assets/shots/customer-health-score-1600.png" alt="OneVio accounts list sorted by health score, with Red, Yellow and Green scores beside NRR, GRR and renewal flags" width="1600" height="924" loading="lazy" decoding="async">
     </picture>
   </figure>
   <p>On the account page, the Health trend card plots the score over time and says when the inputs were last updated, with a prompt to refresh them once they are 30 days old. The date turns amber at 30 days and red at 45: a score built on stale inputs is flagged so you know to refresh it.</p>
@@ -130,8 +130,9 @@
   <h2>Who uses it</h2>
   <p><strong>CSMs</strong> sort their book by score and work the Red and Yellow accounts first. <strong>CS managers</strong> watch the health mix and the bell to see which accounts are sliding before a renewal is in danger. <strong>Leaders</strong> get a score whose weights they signed off, which makes it far easier to bring into a forecast or a QBR. To see how health feeds the rest of the renewal process, read about <a href="/renewal-management/">renewal management</a>. Designing a score from scratch? Read our <a href="/customer-health-score-guide/">step-by-step health score guide</a>.</p>
 
-  <h2>Related</h2>
+  <h2>Part of the OneVio suite</h2>
   <div class="related">
+    <a href="/customer-onboarding/"><b>Customer onboarding</b><small>Sales handover, plans with hours, CSM sign-off.</small></a>
     <a href="/renewal-management/"><b>Renewal management</b><small>Stages, a 90-day playbook and QBR nudges.</small></a>
     <a href="/nrr-grr-reporting/"><b>NRR &amp; GRR reporting</b><small>A 12-month ARR bridge with NRR and GRR you can defend.</small></a>
     <a href="/license-deployment-tracking/"><b>License deployment tracking</b><small>Total vs deployed licenses and the lowest-deployed accounts.</small></a>
@@ -184,11 +185,12 @@
 <footer class="site-footer"><div class="wrap fgrid">
   <div>
     <a class="brand" href="/" aria-label="OneVio home"><span class="word">One<span>Vio</span></span></a>
-    <p style="max-width:30ch">Customer success software for renewals, health scores and NRR.</p>
+    <p style="max-width:30ch">Customer success from onboarding to payment.</p>
     <p class="email">support@onevio.in</p>
   </div>
-  <nav aria-label="Product"><h2>Product</h2>
-    <a href="/customer-health-score/">Customer health score</a>
+  <nav aria-label="Suite"><h2>Suite</h2>
+    <a href="/customer-onboarding/">Customer onboarding</a>
+    <a href="/customer-health-score/">Health scores</a>
     <a href="/renewal-management/">Renewal management</a>
     <a href="/nrr-grr-reporting/">NRR &amp; GRR reporting</a>
     <a href="/license-deployment-tracking/">License tracking</a>
@@ -202,8 +204,8 @@
   <nav aria-label="Company"><h2>Company</h2>
     <a href="https://crm.onevio.in/crm.html">Login</a>
     <a href="/#demo">Book a demo</a>
-    <a href="/privacy/">Privacy</a>
     <a href="/security/">Security</a>
+    <a href="/privacy/">Privacy</a>
     <p>© 2026 OneVio</p>
   </nav>
 </div></footer>

@@ -14,17 +14,22 @@ mkdirSync(OUT, { recursive: true });
 
 export const SHOTS = [
   { name: 'customer-success-dashboard', src: 'dashboard.png' },
-  { name: 'customer-health-score', src: 'health.png', crop: { left: 360, top: 115, width: 1800, height: 1180 } },
-  { name: 'renewal-management', src: 'renewals.png', crop: { left: 360, top: 115, width: 1830, height: 1325 } },
-  { name: 'arr-bridge-nrr-grr', src: 'dashboard.png', crop: { left: 355, top: 300, width: 2490, height: 760 } },
-  { name: 'customer-account-record', src: 'account.png', crop: { left: 350, top: 105, width: 1666, height: 1300 } },
-  { name: 'team-tasks', src: 'tasks.png', crop: { left: 360, top: 115, width: 2484, height: 1400 } },
-  { name: 'health-score-weights', src: 'settings-weights.png', crop: { left: 1615, top: 40, width: 1235, height: 615 } },
-  { name: 'renewal-playbook', src: 'settings-weights.png', crop: { left: 362, top: 1100, width: 1235, height: 700 } },
-  { name: 'license-deployment', src: 'licenses.png', crop: { left: 355, top: 1255, width: 2490, height: 445 } },
-  { name: 'finance-invoicing', src: 'finance.png', crop: { left: 355, top: 115, width: 2490, height: 1640 } },
-  { name: 'finance-overview', src: 'finance.png', crop: { left: 355, top: 190, width: 2490, height: 610 } },
-  { name: 'finance-queues', src: 'finance.png', crop: { left: 355, top: 455, width: 2490, height: 345 } },
+  { name: 'customer-health-score', src: 'health.png', crop: { left: 560, top: 170, width: 2250, height: 1300 } },
+  { name: 'renewal-management', src: 'renewals.png', crop: { left: 560, top: 170, width: 2250, height: 1400 } },
+  { name: 'arr-bridge-nrr-grr', src: 'licenses.png', crop: { left: 560, top: 490, width: 1115, height: 640 } },
+  { name: 'customer-account-record', src: 'account.png', crop: { left: 560, top: 170, width: 2250, height: 1400 } },
+  { name: 'team-tasks', src: 'tasks.png', crop: { left: 560, top: 170, width: 2250, height: 1400 } },
+  { name: 'health-score-weights', src: 'settings-weights.png', crop: { left: 1700, top: 40, width: 1110, height: 870 } },
+  { name: 'renewal-playbook', src: 'settings-playbook.png', crop: { left: 568, top: 74, width: 1104, height: 926 } },
+  { name: 'license-deployment', src: 'licenses.png', crop: { left: 1700, top: 490, width: 1110, height: 640 } },
+  { name: 'finance-invoicing', src: 'finance.png', crop: { left: 560, top: 170, width: 2250, height: 1630 } },
+  { name: 'finance-overview', src: 'finance.png', crop: { left: 560, top: 295, width: 2250, height: 320 } },
+  { name: 'finance-queues', src: 'finance.png', crop: { left: 560, top: 640, width: 2250, height: 480 } },
+  // Onboarding (Implementation). The board is captured with the sidebar collapsed so all five columns fit.
+  { name: 'customer-onboarding-board', src: 'customer-onboarding-board.png', crop: { left: 180, top: 175, width: 2630, height: 1020 } },
+  { name: 'onboarding-handover-checklist', src: 'onboarding-handover-checklist.png', crop: { left: 560, top: 210, width: 2250, height: 1040 } },
+  { name: 'onboarding-project-plan', src: 'onboarding-project-plan.png', crop: { left: 560, top: 175, width: 2250, height: 1625 } },
+  { name: 'onboarding-csm-signoff', src: 'onboarding-csm-signoff.png', crop: { left: 560, top: 175, width: 2250, height: 1250 } },
 ];
 
 const sizes = {};
@@ -44,11 +49,12 @@ await sharp(join(SRC, 'dashboard.png')).extract({ left: 0, top: 0, width: 2880, 
 
 // OG images for the feature pages: 1200x630 (1.905:1) crops of the matching screen.
 const OGS = [
-  ['og-customer-health-score', 'health.png', { left: 360, top: 115, width: 1800, height: 945 }],
-  ['og-renewal-management', 'renewals.png', { left: 360, top: 115, width: 1830, height: 961 }],
-  ['og-nrr-grr-reporting', 'dashboard.png', { left: 355, top: 115, width: 2490, height: 1307 }],
-  ['og-license-deployment-tracking', 'licenses.png', { left: 355, top: 115, width: 2490, height: 1307 }],
-  ['og-finance-invoicing', 'finance.png', { left: 355, top: 115, width: 2490, height: 1307 }],
+  ['og-customer-health-score', 'health.png', { left: 560, top: 170, width: 2250, height: 1181 }],
+  ['og-renewal-management', 'renewals.png', { left: 560, top: 170, width: 2250, height: 1181 }],
+  ['og-nrr-grr-reporting', 'dashboard.png', { left: 560, top: 190, width: 2250, height: 1181 }],
+  ['og-license-deployment-tracking', 'licenses.png', { left: 560, top: 480, width: 2250, height: 1181 }],
+  ['og-finance-invoicing', 'finance.png', { left: 560, top: 170, width: 2250, height: 1181 }],
+  ['og-customer-onboarding', 'customer-onboarding-board.png', { left: 180, top: 175, width: 2630, height: 1381 }],
 ];
 for (const [name, src, crop] of OGS) {
   await sharp(join(SRC, src)).extract(crop).resize(1200, 630).png({ palette: true, compressionLevel: 9 }).toFile(join(OUT, name + '.png'));
