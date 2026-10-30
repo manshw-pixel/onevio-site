@@ -264,13 +264,14 @@ test('desktop Features dropdown opens without JS', async () => {
     await page.locator('.dd > summary').click();
     const links = page.locator('.dd-panel a');
     await links.first().waitFor({ state: 'visible' });
-    assert.equal(await links.count(), 6);
+    assert.equal(await links.count(), 7);
+    assert.equal(await links.first().getAttribute('href'), '/customer-onboarding/', 'Onboarding listed first');
     assert.equal(await page.locator('.dd-panel a').last().getAttribute('href'), '/#features');
   } finally { await ctx.close(); }
 });
 
 test('dark scheme applies dark tokens; light applies light', async () => {
-  for (const [scheme, bg, accent] of [['light', 'rgb(245, 246, 250)', '#4f46e5'], ['dark', 'rgb(12, 15, 29)', '#8b8cf8']]) {
+  for (const [scheme, bg, accent] of [['light', 'rgb(248, 249, 252)', '#4f46e5'], ['dark', 'rgb(11, 17, 32)', '#818cf8']]) {
     const ctx = await browser.newContext({ colorScheme: scheme });
     const page = await ctx.newPage();
     try {
@@ -365,8 +366,8 @@ test('dark scheme tokens apply on every page', async () => {
         bg: getComputedStyle(document.body).backgroundColor,
         fg: getComputedStyle(document.body).color,
       }));
-      assert.equal(got.bg, 'rgb(12, 15, 29)', `${p.file}: dark background`);
-      assert.equal(got.fg, 'rgb(238, 240, 250)', `${p.file}: dark text (--ink)`);
+      assert.equal(got.bg, 'rgb(11, 17, 32)', `${p.file}: dark background`);
+      assert.equal(got.fg, 'rgb(226, 232, 240)', `${p.file}: dark text (--ink)`);
     }
   } finally { await ctx.close(); }
 });
