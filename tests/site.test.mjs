@@ -188,8 +188,9 @@ test('feature pages: title/description length, one H1 with JSON-LD, screenshots,
     const h2 = (prose.match(/<h2[\s>]/g) || []).length - 1; // minus the closing "Part of the OneVio suite" H2
     assert.ok(h2 >= 3 && h2 <= 5, `${path}: ${h2} content H2s`);
     const imgs = (p.html.match(/<img\b/g) || []).length;
-    // The onboarding page carries the board plus one shot per split (approved design).
-    const maxImgs = path === '/customer-onboarding/' ? 4 : 2;
+    // The onboarding page carries the board plus one shot per split (approved design);
+    // the health page adds the account record (approved 2026-10-31).
+    const maxImgs = path === '/customer-onboarding/' ? 4 : path === '/customer-health-score/' ? 3 : 2;
     assert.ok(imgs >= 1 && imgs <= maxImgs, `${path}: 1-${maxImgs} screenshots`);
     assert.ok(p.html.includes('id="demo"'), `${path}: demo partial`);
     assert.ok(p.html.includes(`property="og:image" content="https://onevio.in/assets/shots/og-${p.name}.png"`), `${path}: own OG image`);
