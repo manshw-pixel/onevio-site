@@ -225,6 +225,58 @@ test('customer onboarding page: H1, JSON-LD, sitemap, linked from home body and 
     assert.ok(p.html.includes(`/assets/shots/${s}-1600.png`), `uses ${s}`);
 });
 
+// ---------- Guides ----------
+const GUIDE_PATHS = ['/customer-health-score-guide/', '/renewal-playbook/', '/customer-onboarding-checklist/', '/qbr-template/'];
+const NEW_GUIDES = {
+  '/renewal-playbook/': { h1: 'A renewal playbook, 90 days to signature', links: ['/renewal-management/', '/churn-rate-calculator/', '/nrr-calculator/'], img: 'renewal-management' },
+  '/customer-onboarding-checklist/': { h1: 'Customer onboarding checklist: the sales handover', links: ['/customer-onboarding/'], img: 'onboarding-handover-checklist' },
+  '/qbr-template/': { h1: 'A QBR template for customer success teams', links: ['/nrr-calculator/', '/renewal-management/'], img: null },
+};
+
+test('guides: H1, Article + BreadcrumbList + 5-question FAQPage, links, screenshot, in sitemap', () => {
+  const sitemap = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
+  for (const [path, want] of Object.entries(NEW_GUIDES)) {
+    const p = byPath.get(path);
+    assert.ok(p && p.html, `${path} built`);
+    assert.equal(decode(p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), want.h1, `${path} H1`);
+    const ld = jsonld(p.html);
+    for (const t of ['BreadcrumbList', 'Article', 'FAQPage']) assert.ok(ld.some((j) => j['@type'] === t), `${path} ${t}`);
+    const art = ld.find((j) => j['@type'] === 'Article');
+    assert.equal(art.url, 'https://onevio.in' + path); assert.equal(art.headline, want.h1);
+    assert.equal(ld.find((j) => j['@type'] === 'FAQPage').mainEntity.length, 5, `${path}: 5 FAQs`);
+    const links = linksOf(bodyOf(p.html));
+    for (const h of [...want.links, '#demo']) assert.ok(links.has(h), `${path}: body links to ${h}`);
+    const imgs = [...p.html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
+    if (want.img) { assert.equal(imgs.length, 1, `${path}: one screenshot`); assert.ok(imgs[0].includes(`/assets/shots/${want.img}-1600.png`), `${path}: uses ${want.img}`); }
+    else assert.equal(imgs.length, 0, `${path}: no screenshot`);
+    assert.ok(sitemap.includes(`<loc>https://onevio.in${path}</loc>`), `${path} in sitemap`);
+    const words = decode(bodyOf(p.html).replace(/<[^>]+>/g, ' ')).split(' ').length;
+    assert.ok(words >= 900, `${path}: ${words} words`);
+  }
+});
+
+test('guides: every footer lists the four guides; calculators and the health guide link the new guides', () => {
+  for (const p of pages) {
+    const foot = linksOf(p.html.slice(p.html.indexOf('<footer')));
+    for (const g of GUIDE_PATHS) assert.ok(foot.has(g), `${p.file} footer links ${g}`);
+  }
+  const has = (path, h) => assert.ok(linksOf(bodyOf(byPath.get(path).html)).has(h), `${path} links ${h}`);
+  has('/nrr-calculator/', '/renewal-playbook/'); has('/nrr-calculator/', '/qbr-template/');
+  has('/churn-rate-calculator/', '/renewal-playbook/');
+  for (const g of Object.keys(NEW_GUIDES)) has('/customer-health-score-guide/', g);
+});
+
+test('calculators: answer-first line under the H1 and a 3-step how-to above the calculator', () => {
+  for (const path of ['/nrr-calculator/', '/churn-rate-calculator/']) {
+    const h = byPath.get(path).html;
+    assert.match(h, /<\/h1>\s*<p class="answer">[^]*?=/, `${path}: formula line directly under the H1`);
+    const sec = h.match(/<section class="calc-section"[^>]*>([\s\S]*?)<div class="calc"/);
+    assert.ok(sec, `${path}: calc section`);
+    assert.equal((sec[1].match(/<li>/g) || []).length, 3, `${path}: 3 steps before the calculator`);
+    assert.match(sec[1], /How to use this calculator/);
+  }
+});
+
 test('home onboarding tile has a short accessible name', () => {
   assert.match(home.html, /<a class="tile t1" href="\/customer-onboarding\/" aria-label="Customer onboarding">/);
 });
