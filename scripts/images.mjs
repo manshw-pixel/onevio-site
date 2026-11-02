@@ -27,7 +27,7 @@ export const SHOTS = [
   { name: 'finance-queues', src: 'finance.png', crop: { left: 560, top: 640, width: 2250, height: 480 } },
   // Onboarding (Implementation). The board is captured with the sidebar collapsed so all five columns fit.
   { name: 'customer-onboarding-board', src: 'customer-onboarding-board.png', crop: { left: 180, top: 175, width: 2630, height: 1020 } },
-  { name: 'onboarding-handover-checklist', src: 'onboarding-handover-checklist.png', crop: { left: 560, top: 210, width: 2250, height: 1040 } },
+  { name: 'onboarding-handover-checklist', src: 'onboarding-handover-checklist.png', crop: { left: 568, top: 370, width: 2240, height: 1030 } },
   { name: 'onboarding-project-plan', src: 'onboarding-project-plan.png', crop: { left: 560, top: 175, width: 2250, height: 1625 } },
   { name: 'onboarding-csm-signoff', src: 'onboarding-csm-signoff.png', crop: { left: 560, top: 175, width: 2250, height: 1250 } },
 ];
