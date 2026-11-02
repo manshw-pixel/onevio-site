@@ -467,3 +467,6 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 .compare-key { font-size: 13px; color: var(--muted) }
 .embed-deck { margin: 16px 0 }
 .embed-deck iframe { display: block; width: 700px; max-width: 100%; height: 450px; border: 0; border-radius: 12px }
+.embed-open { margin: 8px 0 0 }
+@media (min-width: 721px) { .embed-open { display: none } }
+@media (max-width: 720px) { .embed-deck { display: none } }
