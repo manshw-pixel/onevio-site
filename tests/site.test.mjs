@@ -510,6 +510,9 @@ test('no CSP violations when every page loads', async () => {
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
   const bad = [];
+  // Gamma redirects headless browsers to its X-Frame-Options homepage; real visitors get the deck.
+  // Serve an empty doc for it so the test still proves our CSP allows the frame.
+  await page.route('https://gamma.app/**', (r) => r.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html>' }));
   page.on('console', (m) => { if (/Content Security Policy|Refused to/i.test(m.text())) bad.push(m.text()); });
   try {
     for (const p of pages) { bad.length = 0; await page.goto(server.url + p.path, { waitUntil: 'load' }); await page.waitForTimeout(300);
