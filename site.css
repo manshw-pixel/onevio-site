@@ -249,7 +249,7 @@ textarea.input { min-height: 96px; resize: vertical }
 
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--line); padding-block: 44px; margin-top: 40px; font-size: 14px; color: var(--muted); background: var(--bg) }
-.fgrid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 24px }
+.fgrid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 24px }
 .fgrid h2 { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: 0; color: var(--ink); margin: 0 0 8px }
 .fgrid a { display: block; padding: 4px 0; width: fit-content; color: var(--muted) }
 .fgrid a:hover { color: var(--accent) }
@@ -310,6 +310,10 @@ figure { margin: 0 }
 /* ---------- NRR calculator (Task 11) ---------- */
 .calc-section { padding-block: 8px 24px }
 .calc-section .wrap { max-width: 808px }
+.fp-hero .answer { margin-top: 14px; max-width: 64ch; color: var(--body); font-size: 16px }
+.calc-steps-title { font-size: 18px; margin: 0 0 8px }
+.calc-steps { margin: 0 0 20px; padding-left: 1.3em; color: var(--body); font-size: 16px }
+.calc-steps li + li { margin-top: 4px }
 .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-md) }
 .calc-in { display: grid; gap: 14px; align-content: start; min-width: 0 }
 .calc-out { min-width: 0; align-content: start }
@@ -451,3 +455,5 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 .onb-note { max-width: 720px; margin: 22px auto 0; color: var(--body) }
 .onb-board { margin-top: 32px; text-align: left }
 @media (max-width: 900px) { .onb-block { padding-block: 36px } }
+.subproc.wrap-first td:first-child { white-space: normal; min-width: 7.5em }
+@media (max-width: 560px) { .subproc th, .subproc td { padding: 8px 8px } }
