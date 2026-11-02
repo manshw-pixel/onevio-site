@@ -457,3 +457,11 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 @media (max-width: 900px) { .onb-block { padding-block: 36px } }
 .subproc.wrap-first td:first-child { white-space: normal; min-width: 7.5em }
 @media (max-width: 560px) { .subproc th, .subproc td { padding: 8px 8px } }
+
+/* Comparison table (/best-customer-success-crm/) */
+.compare { min-width: 760px }
+.compare td:first-child { white-space: normal; width: 26%; font-weight: 600 }
+.compare .us { background: var(--accent-soft); color: var(--ink); font-weight: 600 }
+.compare .y { color: var(--accent) }
+.compare .p, .compare .n { color: var(--muted) }
+.compare-key { font-size: 13px; color: var(--muted) }
