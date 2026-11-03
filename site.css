@@ -255,6 +255,7 @@ textarea.input { min-height: 96px; resize: vertical }
 .fgrid a:hover { color: var(--accent) }
 .fgrid p { margin: 10px 0 0 }
 .fgrid .email { user-select: all; color: var(--body) }
+.fgrid .social a { display: inline; margin: 0 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
