@@ -255,7 +255,10 @@ textarea.input { min-height: 96px; resize: vertical }
 .fgrid a:hover { color: var(--accent) }
 .fgrid p { margin: 10px 0 0 }
 .fgrid .email { user-select: all; color: var(--body) }
-.fgrid .social a { display: inline; margin: 0 }
+.fgrid .social { display: flex; gap: 14px; align-items: center }
+.fgrid .social a { display: inline-flex; margin: 0; padding: 4px; color: var(--body); transition: color .15s }
+.fgrid .social a.li:hover, .fgrid .social a.li:focus-visible { color: #0a66c2 }
+.fgrid .social a.x:hover, .fgrid .social a.x:focus-visible { color: var(--ink, #000) }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
