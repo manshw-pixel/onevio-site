@@ -25,11 +25,11 @@
   },
   "health-score-weights": {
     "width": 1600,
-    "height": 1254
+    "height": 742
   },
   "renewal-playbook": {
     "width": 1600,
-    "height": 1342
+    "height": 827
   },
   "license-deployment": {
     "width": 1600,
@@ -41,11 +41,11 @@
   },
   "finance-overview": {
     "width": 1600,
-    "height": 228
+    "height": 334
   },
   "finance-queues": {
     "width": 1600,
-    "height": 341
+    "height": 395
   },
   "customer-onboarding-board": {
     "width": 1600,
