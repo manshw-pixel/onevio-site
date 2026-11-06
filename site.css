@@ -406,13 +406,13 @@ a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow) }
 .t1 .shotbox { margin-top: 22px; border-radius: 14px; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .3); overflow: hidden }
 .t1 .shotbox img { display: block; width: 100%; height: auto }
 .t2 { grid-column: span 2; background: var(--g-bg); border-color: var(--g-line) } .t2 .n, .t2 .more { color: var(--g-ink) }
-.t3 { grid-column: span 2; background: var(--o-bg); border-color: var(--o-line) } .t3 .n, .t3 .more { color: var(--o-ink) }
-.t4 { grid-column: span 3; background: var(--b-bg); border-color: var(--b-line) } .t4 .n, .t4 .more { color: var(--b-ink) }
+.t3 { grid-column: span 3; background: var(--o-bg); border-color: var(--o-line) } .t3 .n, .t3 .more { color: var(--o-ink) }
+.t4 { grid-column: span 2; background: var(--b-bg); border-color: var(--b-line) } .t4 .n, .t4 .more { color: var(--b-ink) }
 .t5 { grid-column: span 3; background: var(--p-bg); border-color: var(--p-line) } .t5 .n, .t5 .more { color: var(--p-ink) }
 .t6, .t7, .t8 { grid-column: span 2 } .t6 .n, .t7 .n, .t8 .n, .t6 .more { color: var(--accent) }
 .ring { width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(#10b981 284deg, var(--line) 0); display: grid; place-items: center; margin-top: 14px }
 .ring b { width: 50px; height: 50px; border-radius: 50%; background: var(--g-bg); display: grid; place-items: center; color: var(--g-ink) }
-@media (max-width: 940px) { .bento { grid-template-columns: 1fr 1fr } .t1, .t4, .t5 { grid-column: span 2 } .t2, .t3, .t6, .t7, .t8 { grid-column: span 1 } }
+@media (max-width: 940px) { .bento { grid-template-columns: 1fr 1fr } .t1, .t3, .t5 { grid-column: span 2 } .t2, .t4, .t6, .t7, .t8 { grid-column: span 1 } }
 @media (max-width: 560px) { .bento { grid-template-columns: 1fr } .bento > * { grid-column: span 1 !important } }
 
 /* Copy + screenshot split */
